@@ -1,0 +1,102 @@
+# 文章搜索
+search:
+  service: local_search # local_search, todo...
+  local_search: # 在 front-matter 中设置 indexing:false 来避免被搜索索引
+    field: all # post, page, all
+    path: /search.json # 搜索文件存放位置
+    content: true # 是否搜索内容
+    codeblock: true # 是否搜索代码块（需要content: true)
+
+######## Sidebar ########
+sidebar:
+  logo:
+    avatar: "[config.avatar](/)" # you can set avatar link in _config.yml or '[https://xxx.png](/about/)'
+    title: "[config.title](/)"
+  menu:
+    home: "[btn.home](/)"
+    post: "[btn.blog](/blog/)"
+    wiki: "[btn.wiki](/wiki/)"
+    notes: "[btn.notes](/notes/)"
+    friends: "[btn.friends](/friends/)"
+  widgets:
+    #### 自动生成的页面 ####
+    # 主页
+    home: [search, welcome, recent, timeline] # for home
+    # 博客索引页
+    blog_index: [search_blog, recent, timeline] # for categories/tags/archives
+    # 文档索引页
+    wiki_index: [search_docs, recent, timeline] # for wiki
+    # 其它（404）
+    others: [search, welcome, recent, timeline] # for 404 and ...
+    #### 手动创建的页面 ####
+    # 文章内页
+    post: [toc, ghrepo, search, ghissues] # for pages using 'layout:post'
+    # 文档内页
+    wiki: [search, ghrepo, toc, ghissues, related] # for pages using 'layout:wiki'
+    # 其它 layout:page 的页面
+    page: [welcome, toc, search] # for custom pages using 'layout:page'
+
+######## Article ########
+article:
+  # 文章许可协议
+  license:
+    "本文采用 [署名-非商业性使用-相同方式共享 4.0 国际](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh) 许可协议，转载请注明出处。"
+
+    ######## Comments ########
+comments:
+  service: twikoo # beaudar, utterances, twikoo, waline
+  # Twikoo
+  # https://twikoo.js.org/
+  twikoo:
+    js: https://unpkg.com/twikoo@1.4.0 # 建议锁定版本
+    envId: https://twikoo.moieo.top # vercel函数
+
+######## Footer ########
+footer:
+  since: 2022
+  social:
+    - icon: '<img src="https://fapro6.cubik65536.top/svgs/brands/github.svg" />'
+      url: https://github.com/moieo
+      title: "GitHub (@Moieo)"
+    - icon: '<img src="https://fapro6.cubik65536.top/svgs/brands/gitlab.svg"/>'
+      url: https://gitlab.com/moieo
+      title: "GitLab (@Moieo)"
+    - icon: '<img src="https://fapro6.cubik65536.top/svgs/regular/envelopes-bulk.svg"/>'
+      url: mailto:moe@moieo.cn
+      title: "向我发送邮件"
+  # largesocial:
+  sitemap:
+    "主页":
+      - "[关于](/)"
+      - "[联系我](/contact-me/)"
+    "博客":
+      - "[近期发布](/blog/)"
+      - "[分类](/categories/)"
+      - "[标签](/tags/)"
+      - "[归档](/archives/)"
+      - "[Wiki](/wiki/)"
+    "社交":
+      - "[友链](/friends/)"
+    "联系我":
+      - "[联系我 (详细信息页)](/contact-me/)"
+      - "[E-mail](mailto:moe@moieo.cn)"
+      - "[GitHub](https://github.com/moieo)"
+      - "[GitLab](https://gitlab.com/moieo)"
+  content: |
+    本站由 [Hexo](https://hexo.io/) & [Hexo Theme Stellar](https://xaoxuu.com/wiki/stellar/) 强力驱动
+    Copyright © 2022 [@Moieo](https://moieo.cn) 版权所有
+    [赣ICP备2022010558号-1](http://beian.miit.gov.cn/)
+    本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh) 许可协议，转载请注明出处。
+
+#[赣ICP备202201196号](http://beian.miit.gov.cn/) <img alt="" width="12px" height="12px" src="https://g.csdnimg.cn/common/csdn-footer/images/badge.png" /> [赣公网安备1234567896464号](http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=1234567894646)
+######## Tag Plugins ########
+tag_plugins:
+  # {% image %}
+  image:
+    fancybox: true
+
+style:
+  font-size: 16px
+  font-family:
+    body: '"ProFont For Powerline", "Smiley Sans", "LXGW WenKai Screen", "Apple Color Emoji", "Source Han Serif", system-ui, -apple-system, sans-serif'
+    code: '"ProFont For Powerline", "Smiley Sans", "LXGW WenKai Screen", "Apple Color Emoji", "Source Han Serif", system-ui, -apple-system, monospace, sans-serif'

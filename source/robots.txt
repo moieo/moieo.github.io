@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Crawl-delay: 120
+Disallow: /js/
+Disallow: /css/
+Disallow: /img/
+Disallow: /fonts/
+Disallow: /chatroom/
+Sitemap: https://ecodemo.top/sitemap.xml
+Sitemap: https://ecodemo.top/baidusitemap.xml
