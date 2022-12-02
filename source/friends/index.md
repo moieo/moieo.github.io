@@ -5,7 +5,7 @@ menu_id: friends
 title: 友链
 seo_title: 友链
 toc_title: 友链索引
-comments: false
+# comments: false
 ---
 
 ## 站点工具
