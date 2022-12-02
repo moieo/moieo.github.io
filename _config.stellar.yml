@@ -48,7 +48,7 @@ comments:
   # Twikoo
   # https://twikoo.js.org/
   twikoo:
-    js: https://unpkg.com/twikoo@1.4.0 # 建议锁定版本
+    js: https://unpkg.com/twikoo@1.6.7 # 建议锁定版本
     envId: https://twikoo.moieo.top # vercel函数
 
 ######## Footer ########
