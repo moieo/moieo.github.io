@@ -5,6 +5,5 @@ Disallow: /js/
 Disallow: /css/
 Disallow: /img/
 Disallow: /fonts/
-Disallow: /chatroom/
-Sitemap: https://ecodemo.top/sitemap.xml
-Sitemap: https://ecodemo.top/baidusitemap.xml
+Sitemap: https://blog.moieo.top/sitemap.xml
+Sitemap: https://blog.moieo.top/baidusitemap.xml
