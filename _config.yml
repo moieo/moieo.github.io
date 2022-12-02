@@ -144,4 +144,4 @@ baidusitemap:
 deploy:
   - type: git
     repo: git@github.com:moieo/moieo.github.io.git
-    branch: main
+    branch: dev
