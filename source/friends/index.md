@@ -18,7 +18,7 @@ toc_title: 友链索引
 
 ## 自助提交的朋友
 
-{% friends https://fastly.jsdelivr.net/gh/moieo/rainbow-friends@output/v2/data.json %}
+{% friends api:https://fastly.jsdelivr.net/gh/moieo/rainbow-friends@output/v2/data.json %}
 
 ## 酷安的朋友们
 
@@ -86,7 +86,7 @@ url: https://blog.moieo.top
 description: 素白青韵，简静安然
 {% endcodeblock %}
 
-<!-- 第二步：提交友链申请 -->
+<!-- node 第二步：提交友链申请 -->
 
 申请地址：<https://github.com/moieo/rainbow-friends/issues>
 
