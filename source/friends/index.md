@@ -16,6 +16,10 @@ toc_title: 友链索引
 
 {% friends 友情链接 %}
 
+## 自助提交的朋友
+
+{% friends https://fastly.jsdelivr.net/gh/moieo/rainbow-friends@output/v2/data.json %}
+
 ## 酷安的朋友们
 
 {% friends 来自酷友 %}
@@ -38,7 +42,7 @@ toc_title: 友链索引
   - .vercel.app
   - .netlify.app
 
-### 如何自助添加友链？
+### 如何加入友链？
 
 {% timeline %}
 
@@ -64,5 +68,30 @@ avatar: xxx # 头像
 url: xxx # 地址
 description: xxx # 描述
 {% endcodeblock %}
+
+{% endtimeline %}
+
+### 不想发邮件？自助提交
+
+{% timeline %}
+
+<!-- node 第一步：将本站添加至贵站友链 -->
+
+本站友链信息：
+
+{% codeblock lang:yaml %}
+title: 彩虹小屋
+avatar: https://blog.moieo.top/favicon.ico
+url: https://blog.moieo.top
+description: 素白青韵，简静安然
+{% endcodeblock %}
+
+<!-- 第二步：提交友链申请 -->
+
+申请地址：<https://github.com/moieo/rainbow-friends/issues>
+
+选择 `友情链接模板`
+
+按照模板在双引号内修改你自己的信息
 
 {% endtimeline %}
