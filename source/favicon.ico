@@ -1,4 +1,12 @@
---2022-12-04 15:21:06--  ftp://https//moieo.top/favicon.ico
-           => “favicon.ico”
-正在解析主机 https (https)... 失败：未知的名称或服务。
-wget: 无法解析主机地址 “https”
+--2022-12-04 18:18:27--  https://moieo.top/favicon.ico
+已载入 CA 证书“/etc/ssl/certs/ca-certificates.crt”
+正在解析主机 moieo.top (moieo.top)... 76.76.21.164
+正在连接 moieo.top (moieo.top)|76.76.21.164|:443... 已连接。
+已发出 HTTP 请求，正在等待回应... 200 OK
+长度：37580 (37K) [image/vnd.microsoft.icon]
+正在保存至: “favicon.ico”
+
+     0K .......... .......... .......... ......               100%  537K=0.07s
+
+2022-12-04 18:18:28 (537 KB/s) - 已保存 “favicon.ico” [37580/37580])
+
