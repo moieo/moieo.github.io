@@ -18,7 +18,7 @@ toc_title: 友链索引
 
 ## 自助提交的朋友
 
-{% friends api:https://cdn.jsdelivr.net/gh/moieo/rainbow-friends@output/v2/data.json %}
+{% friends api:https://fastly.jsdelivr.net/gh/moieo/rainbow-friends@output/v2/data.json %}
 
 ## 酷安的朋友们
 
