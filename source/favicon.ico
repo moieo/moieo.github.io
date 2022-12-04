@@ -1,0 +1,4 @@
+--2022-12-04 15:21:06--  ftp://https//moieo.top/favicon.ico
+           => “favicon.ico”
+正在解析主机 https (https)... 失败：未知的名称或服务。
+wget: 无法解析主机地址 “https”

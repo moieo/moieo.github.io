@@ -47,9 +47,9 @@ toc_title: 友链索引
 本站友链信息：
 
 {% codeblock lang:yaml %}
-title: 异世界
-avatar: https://moieo.top/favicon.ico
-url: https://moieo.cn
+title: 彩虹小屋
+avatar: https://blog.moieo.top/favicon.ico
+url: https://blog.moieo.top
 description: 素白青韵，简静安然
 {% endcodeblock %}
 
