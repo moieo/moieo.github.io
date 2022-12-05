@@ -59,4 +59,6 @@ comments: false
 [02:52]张杰： 
 [02:55]发愤图强 做栋梁 
 [03:01]不负年少 
-{% endaplayerlrc%}
+{% endaplayerlrc %}
+
+## [下载 MP3](https://moieo.cn/少年中国说.mp3)
