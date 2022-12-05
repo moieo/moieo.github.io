@@ -3,7 +3,7 @@ title: 少年中国说
 comments: false
 ---
 
-{% aplayerlrc "少年中国说（伴奏）" "张杰" "https://moieo.cn/少年中国说.mp3"  "https://moieo.top/favicon.ico" %}
+{% aplayerlrc "少年中国说（伴奏）" "张杰" "https://moieo.cn/少年中国说.mp3"  "/favicon.ico" %}
 [00:00]少年中国说 - 张杰
 [00:00]词：（清）梁启超&二水
 [00:00]曲：许嵩
@@ -61,4 +61,4 @@ comments: false
 [03:01]不负年少 
 {% endaplayerlrc %}
 
-## [下载 MP3](https://moieo.cn/少年中国说.mp3)
+{% link "https://moieo.cn/少年中国说.mp3" "下载 Mp3" icon:"/favicon.ico" desc:false %}
