@@ -1,5 +1,5 @@
 ---
-robots: noindex,nofollow
+robots: noindex
 sitemap: false
 menu_id: friends
 title: 友链
