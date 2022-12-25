@@ -13,7 +13,7 @@ header: false
 
 ## 嗨！我是 Moieo 👋
 
-<div style="display: none;"> **介系一个不知名学生的个人网站~** </div>
+**介系一个不知名学生的个人网站~**
 
 {% navbar active:1 [关于](/) [联系我](/contact-me/) %}
 
