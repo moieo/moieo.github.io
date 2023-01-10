@@ -82,6 +82,7 @@ footer:
       - "[E-mail](mailto:moe@moieo.cn)"
       - "[GitHub](https://github.com/moieo)"
       - "[GitLab](https://gitlab.com/moieo)"
+      - "[Gitee](https://gitee.com/moieo)"
   content: |
     本站由 [Hexo](https://hexo.io/) & [Hexo Theme Stellar](https://xaoxuu.com/wiki/stellar/) 强力驱动
     Copyright © 2022 [@Moieo](https://moieo.cn) 版权所有
@@ -94,6 +95,12 @@ tag_plugins:
   # {% image %}
   image:
     fancybox: true
+  emoji:
+    default: https://gcore.jsdelivr.net/gh/cdn-x/emoji/qq/${name}.gif
+    twemoji: https://gcore.jsdelivr.net/gh/twitter/twemoji/assets/svg/${name}.svg
+    qq: https://gcore.jsdelivr.net/gh/cdn-x/emoji/qq/${name}.gif
+    aru: https://gcore.jsdelivr.net/gh/cdn-x/emoji/aru-l/${name}.gif
+    tieba: https://gcore.jsdelivr.net/gh/cdn-x/emoji/tieba/${name}.png
 
 style:
   font-size: 16px

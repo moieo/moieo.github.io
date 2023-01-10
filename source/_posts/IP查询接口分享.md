@@ -41,7 +41,7 @@ curl https://api.myip.la/cn?json
 
 {% endtabs %}
 
-{% link 详细文档::https://www.myip.la/ %}
+{% link https://www.myip.la/ 详细文档 %}
 
 #### Moieo Api IP 查询接口
 

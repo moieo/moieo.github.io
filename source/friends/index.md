@@ -8,10 +8,6 @@ toc_title: 友链索引
 # comments: false
 ---
 
-## 站点工具
-
-{% friends 站点工具 %}
-
 ## 我的朋友们
 
 {% friends 友情链接 %}
