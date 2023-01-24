@@ -15,7 +15,7 @@ header: false
 
 **介系一个不知名学生的个人网站~**
 
-{% navbar active:2 [关于](/) [联系我](/contact-me/) [最近文章](/blog/) %}
+{% navbar active:2 [关于](/) [联系我](/contact-me/) [近期发布](/blog/) %}
 
 <hr/>
 
@@ -28,12 +28,19 @@ header: false
 备用：[moe@u.moieo.cn](mailto:moe@u.moieo.cn)
 备用 2：[moieo@outlook.com](mailto:moieo@outlook.com) (除非上述邮箱不可用，否则一律不会使用该邮箱回复任何信息)
 
+### GPG 指纹
+
+{%copy 9F25 C676 B545 FAFE 7103  CB75 6271 FE2F 3701 A839 %}
+
 ### 其他平台
 
-| 名称 | 地址                                       |
-| ---- | ------------------------------------------ |
-| 知乎 | [@Moieo](https://zhihu.com/people/moieo)   |
-| 微博 | [@Moieo04](https://weibo.com/moieo)        |
-| 酷安 | [@Moieo](http://www.coolapk.com/u/1512829) |
+| 名称   | 地址                                       |
+| ------ | ------------------------------------------ |
+| 知乎   | [@Moieo](https://zhihu.com/people/moieo)   |
+| 微博   | [@Moieo04](https://weibo.com/moieo)        |
+| 酷安   | [@Moieo](http://www.coolapk.com/u/1512829) |
+| Gitee  | [@Moieo](https://gitee.com/moieo)          |
+| Gitlab | [@Moieo](https://gitlab.com/moieo)         |
+| Github | [@Moieo](https://github.com/moieo)         |
 
 {% endabout %}

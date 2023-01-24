@@ -53,15 +53,15 @@ comments:
 
 ######## Footer ########
 footer:
-  since: 2022
+  since: "2022-2023"
   social:
-    - icon: '<img src="https://fapro6.cubik65536.top/svgs/brands/github.svg" />'
+    - icon: '<img src="/static/github.svg" />'
       url: https://github.com/moieo
       title: "GitHub (@Moieo)"
-    - icon: '<img src="https://fapro6.cubik65536.top/svgs/brands/gitlab.svg"/>'
+    - icon: '<img src="/static/gitlab.svg"/>'
       url: https://gitlab.com/moieo
       title: "GitLab (@Moieo)"
-    - icon: '<img src="https://fapro6.cubik65536.top/svgs/regular/envelopes-bulk.svg"/>'
+    - icon: '<img src="/static/email.svg"/>'
       url: mailto:moe@moieo.cn
       title: "向我发送邮件"
   # largesocial:
@@ -77,6 +77,7 @@ footer:
       - "[Wiki](/wiki/)"
     "社交":
       - "[友链](/friends/)"
+      - "[微博](https://weibo.com/moieo)"
     "联系我":
       - "[联系我 (详细信息页)](/contact-me/)"
       - "[E-mail](mailto:moe@moieo.cn)"

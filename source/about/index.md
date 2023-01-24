@@ -22,6 +22,7 @@ twikoo:
 ### 如何向我们投稿？
 1. 发送 `.docx`、`.doc`、`.md` 等 格式文稿至 邮箱 [moe@moieo.cn](mailto:moe@moieo.cn)
 2. 在鹅群中联系
+
 #### 投稿的一些要求
 > 1. `.docx`、`.doc` 等 Word 文档 文稿必须是 大纲（在大纲视图下编写）
 > 2. `.md` 格式的 MarkDown 富文本 一般建议图片 上传到图床

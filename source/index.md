@@ -15,7 +15,7 @@ header: false
 
 **介系一个不知名学生的个人网站~**
 
-{% navbar active:1 [关于](/) [联系我](/contact-me/) [最近文章](/blog/) %}
+{% navbar active:1 [关于](/) [联系我](/contact-me/) [近期发布](/blog/) %}
 
 <hr/>
 
