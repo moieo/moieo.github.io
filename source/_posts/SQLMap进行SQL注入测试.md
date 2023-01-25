@@ -2,7 +2,7 @@
 title: SQLMap进行SQL注入测试
 date: 2022-07-31 22:59:35
 categories: 网络安全
-headimg: https://s2.loli.net/2022/07/31/tJ3lKrcPa5ZqTRy.png
+cover: https://s2.loli.net/2022/07/31/tJ3lKrcPa5ZqTRy.png
 tags:
   - SQL注入
 ---

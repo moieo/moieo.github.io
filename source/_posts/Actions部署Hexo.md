@@ -1,7 +1,8 @@
 ---
 title: 还在手动部署 Hexo？看看这里
 date: 2022-11-13 15:36:00
-tags:
+tags: Hexo
+category: Hexo
 ---
 
 ## 简单介绍
