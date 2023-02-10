@@ -19,10 +19,11 @@ header: false
 
 <hr/>
 
+![今日诗词](https://v2.jinrishici.com/one.svg)
+
 ### 我的 Github
 <hr />
 {% ghcard moieo %}
-
 
 ## 站点工具
 
