@@ -29,4 +29,8 @@ header: false
 
 {% friends 站点工具 %}
 
+## 交流群 {% emoji blobcat ablobcatattentionreverse %}
+
+{% link https://jq.qq.com/?_wv=1027&k=QmSBCwAC "Linux 俱乐部"  icon:http://p.qlogo.cn/gh/236638144/236638144/100/ %}
+
 {% endabout %}
