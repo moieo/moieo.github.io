@@ -41,8 +41,24 @@ article:
   # 文章许可协议
   license:
     "本文采用 [署名-非商业性使用-相同方式共享 4.0 国际](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh) 许可协议，转载请注明出处。"
+  # 如果没有指定封面，是否根据 tags 作为关键词搜索封面图片？
+  auto_cover: false # search from https://source.unsplash.com/
+  # 如果没有指定横幅，是否根据 tags 作为关键词搜索横幅图片？
+  auto_banner: false # search from https://source.unsplash.com/
+  # 如果没有指定 excerpt 和 description，将自动取多长的内容作为文章摘要？
+  auto_excerpt: 200
+  # 分类颜色
+  category_color:
+    '探索号': '#f44336'
+  # 分享
+  share: # [wechat, weibo, email, link]
+  # 相关文章，需要安装插件 (for layout: post)
+  # npm i hexo-related-popular-posts
+  related_posts:
+    enable: true
+    max_count: 5
 
-    ######## Comments ########
+######## Comments ########
 comments:
   service: twikoo # beaudar, utterances, twikoo, waline
   # Twikoo
