@@ -9,7 +9,7 @@ breadcrumb: false
 header: false
 ---
 
-{% about avatar:/hello.webp height:96px %}
+{% about avatar:/hellow.webp height:180px %}
 
 ## 嗨！我是 Moieo 👋
 
