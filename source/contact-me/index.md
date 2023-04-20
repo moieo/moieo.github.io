@@ -25,14 +25,12 @@ header: false
 
 如果你想联系我，那么电子邮箱是一个很好且方便的方式~
 邮箱：[moe@moieo.cn](mailto:moe@moieo.cn)
-备用：[moe@u.moieo.cn](mailto:moe@u.moieo.cn)
-备用 2：[moieo@outlook.com](mailto:moieo@outlook.com) (除非上述邮箱不可用，否则一律不会使用该邮箱回复任何信息)
 
 ### GPG 指纹
 
 {%copy 9F25 C676 B545 FAFE 7103  CB75 6271 FE2F 3701 A839 %}
 
-### 其他平台
+### 🔗 其他平台
 
 | 名称   | 地址                                       |
 | ------ | ------------------------------------------ |
