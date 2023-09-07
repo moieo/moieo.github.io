@@ -1,10 +1,9 @@
-'站点工具':
+"站点工具":
   - title: 高考倒计时
     url: /lost_time
   - title: 生日查圆周率
-    # url: /birthtopi
-    url: http://x.moieo.cn
-'友情链接':
+    url: /birthtopi
+"友情链接":
   - title: 酷安
     description: 玩数码，上酷安
     avatar: https://coolapk.com/favicon.ico
@@ -47,7 +46,7 @@
     description: AIDE 高级设置版
     avatar: https://previewengine.zoho.com.cn/image/WD/o9yvm0ce51d6b80f346969f2b9fd21529a330
 
-'来自酷友':
+"来自酷友":
   - title: 故人随笔
     description: 寒江孤影，江湖故人，相逢何必曾相识
     url: https://imgod.me/
