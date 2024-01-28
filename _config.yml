@@ -4,7 +4,7 @@
 
 # Site
 title: 彩虹小屋
-avatar: https://cravatar.cn/avatar/efe226a779e382075769bb0dceb64953
+avatar: https://avatars.githubusercontent.com/u/69391021?v=4
 subtitle: '素白清韵，简静安然'
 description: ''
 keywords:
@@ -17,7 +17,7 @@ timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://blog.moieo.top
+url: https://blog.moieo.cn
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:

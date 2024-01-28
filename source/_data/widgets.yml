@@ -10,19 +10,31 @@ ghuser:
   avatar: true
   # bio: "Java & Kotlin & Python Dev<br/>Minecraft Player<br/><a href=\"https://github.com/CubikTech\">@CubikTech</a> <a href=\"https://ixor.tech\">@iXORTech</a><br/><b>PGP:</b> FFA7 DB11 3223 8420"
 
+# welcome:
+#   layout: markdown
+#   title: '欢迎来到 Moieo 的小站'
+#   content: |
+#     知识 / 创新 / 进取
+
 welcome:
   layout: markdown
-  title: '欢迎来到 Moieo 的小站'
-  content: |
-    知识 / 创新 / 进取
+  title: 欢迎旅行者
+  linklist: # 与 linklist 组件写法相同
+    columns: 1 
+    items:
+      - # icon:
+        title: 开始浏览
+        url: /blog/
+  content: 欢迎您的访问
+  # src: # 可以设置外部 md 文件链接
 
-timeline:
-  layout: timeline
-  title: 近期动态
-  api: https://api.github.com/repos/moieo/moieo/issues
-  user: # 默认显示所有人的数据，设置名称可过滤为仅显示某人的数据，多个名称用英文逗号隔开，不要加空格
-  type: # 默认不用写，如果是友链朋友圈数据请写 fcircle
-  limit: # 默认通过 api 上增加 per_page 来设置，如果是友链朋友圈，可通过这个设置数量
+# timeline:
+#   layout: timeline
+#   title: 近期动态
+#   api: https://api.github.com/repos/moieo/moieo/issues
+#   user: # 默认显示所有人的数据，设置名称可过滤为仅显示某人的数据，多个名称用英文逗号隔开，不要加空格
+#   type: # 默认不用写，如果是友链朋友圈数据请写 fcircle
+#   limit: # 默认通过 api 上增加 per_page 来设置，如果是友链朋友圈，可通过这个设置数量
 
 search:
   layout: search
@@ -38,3 +50,11 @@ search_docs:
   layout: search
   filter: /wiki/
   placeholder: 文档搜索
+
+toc:
+  layout: toc
+  list_number: false # 是否显示序号
+  min_depth: 1 # 建议不要低于 2 即从 H2 标签开始解析（H1标签用于文章大标题）
+  max_depth: 6 # 5 代表最多解析到 H5 标签
+  fallback: recent # Use a backup widget when toc does not exist.
+  collapse: false # true / false / auto (始终折叠/不折叠/自动折叠)
