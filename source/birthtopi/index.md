@@ -7,96 +7,73 @@ comment: true
 {% raw %}
 
 <body class="bitrhtopi">
+  <div id="loader" class="loader" hidden></div>
   <span>出生日期: <input type="text" id="birthday" /></span>
   <input id="submit" type="button" value="查询" />
-  <div class="loader" id="loader"></div>
   <p id="result"></p>
   <style>
     .bitrhtopi span, .bitrhtopi input {
       font-size: 18px;
+      position: absition;
     }
     #birthday, #submit[type=button] {
       border-style: solid;
       border-width: 1px;
     }
-    .loader {
-      position: relative;
-      width: 2.5em;
-      height: 2.5em;
-      transform: rotate(165deg);
-    }
-    .loader:before, .loader:after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      display: block;
-      width: 0.5em;
-      height: 0.5em;
-      border-radius: 0.25em;
-      transform: translate(-50%, -50%);
-    }
-    .loader:before {
-      animation: before8 2s infinite;
-    }
-    .loader:after {
-      animation: after6 2s infinite;
-    }
-
-    	@keyframes before8 {
-    	 0% {
-    	  width: 0.5em;
-    	  box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
-    	 }
-
-    	 35% {
-    	  width: 2.5em;
-    	  box-shadow: 0 -0.5em rgba(225, 20, 98, 0.75), 0 0.5em rgba(111, 202, 220, 0.75);
-    	 }
-
-    	 70% {
-    	  width: 0.5em;
-    	  box-shadow: -1em -0.5em rgba(225, 20, 98, 0.75), 1em 0.5em rgba(111, 202, 220, 0.75);
-    	 }
-
-    	 100% {
-    	  box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
-    	 }
-    	}
-
-    	@keyframes after6 {
-    	 0% {
-    	  height: 0.5em;
-    	  box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
-    	 }
-
-    	 35% {
-    	  height: 2.5em;
-    	  box-shadow: 0.5em 0 rgba(61, 184, 143, 0.75), -0.5em 0 rgba(233, 169, 32, 0.75);
-    	 }
-
-    	 70% {
-    	  height: 0.5em;
-    	  box-shadow: 0.5em -1em rgba(61, 184, 143, 0.75), -0.5em 1em rgba(233, 169, 32, 0.75);
-    	 }
-
-    	 100% {
-    	  box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
-    	 }
-    	}
 
     .loader {
-      position: absolute;
-      top: calc(50% - 1.25em);
-      left: calc(50% - 1.25em);
-    }
+  width: 15px;
+  aspect-ratio: 1.154;
+  position: relative;
+  background: conic-gradient(from 120deg at 50% 64%,#0000, #ff1919 1deg 120deg,#0000 121deg);
+  animation: l27-0 1.5s infinite cubic-bezier(0.3,1,0,1);
+}
+
+.loader:before,
+.loader:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  transform-origin: 50% 66%;
+  animation: l27-1 1.5s infinite;
+}
+
+.loader:after {
+  --s: -1;
+}
+
+@keyframes l27-0 {
+  0%,30% {
+    transform: rotate(0)
+  }
+
+  70% {
+    transform: rotate(120deg)
+  }
+
+  70.01%,100% {
+    transform: rotate(360deg)
+  }
+}
+
+@keyframes l27-1 {
+  0% {
+    transform: rotate(calc(var(--s,1)*120deg)) translate(0)
+  }
+
+  30%,70% {
+    transform: rotate(calc(var(--s,1)*120deg)) translate(calc(var(--s,1)*-5px),10px)
+  }
+
+  100% {
+    transform: rotate(calc(var(--s,1)*120deg)) translate(0)
+  }
+}
 
   </style>
   <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.3/jquery.min.js" ></script>
   <script>
-    $(document).ready(function() {
-      $('#loader').hide();
-    });
     $('#submit').click(function() {
       $('#loader').show();
       $.ajax({
@@ -104,9 +81,9 @@ comment: true
         type: "GET",
         success: function(data) {
           $('#result').html("您的生日位于圆周率第 " + data.data.position + " 位");
+          $('#loader').hide();
         }
       });
-      $('#loader').hide();
     });
   </script>
 </body>
