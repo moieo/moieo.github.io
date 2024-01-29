@@ -7,10 +7,9 @@ seo_title: 友链
 toc_title: 友链索引
 # comments: false
 ---
-
 ## 我的朋友们
 
-{% friends 友情链接 %}
+{% friends friends %}
 
 ## 自助提交的朋友
 
@@ -18,7 +17,7 @@ toc_title: 友链索引
 
 ## 酷安的朋友们
 
-{% friends 来自酷友 %}
+{% friends coolapk %}
 
 ## 关于友链
 
@@ -84,7 +83,7 @@ description: 素白青韵，简静安然
 
 <!-- node 第二步：提交友链申请 -->
 
-申请地址：<https://github.com/moieo/rainbow-friends/issues>
+申请地址：[https://github.com/moieo/rainbow-friends/issues](https://github.com/moieo/rainbow-friends/issues)
 
 选择 `友情链接模板`
 

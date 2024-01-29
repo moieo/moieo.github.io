@@ -20,7 +20,7 @@ menubar:
       theme: '#1BCDFC'
       icon: solar:documents-bold-duotone
       title: 博客
-      url: /blog
+      url: /blog/
     - id: wiki
       theme: '#3DC550'
       icon: solar:notebook-bookmark-bold-duotone
@@ -29,8 +29,8 @@ menubar:
     - id: explore
       theme: '#FA6400'
       icon: solar:planet-bold-duotone
-      title: 探索
-      url: /explore/
+      title: 笔记
+      url: /notes/
     - id: social
       theme: '#F44336'
       icon: solar:chat-square-like-bold-duotone
@@ -132,7 +132,7 @@ footer:
   content: |
     本站由 [Hexo](https://hexo.io/) & [Hexo Theme Stellar](https://xaoxuu.com/wiki/stellar/) 强力驱动
     Copyright © 2020-2024 [@Moieo](https://moieo.cn) 版权所有
-    [萌ICP备20225240号](https://icp.gov.moe/?keyword=20225240)
+    [萌ICP备20242224号](https://icp.gov.moe/?keyword=20242224)
     本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh) 许可协议，转载请注明出处。
 
 #[赣ICP备202201196号](http://beian.miit.gov.cn/) <img alt="" width="12px" height="12px" src="https://g.csdnimg.cn/common/csdn-footer/images/badge.png" /> [赣公网安备1234567896464号](http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=1234567894646)

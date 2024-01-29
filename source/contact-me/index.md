@@ -8,14 +8,11 @@ comments: false
 breadcrumb: false
 header: false
 ---
-
 {% about avatar:/hellow.webp height:180px %}
 
 ## 嗨！我是 Moieo 👋
 
-**介系一个不知名学生的个人网站~**
-
-{% navbar active:2 [关于](/) [联系我](/contact-me/) [近期发布](/blog/) %}
+{% navbar active:/contact-me/ [关于](/)[联系我](/contact-me/)[近期发布](/blog/) %}
 
 <hr/>
 
@@ -32,8 +29,8 @@ header: false
 
 ### 🔗 其他平台
 
-| 名称   | 地址                                       |
-| ------ | ------------------------------------------ |
+| 名称   | 地址                                    |
+| ------ | --------------------------------------- |
 | 知乎   | [@Moieo](https://zhihu.com/people/moieo)   |
 | 微博   | [@Moieo04](https://weibo.com/moieo)        |
 | 酷安   | [@Moieo](http://www.coolapk.com/u/1512829) |
