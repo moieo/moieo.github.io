@@ -36,6 +36,7 @@ skip_render:
   - vercel.json
   - lost_time/*.js
   - lost_time/*.css
+  - birthtopi/birthdayToPi.html
 
 # Writing
 new_post_name: :title.md # File name of new posts
