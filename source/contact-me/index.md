@@ -1,18 +1,19 @@
 ---
-robots: noindex,nofollow
+# robots: 'index,nofollow'
 menu_id: home
-seo_title: 主页
-sidebar: [ghuser, recent]
+seo_title: '彩虹小屋'
+sidebar: [welcome, ghuser, recent]
 toc_title: 主页
 comments: false
 breadcrumb: false
 header: false
 ---
-{% about avatar:/hellow.webp height:180px %}
+{% about %}
+<img src="/hellow.webp" alt="head image" height="180px"></img>
 
 ## 嗨！我是 Moieo 👋
 
-{% navbar active:/contact-me/ [关于](/)[联系我](/contact-me/)[近期发布](/blog/) %}
+{% navbar active:/contact-me/ [关于](/) [联系我](/contact-me/) [近期发布](/blog/) %}
 
 <hr/>
 

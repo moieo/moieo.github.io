@@ -8,7 +8,8 @@ comments: false
 breadcrumb: false
 header: false
 ---
-{% about avatar:/hellow.webp height:180px %}
+{% about %}
+<img src="/hellow.webp" alt="head image" height="180px"></img>
 
 ## 嗨！我是 Moieo 👋
 

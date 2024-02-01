@@ -100,13 +100,13 @@ comments:
 footer:
   since: "2022-2023"
   social:
-    - icon: '<img src="/static/github.svg" />'
+    - icon: '<img src="/static/github.svg" alt="Github" />'
       url: https://github.com/moieo
       title: "GitHub (@Moieo)"
-    - icon: '<img src="/static/gitlab.svg"/>'
+    - icon: '<img src="/static/gitlab.svg" alt="GitLab" />'
       url: https://gitlab.com/moieo
       title: "GitLab (@Moieo)"
-    - icon: '<img src="/static/email.svg"/>'
+    - icon: '<img src="/static/email.svg" alt="E-Mail" />'
       url: mailto:moe@moieo.cn
       title: "向我发送邮件"
   # largesocial:
