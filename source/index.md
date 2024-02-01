@@ -31,5 +31,6 @@ header: false
 ## 交流群
 
 {% link https://jq.qq.com/?_wv=1027&k=QmSBCwAC "Linux 俱乐部"  icon:http://p.qlogo.cn/gh/236638144/236638144/100/ %}
+{% link https://pd.qq.com/s/amx2jgsbo "QQ频道"  icon:http://p.qlogo.cn/gh/236638144/236638144/100/ %}
 
 {% endabout %}
