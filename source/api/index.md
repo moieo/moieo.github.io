@@ -2,96 +2,115 @@
 title: 开放接口
 date: 2022-10-12 12:50:21
 ---
+<!-- TOC depthFrom:2 orderedList:true -->
 
-## IP 查询接口
+- [BaseURL](#baseurl)
+- [POST IP查询](#post-ip查询)
+  - [请求参数](#请求参数)
+  - [返回结果](#返回结果)
+  - [返回数据结构](#返回数据结构)
+- [POST 圆周率查询](#post-圆周率查询)
+  - [请求参数](#请求参数-1)
+  - [返回结果](#返回结果-1)
+  - [返回数据结构](#返回数据结构-1)
 
-{% tabs moieo-api %}
+<!-- /TOC -->
 
-<!-- tab 请求接口 -->
+## BaseURL
+  - https://api.moieo.cn
 
-接口地址：https://api.moieo.top/ip/114.114.114.114
-请求示例
-例如 IP 为：114.114.114.114
+## POST IP查询
 
-```bash
-curl https://api.moieo.top/ip/114.114.114.114
+POST /ip/{ip}
+
+根据 IPv4 地址查询所在归属地的地址
+
+### 请求参数
+
+|名称|位置|类型|必选|说明|
+|---|---|---|---|---|
+|ip|path|string| 是 |需要查询的 IPv4 地址|
+|timestamp|header|string| 是 |时间戳 (ms)|
+
+> 返回示例
+
+> 成功
+
+```json
+{
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "ip": "8.8.2.2",
+    "ip_number": 134742530,
+    "location": "美国科罗拉多州布隆菲尔德市",
+    "net_service": "Level3通信股份有限公司"
+  }
+}
 ```
 
-<!-- endtab -->
-<!-- tab 响应结果 -->
+### 返回结果
+
+|状态码|状态码含义|说明|数据模型|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|成功|Inline|
+
+### 返回数据结构
+
+状态码 **200**
+
+|名称|类型|必选|约束|中文名|说明|
+|---|---|---|---|---|---|
+|» code|integer|true|none|状态码|请求后的状态代码|
+|» msg|string|true|none|消息|状态说明|
+|» data|object|true|none|数据|存储请求结果|
+|»» ip|string|true|none|IPv4 地址|所查询的 IPv4 地址|
+|»» ip_number|integer|true|none|IPv4 整数|IPv4 的十进制值|
+|»» location|string|true|none|位置|IPv4 所在归属地的位置|
+|»» net_service|string|true|none|互联网服务商|IPv4 地址对应的互联网服务商|
+
+## POST 圆周率查询
+
+POST /pi/{pi}
+
+根据 出生日期，查询在圆周率小数点后所出现的位置
+
+### 请求参数
+
+|名称|位置|类型|必选|说明|
+|---|---|---|---|---|
+|pi|path|string| 是 |年月日|
+|timestamp|header|string| 是 |时间戳(ms)|
+
+> 返回示例
+
+> 成功
 
 ```json
 {
   "code": 200,
   "msg": "Success",
   "data": {
-    "addr": "江苏省南京市",
-    "oper": "南京信风网络科技有限公司GreatbitDNS服务器"
+    "date": "20050520",
+    "position": "146457109"
   }
 }
 ```
 
-<!-- endtab -->
+### 返回结果
 
-{% endtabs %}
+|状态码|状态码含义|说明|数据模型|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|成功|Inline|
 
-数据来源于`纯真网络`开源数据库
+### 返回数据结构
 
-## Gravatar 反向代理
+状态码 **200**
 
-{% tabs moieo-gravatar %}
-
-<!-- tab 请求接口 -->
-
-请求接口：https://api.moieo.top/gravatar/:mail_md5
-
-| 参数     | 注释             |
-| -------- | ---------------- |
-| mail_md5 | 邮箱账号 MD5 值  |
-| s        | 头像大小(非必要) |
-
-例如：
-
-https://api.moieo.top/gravatar/1cbeb857054d0e1b9ee71e674c470029?s=600
-
-<!-- endtab -->
-<!-- tab 请求结果 -->
-
-![请求结果](https://api.moieo.top/gravatar/1cbeb857054d0e1b9ee71e674c470029?s=600)
-
-<!-- endtab -->
-
-{% endtabs %}
-
-## QQ 信息
-
-{% tabs moieo-qqinfo %}
-
-<!-- tab 请求接口 -->
-
-请求接口：https://api.moieo.top/qqinfo/:qq
-
-| 参数 | 注释  |
-| ---- | ----- |
-| qq   | QQ 号 |
-
-例如：
-
-https://api.moieo.top/qqinfo/884938249
-
-<!-- endtab -->
-<!-- tab 请求结果 -->
-
-```json
-{
-  "code": 200,
-  "msg": "Success",
-  "data": {
-    "gender": 0,
-    "nickname": "Moieo."
-  }
-}
-```
-<!-- endtab -->
-
-{% endtabs %}
+|名称|类型|必选|约束|中文名|说明|
+|---|---|---|---|---|---|
+|» code|integer|true|none|状态码|请求后的状态代码|
+|» msg|string|true|none|消息|状态说明|
+|» data|object¦null|false|none|数据|存储请求结果|
+|»» date|string|false|none|日期|请求参数中的出生日期年月日|
+|»» position|string|false|none|位置|所在圆周率中的位置|
