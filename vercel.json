@@ -1,7 +1,13 @@
 {
+  "version": 2,
   "routes": [
     { "handle": "filesystem" },
-    { "src": "/(.*)", "status": 404, "dest": "/404.html" }
+    { "src": "/(.*)", "status": 404, "dest": "/404.html" },
+    {
+      "src": "/(.*)",
+      "headers": { "Accept-Encoding": "gzip" },
+      "dest": "/$1"
+    }
   ],
   "github": {
     "silent": true
