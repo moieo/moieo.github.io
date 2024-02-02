@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: '彩虹小屋'
+title: "彩虹小屋"
 avatar: https://avatars.githubusercontent.com/u/69391021?v=4
-subtitle: '素白清韵，简静安然'
-description: ''
+subtitle: "素白清韵，简静安然"
+description: ""
 keywords:
 author: Moieo
 language:
   - zh-CN
   - en
   - zh-TW
-timezone: 'Asia/Shanghai'
+timezone: "Asia/Shanghai"
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
@@ -45,7 +45,7 @@ titlecase: false # Transform title into titlecase
 external_link:
   enable: true # Open external links in new tab
   field: site # Apply to the whole site
-  exclude: ''
+  exclude: ""
 filename_case: 0
 render_drafts: false
 post_asset_folder: false
@@ -56,7 +56,7 @@ highlight:
   enable: true
   line_number: true
   auto_detect: true
-  tab_replace: ''
+  tab_replace: ""
   wrap: true
   hljs: false
 
@@ -64,14 +64,14 @@ prismjs:
   enable: false
   preprocess: true
   line_number: true
-  tab_replace: ''
+  tab_replace: ""
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
 # per_page: Posts displayed per page. (0 = disable pagination)
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
-  path: '/blog'
+  path: "/blog"
   per_page: 10
   order_by: -date
 
@@ -91,7 +91,7 @@ meta_generator: true
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
 ## updated_option supports 'mtime', 'date', 'empty'
-updated_option: 'date'
+updated_option: "date"
 
 # Pagination
 ## Set per_page to 0 to disable pagination
@@ -114,6 +114,7 @@ inject:
     - <meta name="theme-color" content="#ffffff">
     - <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
     - <script>LA.init({id:"KKsmYv7pY2PCd0iu",ck:"KKsmYv7pY2PCd0iu"})</script>
+    - <script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?0787b693211fa2668257c8121aee6325";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}();</script>
 
 ########################### Plugins ###########################
 # npm i hexo-generator-feed
@@ -124,7 +125,7 @@ feed:
   content: true
   icon: https://cdn.jsdelivr.net/gh/cdn-x/xaoxuu/avatar/rect-256@2x.png
   autodiscovery: true
-  
+
 # npm install hexo-footnote --save
 footnote:
   location_target_class: location-target
