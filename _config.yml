@@ -112,6 +112,8 @@ theme: stellar
 inject:
   head:
     - <meta name="theme-color" content="#ffffff">
+    - <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+    - <script>LA.init({id:"KKsmYv7pY2PCd0iu",ck:"KKsmYv7pY2PCd0iu"})</script>
 
 ########################### Plugins ###########################
 # npm i hexo-generator-feed
