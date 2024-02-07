@@ -103,6 +103,9 @@ footer:
     - icon: '<img src="/static/github.svg" alt="Github" />'
       url: https://github.com/moieo
       title: "GitHub (@Moieo)"
+    - icon: '<img src="/static/gitee.svg" alt="Gitee" />'
+      url: https://gitee.com/moieo
+      title: "Gitee (@Moieo)"
     - icon: '<img src="/static/gitlab.svg" alt="GitLab" />'
       url: https://gitlab.com/moieo
       title: "GitLab (@Moieo)"
