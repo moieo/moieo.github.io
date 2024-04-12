@@ -46,7 +46,7 @@ toc_title: 友链索引
 本站友链信息：
 
 {% codeblock lang:yaml %}
-title: 彩虹小屋
+title: 晴雨笔记
 avatar: https://blog.moieo.top/favicon.ico
 url: https://blog.moieo.top
 description: 素白青韵，简静安然
@@ -55,7 +55,7 @@ description: 素白青韵，简静安然
 <!-- node 第二步：提交友链申请 -->
 
 发送邮件至 `moe@moieo.cn`
-主题：彩虹小屋友链申请
+主题：晴雨笔记友链申请
 内容格式：
 {% codeblock lang:yaml %}
 title: xxx # 网站标题
@@ -75,7 +75,7 @@ description: xxx # 描述
 本站友链信息：
 
 {% codeblock lang:yaml %}
-title: 彩虹小屋
+title: 晴雨笔记
 avatar: https://blog.moieo.top/favicon.ico
 url: https://blog.moieo.top
 description: 素白青韵，简静安然
