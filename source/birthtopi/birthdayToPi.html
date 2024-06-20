@@ -87,7 +87,10 @@
       $("#content").html("");
       $.ajax({
         url: "https://api.moieo.cn/pi/" + $("#birthday").val(),
-        type: "GET",
+        type: "POST",
+        headers: {
+          "timestamp": new Date().getTime() * 1000
+        },
         success: function (data) {
           $("#content").html(
             "您的生日位于圆周率第 " + data.data.position + " 位"
