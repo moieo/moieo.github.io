@@ -2,16 +2,17 @@
 # robots: 'index,nofollow'
 menu_id: home
 seo_title: '晴雨笔记'
-sidebar: [welcome, ghuser, recent]
+leftbar: [welcome, ghuser, recent]
+rightbar: []
 toc_title: 主页
 comments: false
 breadcrumb: false
 header: false
 ---
 {% about %}
-<img src="/hellow.webp" alt="head image" height="180px"></img>
+<img src="/hello.webp" alt="head image" height="180px"></img>
 
-## 嗨！我是 Moieo 👋
+## Hi! Moieo 👋
 
 {% navbar active:/contact-me/ [关于](/) [联系我](/contact-me/) [近期发布](/blog/) %}
 

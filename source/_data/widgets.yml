@@ -25,7 +25,12 @@ welcome:
       - # icon:
         title: 开始浏览
         url: /blog/
-  content: 欢迎您的访问
+  content: |
+    <center>
+    欢迎您的访问
+    <br/>
+    本站点已于 20240721 升级
+    </center>
   # src: # 可以设置外部 md 文件链接
 
 # timeline:

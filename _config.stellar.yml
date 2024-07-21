@@ -80,7 +80,7 @@ article:
   category_color:
     "探索号": "#f44336"
   # 分享
-  share: # [wechat, weibo, email, link]
+  share: [wechat, weibo, email, link]
   # 相关文章，需要安装插件 (for layout: post)
   # npm i hexo-related-popular-posts
   related_posts:
@@ -93,12 +93,12 @@ comments:
   # Twikoo
   # https://twikoo.js.org/
   twikoo:
-    js: https://unpkg.com/twikoo@1.6.16 # 建议锁定版本
+    js: https://unpkg.com/twikoo@1.6.38 # 建议锁定版本
     envId: https://twikoo.moieo.cn # vercel函数
 
 ######## Footer ########
 footer:
-  since: "2022-2023"
+  since: "2022-2024"
   social:
     - icon: '<img src="/static/github.svg" alt="Github" />'
       url: https://github.com/moieo
@@ -127,7 +127,7 @@ footer:
       - "[友链](/friends/)"
       - "[微博](https://weibo.com/moieo)"
     "联系我":
-      - "[联系我 (详细信息页)](/contact-me/)"
+      - "[联系我 (详细信息页)](/about/)"
       - "[E-mail](mailto:moe@moieo.cn)"
       - "[GitHub](https://github.com/moieo)"
       - "[GitLab](https://gitlab.com/moieo)"
@@ -139,8 +139,8 @@ footer:
     本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh) 许可协议，转载请注明出处。
     <div id="established-time"></div>
     <script id="LA-DATA-WIDGET" crossorigin="anonymous" charset="UTF-8" src="https://v6-widget.51.la/v6/KKsmYv7pY2PCd0iu/quote.js?theme=#000000,#333333,#999999,#333333,#FFFFFF,#1690FF,12&f=12&display=0,0,1,1,1,1,0,1"></script>
-
-#[赣ICP备202201196号](http://beian.miit.gov.cn/) <img alt="" width="12px" height="12px" src="https://g.csdnimg.cn/common/csdn-footer/images/badge.png" /> [赣公网安备1234567896464号](http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=1234567894646)
+#[赣ICP备2022010558号](http://beian.miit.gov.cn/)
+# <img alt="" width="12px" height="12px" src="https://g.csdnimg.cn/common/csdn-footer/images/badge.png" />
 ######## Tag Plugins ########
 tag_plugins:
   # {% image %}
