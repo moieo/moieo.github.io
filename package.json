@@ -12,6 +12,7 @@
     "version": "7.0.0"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "hexo": "7.0.0",
     "hexo-deployer-git": "^3.0.0",
     "hexo-footnote": "^1.0.4",
@@ -30,7 +31,6 @@
     "hexo-server": "^3.0.0",
     "hexo-tag-aplayer": "^3.0.4",
     "hexo-theme-landscape": "^0.0.3",
-    "babel-polyfill": "^6.26.0",
     "lodash": "^4.17.21",
     "utils-merge": "^1.0.1"
   }

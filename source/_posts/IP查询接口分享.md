@@ -49,12 +49,18 @@ curl https://api.myip.la/cn?json
 
 <!-- tab 请求接口 -->
 
-接口地址：https://api.moieo.top/ip/114.114.114.114
+接口地址：POST https://api.moieo.cn/ip/114.114.114.114
+请求头
+
+| 名称 | 注释 |
+| --- | --- |
+| timestamp | 时间戳(ms) |
+
 请求示例
 例如 IP 为：114.114.114.114
 
 ```bash
-curl https://api.moieo.top/ip/114.114.114.114
+curl -XPOST -H "timestamp: $(date +%s%3N)" https://api.moieo.cn/ip/114.114.114.114
 ```
 
 <!-- endtab -->
@@ -63,10 +69,12 @@ curl https://api.moieo.top/ip/114.114.114.114
 ```json
 {
   "code": 200,
-  "msg": "Success",
+  "msg": "success",
   "data": {
-    "addr": "江苏省南京市",
-    "oper": "南京信风网络科技有限公司GreatbitDNS服务器"
+    "ip": "114.114.114.114",
+    "ip_number": 1920103026,
+    "location": "江苏省南京市",
+    "net_service": "南京信风网络科技有限公司GreatbitDNS服务器"
   }
 }
 ```
