@@ -147,7 +147,7 @@ tag_plugins:
   image:
     fancybox: true
   emoji:
-    default: https://gcore.jsdelivr.net/gh/cdn-x/emoji/qq/${name}.gif
+    default: https://cdn.statically.io/gh/cdn-x/emoji/qq/${name}.gif
     twemoji: https://gcore.jsdelivr.net/gh/twitter/twemoji/assets/svg/${name}.svg
     qq: https://gcore.jsdelivr.net/gh/cdn-x/emoji/qq/${name}.gif
     aru: https://gcore.jsdelivr.net/gh/cdn-x/emoji/aru-l/${name}.gif
