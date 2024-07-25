@@ -10,7 +10,7 @@ breadcrumb: false
 header: false
 ---
 {% about %}
-<img src="/hello.webp" alt="head image" height="180px"></img>
+<img src="/hello.webp" alt="head image"></img>
 
 ## Hi! Moieo 👋
 
