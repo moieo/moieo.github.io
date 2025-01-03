@@ -1,0 +1,5 @@
+[[redirects]]
+from = "/*"
+to = "https://blog.moieo.net/:splat"
+status = 301
+force = true

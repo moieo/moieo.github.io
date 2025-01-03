@@ -34,6 +34,7 @@ code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
   - vercel.json
+  - netlify.toml
   - lost_time/*.js
   - lost_time/*.css
   - birthtopi/birthdayToPi.html
