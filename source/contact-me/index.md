@@ -23,7 +23,7 @@ header: false
 ### 电子邮件
 
 如果你想联系我，那么电子邮箱是一个很好且方便的方式~
-邮箱：[moe@moieo.cn](mailto:moe@moieo.cn)
+邮箱：[moe@moieo.net](mailto:moe@moieo.net)
 
 ### GPG 指纹
 
@@ -34,7 +34,6 @@ header: false
 | 名称   | 地址                                    |
 | ------ | --------------------------------------- |
 | 知乎   | [@Moieo](https://zhihu.com/people/moieo)   |
-| 微博   | [@Moieo04](https://weibo.com/moieo)        |
 | 酷安   | [@Moieo](http://www.coolapk.com/u/1512829) |
 | Gitee  | [@Moieo](https://gitee.com/moieo)          |
 | Gitlab | [@Moieo](https://gitlab.com/moieo)         |

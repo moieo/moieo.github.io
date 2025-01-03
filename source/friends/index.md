@@ -13,7 +13,7 @@ toc_title: 友链索引
 
 ## 自助提交的朋友
 
-{% friends api:https://cdn.jsdelivr.net/gh/moieo/rainbow-friends@output/v2/data.json %}
+{% friends api:https://gcore.jsdelivr.net/gh/moieo/rainbow-friends@output/v2/data.json %}
 
 ## 酷安的朋友们
 
@@ -47,14 +47,14 @@ toc_title: 友链索引
 
 {% codeblock lang:yaml %}
 title: 晴雨笔记
-avatar: https://blog.moieo.top/favicon.ico
-url: https://blog.moieo.top
+avatar: https://blog.moieo.net/favicon.ico
+url: https://blog.moieo.net
 description: 素白青韵，简静安然
 {% endcodeblock %}
 
 <!-- node 第二步：提交友链申请 -->
 
-发送邮件至 `moe@moieo.cn`
+发送邮件至 `moe@moieo.net`
 主题：晴雨笔记友链申请
 内容格式：
 {% codeblock lang:yaml %}
@@ -76,8 +76,8 @@ description: xxx # 描述
 
 {% codeblock lang:yaml %}
 title: 晴雨笔记
-avatar: https://blog.moieo.top/favicon.ico
-url: https://blog.moieo.top
+avatar: https://blog.moieo.net/favicon.ico
+url: https://blog.moieo.net
 description: 素白青韵，简静安然
 {% endcodeblock %}
 
