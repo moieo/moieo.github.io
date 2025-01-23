@@ -6,8 +6,8 @@
 title: "晴雨笔记"
 avatar: https://avatars.githubusercontent.com/u/69391021?v=4
 subtitle: "素白清韵，简静安然"
-description: ""
-keywords:
+description: "素白清韵，简静安然"
+keywords: "晴雨笔记,Moieo,博客,技术,生活,随笔"
 author: Moieo
 language:
   - zh-CN
@@ -18,7 +18,7 @@ timezone: "Asia/Shanghai"
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://blog.moieo.net
-permalink: :year/:month/:day/:title/
+permalink: :year/:month/:day/:hour:minute:second/
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
@@ -109,6 +109,9 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: stellar
+
+# plugins:
+#   - scripts/lowercase-url.js
 
 inject:
   head:
