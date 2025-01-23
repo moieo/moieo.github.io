@@ -5,5 +5,5 @@ Disallow: /js/
 Disallow: /css/
 Disallow: /img/
 Disallow: /fonts/
-Sitemap: https://blog.moieo.cn/sitemap.xml
-Sitemap: https://blog.moieo.cn/baidusitemap.xml
+Sitemap: https://blog.moieo.net/sitemap.xml
+Sitemap: https://blog.moieo.net/baidusitemap.xml
