@@ -118,9 +118,7 @@ inject:
     - <meta name="theme-color" content="#ffffff">
     - <meta name="msvalidate.01" content="AFBE9D2151D4E1821C0A41F9E49389FD" />
     - <meta name="baidu-site-verification" content="codeva-u9wmQxB23F" />
-    - <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
-    - <script type="text/javascript" src="//api.tongjiniao.com/c?_=739592614125809664" async></script>
-    - <script>LA.init({id:"KKsmYv7pY2PCd0iu",ck:"KKsmYv7pY2PCd0iu"})</script>
+    - <script>!(function () {"use strict";var w = window, d = document, u = "//api.tongjiniao.com/c?_=739592614125809664", s = document.createElement("script"), r = document.getElementsByTagName("script")[0];s.type = "text/javascript";s.setAttribute("charset", "UTF-8");s.async = !0;s.src = u;r.parentNode.insertBefore(s, r);})();</script>
     - <link rel="stylesheet" href="https://unpkg.com/lxgw-wenkai-screen-web@1.330.1/style.css" />
     - |
       <style>
