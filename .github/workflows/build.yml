@@ -21,6 +21,9 @@ jobs:
         uses: actions/checkout@v3
         with:
           submodules: recursive
+      - uses: szenius/set-timezone@v1.0 # 设置执行环境的时区
+        with:
+          timezoneLinux: "Asia/Shanghai"
       - name: Use Node.js 
         uses: actions/setup-node@v3
         with:
@@ -31,7 +34,6 @@ jobs:
           npm install
       - name: Prepare SSH key and known hosts
         run: |
-          cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
           mkdir -p ~/.ssh
           echo "${{ secrets.PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
