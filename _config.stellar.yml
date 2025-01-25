@@ -110,7 +110,7 @@ footer:
       url: https://gitlab.com/moieo
       title: "GitLab (@Moieo)"
     - icon: '<img src="/static/email.svg" alt="E-Mail" />'
-      url: mailto:moe@moieo.cn
+      url: mailto:moe@moieo.net
       title: "向我发送邮件"
   # largesocial:
   sitemap:
