@@ -27,7 +27,7 @@ header: false
 
 ### GPG 指纹
 
-{%copy 9F25 C676 B545 FAFE 7103  CB75 6271 FE2F 3701 A839 %}
+{%copy 8871 A670 9FF3 2270 A7DC  D9C2 6CD0 6099 6A42 624B %}
 
 ### 🔗 其他平台
 
