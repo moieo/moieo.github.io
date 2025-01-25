@@ -31,6 +31,7 @@ jobs:
           npm install
       - name: Prepare SSH key and known hosts
         run: |
+          cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
           mkdir -p ~/.ssh
           echo "${{ secrets.PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
