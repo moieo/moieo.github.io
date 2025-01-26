@@ -154,6 +154,11 @@ tag_plugins:
     tieba: https://gcore.jsdelivr.net/gh/cdn-x/emoji/tieba/${name}.png
     blobcat: https://gcore.jsdelivr.net/gh/norevi/waline-blobcatemojis@1.0/blobs/${name}.png
 
+# 基础依赖
+dependencies:
+  jquery: https://unpkg.com/jquery@3.7.1/dist/jquery.min.js
+  marked: https://unpkg.com/marked@13.0.1/lib/marked.umd.js
+  
 style:
   font-size: 16px
   font-family:

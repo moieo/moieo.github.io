@@ -7,15 +7,12 @@ seo_title: 友链
 toc_title: 友链索引
 # comments: false
 ---
-## 我的朋友们
 
-{% friends friends %}
-
-## 自助提交的朋友
+## 各位朋友们
 
 {% friends api:https://gcore.jsdelivr.net/gh/moieo/rainbow-friends@output/v2/data.json %}
 
-## 酷安的朋友们
+## 来自酷安的朋友们
 
 {% friends coolapk %}
 
