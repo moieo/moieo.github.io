@@ -10,7 +10,7 @@ toc_title: 友链索引
 
 ## 各位朋友们
 
-{% friends api:https://gcore.jsdelivr.net/gh/moieo/rainbow-friends@output/v2/data.json %}
+{% friends api:https://api.moieo.cn/friends %}
 
 ## 来自酷安的朋友们
 
