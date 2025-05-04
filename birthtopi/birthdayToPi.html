@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>生日查圆周率</title>
+    <style>
+      .loader {
+        width: 60px;
+        display: flex;
+        justify-content: space-evenly;
+        transform: scale(0.5);
+        margin: 0 auto;
+      }
+
+      .ball {
+        list-style: none;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #000;
+      }
+
+      .ball:nth-child(1) {
+        animation: bounce-1 2.1s ease-in-out infinite;
+      }
+
+      @keyframes bounce-1 {
+        50% {
+          transform: translateY(-18px);
+        }
+      }
+
+      .ball:nth-child(2) {
+        animation: bounce-3 2.1s ease-in-out 0.3s infinite;
+      }
+
+      @keyframes bounce-2 {
+        50% {
+          transform: translateY(-18px);
+        }
+      }
+
+      .ball:nth-child(3) {
+        animation: bounce-3 2.1s ease-in-out 0.6s infinite;
+      }
+
+      @keyframes bounce-3 {
+        50% {
+          transform: translateY(-18px);
+        }
+      }
+      .container {
+        width: fit-content;
+        height: fit-content;
+        position: relative;
+        margin: 0 auto;
+      }
+      .result {
+        margin-top: 25px;
+        width: 100%;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <label for="birthday">出生日期：</label>
+        <input type="number" maxlength="8" id="birthday" />
+        <input id="submit" type="button" value="查询" />
+      </div>
+      <div class="result">
+        <span id="content"></span>
+        <div class="loader" id="loader" style="display: none">
+          <li class="ball"></li>
+          <li class="ball"></li>
+          <li class="ball"></li>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.js"></script>
+  <script type="text/javascript">
+    $("#submit").click(function () {
+      $("#loader").show();
+      $("#content").html("");
+      $.ajax({
+        url: "https://api.moieo.cn/pi/" + $("#birthday").val(),
+        type: "POST",
+        headers: {
+          "timestamp": new Date().getTime() * 1000
+        },
+        success: function (data) {
+          $("#content").html(
+            "您的生日位于圆周率第 " + data.data.position + " 位"
+          );
+          $("#loader").hide();
+        },
+      });
+    });
+  </script>
+</html>
