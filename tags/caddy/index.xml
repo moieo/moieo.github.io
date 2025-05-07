@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Caddy on 晴雨笔记</title><link>https://blog.moieo.net/tags/caddy/</link><description>Recent content in Caddy on 晴雨笔记</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 25 Jan 2023 16:19:21 +0800</lastBuildDate><atom:link href="https://blog.moieo.net/tags/caddy/index.xml" rel="self" type="application/rss+xml"/><item><title>使用 Caddy 部署 Vue 等单页面Web应用</title><link>https://blog.moieo.net/2023/01/25/161921/</link><pubDate>Wed, 25 Jan 2023 16:19:21 +0800</pubDate><guid>https://blog.moieo.net/2023/01/25/161921/</guid><description>&lt;img src="https://preview.cloud.189.cn/image/imageAction?param=0D9365D5533D6BCDBA4686599C3CE86CECD4F6A6BD93D903ED43FB918E50BC51091505DCC6AF4371F042CF9C1F11452DA0C6D8D3292B7607282A60F41FA119002DDBE1FA137A6034367F152C4EDBB32E3891CB9A3DB741C48D802DD204BF93F245C7DF48E68A71A88E86FF4CC8AB567779AC0EB3" alt="Featured image of post 使用 Caddy 部署 Vue 等单页面Web应用" />&lt;h1 id="安装-caddy">安装 Caddy
+&lt;/h1>&lt;p>Caddy 是一个 Go 语言编写的开源 HTTP 服务器&lt;/p>
+&lt;blockquote>
+&lt;p>Caddy 有下面这些开箱即用的特性:&lt;/p>
+&lt;ul>
+&lt;li>全自动支持 HTTP/2 协议，无需任何配置。&lt;/li>
+&lt;li>Caddy 使用 Let’s Encrypt 让你的站点全自动变成 HTTPS，无需任何配置。&lt;/li>
+&lt;li>合理使用多核多核 得益于 go 的特性&lt;/li>
+&lt;li>完全支持 IPv6 环境&lt;/li>
+&lt;li>Caddy 对 WebSockets 有很好的支持&lt;/li>
+&lt;li>自动把 Markdown 转成 HTML&lt;/li>
+&lt;li>Caddy 对 log 格式的定义很容易&lt;/li>
+&lt;li>易于部署 得益于 go 的特性，caddy 只是一个小小的二进制文件，没有依赖，很好部署&lt;/li>
+&lt;li>得益于 Go 的跨平台特性，Caddy 很容易的支持了三大主流系统：Windows、 Linux、Mac
+来自 知乎 &lt;a class="link" href="https://zhuanlan.zhihu.com/p/144208057" target="_blank" rel="noopener"
+>@shooter&lt;/a>&lt;/li>
+&lt;/ul>&lt;/blockquote>
+&lt;p>&lt;a class="link" href="https://caddyserver.com/" target="_blank" rel="noopener"
+>Caddy 官网&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://caddyserver.com/download" target="_blank" rel="noopener"
+>下载 Caddy&lt;/a>&lt;/p>
+&lt;p>本文配置 均使用 &lt;code>Caddyfile&lt;/code> 文件&lt;/p>
+&lt;h1 id="基本配置">基本配置
+&lt;/h1>&lt;p>HTTP + HTTPS&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">moieo.cn {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> root * /srv/http # 网站根目录
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> file_serve # 启用文件系统
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>HTTP&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">http://moieo.cn {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> root * /srv/http # 网站根目录
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> file_serve # 启用文件系统
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>反之只用 HTTPS&lt;/p>
+&lt;h1 id="vue-等单页面应用部署">Vue 等单页面应用部署
+&lt;/h1>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">moieo.cn {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> root * /srv/http # 网站的根目录
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> encode gzip zstd # 开启 gzip
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> route {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 找不到文件时 使用 index.html
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 解决 history 路由模式 404 的问题
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> try_files {path} /index.html
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> file_server # 开启文件系统
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 处理日志
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> log {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> output file /data/moieo.cn.log # 保存文件
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> format console # 日志格式
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> level INFO # 日志级别
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="开启-caddy">开启 Caddy
+&lt;/h1>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">./caddy start --config ./Caddyfile
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="文档">文档
+&lt;/h1>&lt;p>&lt;a class="link" href="https://caddyserver.com/docs/" target="_blank" rel="noopener"
+>Caddy 官方文档&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://caddy2.dengxiaolong.com/docs/" target="_blank" rel="noopener"
+>Caddy 中文文档&lt;/a>&lt;/p>
+&lt;p>中文文档访问速度快&lt;/p></description></item></channel></rss>

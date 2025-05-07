@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Minecraft on 晴雨笔记</title><link>https://blog.moieo.net/tags/minecraft/</link><description>Recent content in Minecraft on 晴雨笔记</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 30 Jan 2025 20:00:00 +0800</lastBuildDate><atom:link href="https://blog.moieo.net/tags/minecraft/index.xml" rel="self" type="application/rss+xml"/><item><title>Linux的GNOME中配置Minecraft游戏环境</title><link>https://blog.moieo.net/2025/01/30/200000/</link><pubDate>Thu, 30 Jan 2025 20:00:00 +0800</pubDate><guid>https://blog.moieo.net/2025/01/30/200000/</guid><description>&lt;img src="https://preview.cloud.189.cn/image/imageAction?param=632B0EE0C21C059739F579E45350AC380A94654BFBF49ACB410C2F50D042B78F079A76B4BC77ABC63BCAE4EED17A8F410083F223220B6FC069B7EFFB570DB0B69E5C1039FAB5CB14092A1890F73E99E0B53B27D39C8DFD7B363B4E0450C6BCE15340AB3C280726DCC53941D36C48497C07914543" alt="Featured image of post Linux的GNOME中配置Minecraft游戏环境" />&lt;h2 id="测试环境">测试环境
+&lt;/h2>&lt;ul>
+&lt;li>Linux: Fedora 41&lt;/li>
+&lt;li>GNOME 47
+HMCL启动器：https://hmcl.huangyuhui.net/download/
+&lt;img src="https://preview.cloud.189.cn/image/imageAction?param=B969C2460DC23A082CC7E5E8EDCBF6B399B16C5BC6E8BD4B07D661C96AF7DB544D51F3ECC36F34FBAB8CCF8CAC9A3B55313BD6AFFD5AECFCD3A80EA43FE2EB0D867929F9D9A0B29F2997C23EBDF721F947B9EE29ACB4E78F93A3B6A9DD8414C70FEFD346B55963A3CCEAB5A955C88A7902EA55A3"
+loading="lazy"
+alt="HMCL"
+>安装相关环境：&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo dnf install java-21-openjdk openjfx
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>注意：Fedora 自带的 java-21-openjdk-handless 无法启动 HMCL&lt;/p>
+&lt;p>需要在 Dash 栏显示软件名称的，需要编辑文件 &lt;code>~/.local/share/applications/hmcl.desktop&lt;/code>
+内容：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-ini" data-lang="ini">&lt;span class="line">&lt;span class="cl">&lt;span class="k">[Desktop Entry]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">Encoding&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">UTF-8&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">Name&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">HMCL&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">GenericName&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">Hello Minecraft! Launcher&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">Comment&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">A launcher to start Minecraft&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">Exec&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">java -Dprism.forceGPU=true -jar /home/moieo/Minecraft/HMCL-3.6.11.jar&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">Icon&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">/home/moieo/Minecraft/.icon@8x.png&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">StartupWMClass&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">org.jackhuang.hmcl.Launcher&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">Terminal&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">Type&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">Application&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">Categories&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">Application;Game;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>ICON和JAR路径根据自己的情况修改
+ICON可以解压JAR包获取
+如果使用了 Rounded Window Corners Reborn 圆角插件的，需要将插件排除包名&lt;code>org.jackhuang.hmcl.Launcher&lt;/code>，否则会有一个透明边框在外围&lt;/p>
+&lt;p>字体使用 文泉驿，界面正常显示&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo dnf install wqy-bitmap-fonts -y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo dnf install wqy-unibit-fonts -y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo dnf install wqy-zenhei-fonts -y
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>
