@@ -1,5 +1,0 @@
-# [[redirects]]
-# from = "https://blog.moieo.cn/*"
-# to = "https://blog.moieo.net/:splat"
-# status = 301
-# force = true

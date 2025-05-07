@@ -1,9 +1,0 @@
-User-agent: *
-Allow: /
-Crawl-delay: 120
-Disallow: /js/
-Disallow: /css/
-Disallow: /img/
-Disallow: /fonts/
-Sitemap: https://blog.moieo.net/sitemap.xml
-Sitemap: https://blog.moieo.net/baidusitemap.xml

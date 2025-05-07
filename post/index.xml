@@ -1,0 +1,1264 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 晴雨笔记</title><link>https://blog.moieo.net/post/</link><description>Recent content in Posts on 晴雨笔记</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 24 Apr 2025 22:05:48 +0800</lastBuildDate><atom:link href="https://blog.moieo.net/post/index.xml" rel="self" type="application/rss+xml"/><item><title>ArchLinux Plasma 6 开启Samba服务（文件共享）</title><link>https://blog.moieo.net/2025/04/24/220548/</link><pubDate>Thu, 24 Apr 2025 22:05:48 +0800</pubDate><guid>https://blog.moieo.net/2025/04/24/220548/</guid><description>&lt;p>在 Plasma 6 中的 Dolphin 使用文件共享&lt;/p>
+&lt;h2 id="安装相关的插件">安装相关的插件
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pacman -Sy kdenetwork-filesharing
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="编辑-samba-配置文件">编辑 Samba 配置文件
+&lt;/h2>&lt;p>文件路径 &lt;code>/etc/samba/smb.conf&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">global&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">usershare&lt;/span> &lt;span class="n">path&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">/&lt;/span>&lt;span class="k">var&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">lib&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">samba&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">usershares&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">usershare&lt;/span> &lt;span class="nb">max&lt;/span> &lt;span class="n">shares&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">100&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># usershare allow guests = yes &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">usershare&lt;/span> &lt;span class="n">owner&lt;/span> &lt;span class="n">only&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">no&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">workgroup&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">WORKGROUP&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">security&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">user&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">passdb&lt;/span> &lt;span class="n">backend&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">smbpasswd&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">name&lt;/span> &lt;span class="n">resolve&lt;/span> &lt;span class="n">order&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">lmhosts&lt;/span> &lt;span class="n">bcast&lt;/span> &lt;span class="n">host&lt;/span> &lt;span class="n">wins&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">unix&lt;/span> &lt;span class="n">charset&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">UTF&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">8&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">load&lt;/span> &lt;span class="n">printers&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">no&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">printing&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">bsd&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">printcap&lt;/span> &lt;span class="n">name&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">/&lt;/span>&lt;span class="n">dev&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">null&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">disable&lt;/span> &lt;span class="n">spoolss&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">yes&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">show&lt;/span> &lt;span class="n">add&lt;/span> &lt;span class="n">printer&lt;/span> &lt;span class="n">wizard&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">no&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">server&lt;/span> &lt;span class="n">string&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Samba&lt;/span> &lt;span class="n">Server&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">log&lt;/span> &lt;span class="n">file&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">/&lt;/span>&lt;span class="k">var&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="nb">log&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">samba&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="nb">log&lt;/span>&lt;span class="o">.%&lt;/span>&lt;span class="n">m&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Put a capping on the size of the log files (in Kb). &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">max&lt;/span> &lt;span class="nb">log&lt;/span> &lt;span class="n">size&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">50&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">dns&lt;/span> &lt;span class="n">proxy&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">no&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#============================ Share Definitions ============================== &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#   &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#[homes]   &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 启用这个块会默认共享对应用户的home目录&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#  comment = Home Directories &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#  browsable = no &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#  writable = yes&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="配置用户组和文件夹">配置用户组和文件夹
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">mkdir /var/lib/samba/usershares
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">groupadd fileshare
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">usermod -a -G fileshare &lt;span class="k">$(&lt;/span>whoami&lt;span class="k">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chown root:fileshare /var/lib/samba/usershares
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chmod &lt;span class="m">1771&lt;/span> /var/lib/samba/usershares
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="启动-samba-服务">启动 Samba 服务
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">systemctl restart smb nmb
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl &lt;span class="nb">enable&lt;/span> smb nmb
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="将linux用户添加到samba数据库">将Linux用户添加到Samba数据库
+&lt;/h2>&lt;p>这一步可以为Samba用户设置独立的密码&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">smbpasswd -a &lt;span class="k">$(&lt;/span>whoami&lt;span class="k">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="重启">重启
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">reboot
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>ArchLinux安装过程</title><link>https://blog.moieo.net/2025/04/23/152137/</link><pubDate>Wed, 23 Apr 2025 15:21:37 +0800</pubDate><guid>https://blog.moieo.net/2025/04/23/152137/</guid><description>&lt;h2 id="连接网络">连接网络
+&lt;/h2>&lt;p>插入有线连接再启动ISO就行了，不深究
+使用&lt;code>ping t.cn&lt;/code> 能通就行了&lt;/p>
+&lt;h2 id="更新系统时钟">更新系统时钟
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">timedatectl set-ntp &lt;span class="nb">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 将系统时间与网络时间进行同步&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">timedatectl status
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 检查服务状态&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="更换镜像">更换镜像
+&lt;/h2>&lt;p>要换镜像网上搜去，这里不提供！&lt;/p>
+&lt;h2 id="分区">分区
+&lt;/h2>&lt;p>使用fdisk工具进行分区操作
+我这里使用的是&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>分区&lt;/th>
+&lt;th>大小&lt;/th>
+&lt;th>设备&lt;/th>
+&lt;th>备注&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>/&lt;/td>
+&lt;td>500GiB&lt;/td>
+&lt;td>/dev/nvme0n1p7&lt;/td>
+&lt;td>根目录（系统装在这个分区里）&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>/boot&lt;/td>
+&lt;td>1Gib&lt;/td>
+&lt;td>/dev/nvme0n1p6&lt;/td>
+&lt;td>引导分区&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>/boot/efi&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>/dev/nvme0n1p1&lt;/td>
+&lt;td>与Windows共用&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="格式化">格式化
+&lt;/h2>&lt;p>将创建好的分区进行格式化，这里使用&lt;code>btrfs&lt;/code>格式的根目录分区
+&lt;code>btrfs&lt;/code> 格式的分区可以使用 &lt;code>zstd&lt;/code> 进行压缩，支持快照功能&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">mkfs.btrfs -f /dev/nvme0n1p7
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkfs.ext4 /dev/nvme0n1p6
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>挂载分区&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 挂载根目录分区 (我是不是应该创建子卷更好，毕竟我已经用btrfs了都)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mount -t btrfs -o &lt;span class="nv">compress&lt;/span>&lt;span class="o">=&lt;/span>zstd:5 /dev/nvme0n1p7 /mnt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 创建引导分区挂载需要的文件夹&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir /mnt/boot
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 挂载引导分区&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mount -t ext4 /dev/nvme0n1p6 /mnt/boot
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="安装系统基础软件">安装系统基础软件
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pacstrap /mnt base base-devel linux linux-firmware btrfs-progs networkmanager neovim sudo bash bash-completion grub efibootmgr os-prober
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="生成-fstab-文件">生成 fstab 文件
+&lt;/h2>&lt;p>&lt;code>fstab&lt;/code> 用来定义磁盘分区。它是 Linux 系统中重要的文件之一。使用 &lt;code>genfstab&lt;/code> 自动根据当前挂载情况生成并写入 &lt;code>fstab&lt;/code> 文件&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">genfstab -U /mnt &amp;gt; /mnt/etc/fstab
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>复查一下 &lt;code>/mnt/etc/fstab&lt;/code> 确保没有错误&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">cat /mnt/etc/fstab
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="切换到系统中">切换到系统中
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">arch_chroot /mnt
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="修改时区">修改时区
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;blockquote>
+&lt;p>🍧 碎碎念
+不要找北京啦！这里没有北京，只有上海啦！🚀&lt;/p>&lt;/blockquote>
+&lt;h2 id="硬件时间设置">硬件时间设置
+&lt;/h2>&lt;p>将系统时间同步到硬件时间&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">hwclock --systohc
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="修改语言">修改语言
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">vim /etc/locale.gen
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>将&lt;code>en_US.UTF-8&lt;/code>和&lt;code>zh_CN.UTF-8&lt;/code>解除注释，然后用以下命令生成&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">locale-gen
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>需要添加相关的字体&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo pacman -S noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="创建用户">创建用户
+&lt;/h2>&lt;p>如果需要安装plasma6桌面或者 GNOME 桌面，必须创建一个普通用户&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">useradd -G wheel &lt;span class="o">[&lt;/span>用户名&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="安装-grub">安装 Grub
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">grub-install --target&lt;span class="o">=&lt;/span>x86_64-efi --efi-directory&lt;span class="o">=&lt;/span>/boot/efi --bootloader-id&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;Arch Linux&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="生成grub配置文件">生成Grub配置文件
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">grub-mkconfig -o /boot/grub/grub.cfg
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="安装-plasma-6">安装 Plasma 6
+&lt;/h2>&lt;p>蓝牙相关的，如果没有蓝牙可以省略
+kde-applications 包含了KDE全家桶，不需要可以不装&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pacman -S plasma kde-applications sddm networkmanager bluez bluez-utils
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>需要启动相关的服务&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">systemctl &lt;span class="nb">enable&lt;/span> sddm bluetooth NetworkManager
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="安装完成">安装完成
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">exit&lt;/span> &lt;span class="c1"># 退出 arch_chroot&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">umount -R /mnt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">reboot
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="优化和问题解决">优化和问题解决
+&lt;/h2>&lt;h3 id="电源管理">电源管理
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo pacman -S power-profiles-daemon
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo systemctl start power-profiles-daemon.service
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo systemctl &lt;span class="nb">enable&lt;/span> power-profiles-daemon.service
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="解决回退的蜂鸣声">解决回退的蜂鸣声
+&lt;/h3>&lt;p>编辑 &lt;code>/etc/modprobe.d/nobeep.conf&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">blacklist pcspkr
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="sddm中蓝牙自动连接">sddm中蓝牙自动连接
+&lt;/h3>&lt;p>蓝牙被软锁了，但是暂时没发现其他解决方法，这样解决也可以
+编辑 &lt;code>/etc/udev/rules.d/99-rfkill-unblock-bluetooth.rules&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-plain" data-lang="plain">&lt;span class="line">&lt;span class="cl">ACTION==&amp;#34;add&amp;#34;, SUBSYSTEM==&amp;#34;bluetooth&amp;#34;, KERNEL==&amp;#34;hci0&amp;#34;, RUN+=&amp;#34;/usr/bin/rfkill unblock bluetooth&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="配置-amd-gpu">配置 AMD GPU
+&lt;/h3>&lt;p>我用的是 AMD Radeon 780M 的集承显卡
+修改 &lt;code>/etc/mkinitcpio.conf&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">MODULES=(amdgpu radeon)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>再修改 &lt;code>/etc/default/grub&lt;/code> 中的 &lt;code>GRUB_CMDLINE_LINUX_DEFAULT&lt;/code> 加入 &lt;code>radeon.cik_support=0 amdgpu.cik_support=1&lt;/code>&lt;/p></description></item><item><title>解决OpenOCD/串口在Linux中的权限问题</title><link>https://blog.moieo.net/2025/02/02/185312/</link><pubDate>Sun, 02 Feb 2025 18:53:12 +0800</pubDate><guid>https://blog.moieo.net/2025/02/02/185312/</guid><description>&lt;p>问题说明：普通用户使用 OpenOCD 进行烧录时，无法访问USB设备，Arduino无法访问串口，每次使用 sudo 或者 pkexec 都需要输入密码，非常麻烦&lt;/p>
+&lt;h3 id="解决方案">解决方案
+&lt;/h3>&lt;p>把 OpenOCD 的 &lt;code>openocd/contrib/60-openocd.rules&lt;/code> 复制到 &lt;code>/etc/udev/rules.d/&lt;/code> 文件夹中&lt;/p>
+&lt;h3 id="串口的权限问题">串口的权限问题
+&lt;/h3>&lt;p>编辑文件 &lt;code>sudo vim /etc/udev/rules.d/70-ttyusb.rules&lt;/code>
+文件内容&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-plain" data-lang="plain">&lt;span class="line">&lt;span class="cl">KERNEL==&amp;#34;ttyUSB[0-9]*&amp;#34;, MODE=&amp;#34;666&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>以上方案执行&lt;code>sudo udevadm control --reload&lt;/code>后生效&lt;/p></description></item><item><title>Linux的GNOME中配置Minecraft游戏环境</title><link>https://blog.moieo.net/2025/01/30/200000/</link><pubDate>Thu, 30 Jan 2025 20:00:00 +0800</pubDate><guid>https://blog.moieo.net/2025/01/30/200000/</guid><description>&lt;img src="https://preview.cloud.189.cn/image/imageAction?param=632B0EE0C21C059739F579E45350AC380A94654BFBF49ACB410C2F50D042B78F079A76B4BC77ABC63BCAE4EED17A8F410083F223220B6FC069B7EFFB570DB0B69E5C1039FAB5CB14092A1890F73E99E0B53B27D39C8DFD7B363B4E0450C6BCE15340AB3C280726DCC53941D36C48497C07914543" alt="Featured image of post Linux的GNOME中配置Minecraft游戏环境" />&lt;h2 id="测试环境">测试环境
+&lt;/h2>&lt;ul>
+&lt;li>Linux: Fedora 41&lt;/li>
+&lt;li>GNOME 47
+HMCL启动器：https://hmcl.huangyuhui.net/download/
+&lt;img src="https://preview.cloud.189.cn/image/imageAction?param=B969C2460DC23A082CC7E5E8EDCBF6B399B16C5BC6E8BD4B07D661C96AF7DB544D51F3ECC36F34FBAB8CCF8CAC9A3B55313BD6AFFD5AECFCD3A80EA43FE2EB0D867929F9D9A0B29F2997C23EBDF721F947B9EE29ACB4E78F93A3B6A9DD8414C70FEFD346B55963A3CCEAB5A955C88A7902EA55A3"
+loading="lazy"
+alt="HMCL"
+>安装相关环境：&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo dnf install java-21-openjdk openjfx
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>注意：Fedora 自带的 java-21-openjdk-handless 无法启动 HMCL&lt;/p>
+&lt;p>需要在 Dash 栏显示软件名称的，需要编辑文件 &lt;code>~/.local/share/applications/hmcl.desktop&lt;/code>
+内容：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-ini" data-lang="ini">&lt;span class="line">&lt;span class="cl">&lt;span class="k">[Desktop Entry]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">Encoding&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">UTF-8&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">Name&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">HMCL&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">GenericName&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">Hello Minecraft! Launcher&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">Comment&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">A launcher to start Minecraft&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">Exec&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">java -Dprism.forceGPU=true -jar /home/moieo/Minecraft/HMCL-3.6.11.jar&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">Icon&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">/home/moieo/Minecraft/.icon@8x.png&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">StartupWMClass&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">org.jackhuang.hmcl.Launcher&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">Terminal&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">Type&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">Application&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">Categories&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">Application;Game;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>ICON和JAR路径根据自己的情况修改
+ICON可以解压JAR包获取
+如果使用了 Rounded Window Corners Reborn 圆角插件的，需要将插件排除包名&lt;code>org.jackhuang.hmcl.Launcher&lt;/code>，否则会有一个透明边框在外围&lt;/p>
+&lt;p>字体使用 文泉驿，界面正常显示&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo dnf install wqy-bitmap-fonts -y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo dnf install wqy-unibit-fonts -y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo dnf install wqy-zenhei-fonts -y
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>ADC 采样 NTC 热敏电阻计算实际温度值</title><link>https://blog.moieo.net/2024/07/31/221520/</link><pubDate>Wed, 31 Jul 2024 22:15:20 +0800</pubDate><guid>https://blog.moieo.net/2024/07/31/221520/</guid><description>&lt;p>通过 ADC 方式采样 NTC 热敏电阻 (10K)
+得到 12 位采样数据（右对齐）&lt;/p>
+&lt;p>通过 Steinhart-Hart 方程计算并得到温度计算公式
+适用于 3.3v 基准电压，12 位宽 的情况&lt;/p>
+&lt;p>转换公式如下&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#define to_temperature(adc_value) (1.0 / (0.001129148 + 0.000234185 * \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">        log((10000 * adc_value * (3.3 / 4095.0)) / (3.3 - adc_value * \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">        (3.3 / 4095.0))) + 0.0000000876741 * pow(log((10000 * adc_value * \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">        (3.3 / 4095.0)) / (3.3 - adc_value * (3.3 / 4095.0))), 3))) - 273.15
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>STM32F103 实现 4x4 矩阵键盘的扫描</title><link>https://blog.moieo.net/2024/07/09/194457/</link><pubDate>Tue, 09 Jul 2024 19:44:57 +0800</pubDate><guid>https://blog.moieo.net/2024/07/09/194457/</guid><description>&lt;p>直接放一个实物图在这里&lt;img src="https://preview.cloud.189.cn/image/imageAction?param=2561B53DE643174BDEFD95D5816918035E7CEE4FB9690172962BEE3D133D3A4677095922A1CD95EF9231E68A982630E65999F3E3914ECF3773AB80EFC6D9CA05FCBA6ED09C3D60D069AC63C13E6959AC6E539287EEC71656C2BDC15EBB8147A6BD5ED6E01E46E8E24E25C38B65B7A2A8103B5057"
+loading="lazy"
+alt="实物图"
+>
+接线放在这里~&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>STM32F103C8T6&lt;/th>
+&lt;th>4x4&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>A0&lt;/td>
+&lt;td>C4&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>A1&lt;/td>
+&lt;td>C3&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>A2&lt;/td>
+&lt;td>C2&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>A3&lt;/td>
+&lt;td>C1&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>A4&lt;/td>
+&lt;td>R1&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>A5&lt;/td>
+&lt;td>R2&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>A6&lt;/td>
+&lt;td>R3&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>A7&lt;/td>
+&lt;td>R4&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="实现原理">实现原理
+&lt;/h2>&lt;p>遍历矩阵的每一行，开始时将当前遍历的行设置为 低电平，再扫描每一列并判断找出为低电平的列号，符合要求时记录行号和列号
+结束当前行时再将当前行设置为 高电平&lt;/p>
+&lt;h2 id="源代码">源代码
+&lt;/h2>&lt;p>MATRIX_KEY_Sx 的编号由行号和列号组成
+matrix_key.h&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#ifndef __MATRIX_KEY__
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#define __MATRIX_KEY__
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;stm32f10x.h&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#define ROW_PINS (GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7) &lt;/span>&lt;span class="c1">// 定义行引脚为GPIOA的4、5、6、7
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="cp">#define COL_PINS (GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3) &lt;/span>&lt;span class="c1">// 定义列引脚为GPIOA的0、1、2、3
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// 第1行
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="cp">#define MATRIX_KEY_S1 0x18 &lt;/span>&lt;span class="c1">// 0001 1000
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="cp">#define MATRIX_KEY_S2 0x14 &lt;/span>&lt;span class="c1">// 0001 0100
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="cp">#define MATRIX_KEY_S3 0x12 &lt;/span>&lt;span class="c1">// 0001 0010
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="cp">#define MATRIX_KEY_S4 0x11 &lt;/span>&lt;span class="c1">// 0001 0001
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// 第2行
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="cp">#define MATRIX_KEY_S5 0x28 &lt;/span>&lt;span class="c1">// 0010 1000
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="cp">#define MATRIX_KEY_S6 0x24 &lt;/span>&lt;span class="c1">// 0010 0100
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="cp">#define MATRIX_KEY_S7 0x22 &lt;/span>&lt;span class="c1">// 0010 0010
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="cp">#define MATRIX_KEY_S8 0x21 &lt;/span>&lt;span class="c1">// 0010 0001
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// 第3行
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="cp">#define MATRIX_KEY_S9 0x48 &lt;/span>&lt;span class="c1">// 0100 0100
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="cp">#define MATRIX_KEY_S10 0x44 &lt;/span>&lt;span class="c1">// 0100 0100
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="cp">#define MATRIX_KEY_S11 0x42 &lt;/span>&lt;span class="c1">// 0100 0010
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="cp">#define MATRIX_KEY_S12 0x41 &lt;/span>&lt;span class="c1">// 0100 0001
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// 第4行
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="cp">#define MATRIX_KEY_S13 0x88 &lt;/span>&lt;span class="c1">// 1000 1000
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="cp">#define MATRIX_KEY_S14 0x84 &lt;/span>&lt;span class="c1">// 1000 0100
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="cp">#define MATRIX_KEY_S15 0x82 &lt;/span>&lt;span class="c1">// 1000 0010
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="cp">#define MATRIX_KEY_S16 0x81 &lt;/span>&lt;span class="c1">// 1000 0001
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kt">void&lt;/span> &lt;span class="nf">Init_Matrix_Key&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kt">void&lt;/span> &lt;span class="nf">Scan_Matrix_Key&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">Call_Back&lt;/span>&lt;span class="p">)(&lt;/span>&lt;span class="kt">uint8_t&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#endif
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>matrix_key.c&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;stm32f10x.h&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;Delay.h&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;matrix_key.h&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kt">void&lt;/span> &lt;span class="nf">Init_Matrix_Key&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">GPIO_InitTypeDef&lt;/span> &lt;span class="n">GPIO_InitStructure&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">RCC_APB2PeriphClockCmd&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">RCC_APB2Periph_GPIOA&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">ENABLE&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="c1">// 使能GPIOA时钟
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// 设置行引脚为推挽输出
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="n">GPIO_InitStructure&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">GPIO_Pin&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">ROW_PINS&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">GPIO_InitStructure&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">GPIO_Mode&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">GPIO_Mode_Out_PP&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">GPIO_InitStructure&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">GPIO_Speed&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">GPIO_Speed_50MHz&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">GPIO_Init&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">GPIOA&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">GPIO_InitStructure&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// 设置列引脚为上拉输入
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="n">GPIO_InitStructure&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">GPIO_Pin&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">COL_PINS&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">GPIO_InitStructure&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">GPIO_Mode&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">GPIO_Mode_IPU&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">GPIO_Init&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">GPIOA&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">GPIO_InitStructure&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kt">void&lt;/span> &lt;span class="nf">Scan_Matrix_Key&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">Call_Back&lt;/span>&lt;span class="p">)(&lt;/span>&lt;span class="kt">uint8_t&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">uint8_t&lt;/span> &lt;span class="n">row&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">col&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">uint8_t&lt;/span> &lt;span class="n">keyDetected&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">row&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">row&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="mi">4&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">row&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="c1">// 遍历行
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nf">GPIO_ResetBits&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">GPIOA&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">row&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">4&lt;/span>&lt;span class="p">));&lt;/span> &lt;span class="c1">// 将当前行置为低电平，注意这里使用1 &amp;lt;&amp;lt; (row + 4)来选中行
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nf">Delay_us&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">10&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="c1">// 短暂延时以稳定电平
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">col&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">col&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="mi">4&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">col&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="c1">// 遍历列
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">GPIO_ReadInputDataBit&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">GPIOA&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">col&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">Bit_RESET&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="c1">// 判断该列是否为低电平
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nf">Delay_ms&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">100&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="c1">// 延时去抖动
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">GPIO_ReadInputDataBit&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">GPIOA&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">col&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">Bit_RESET&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="c1">// 再次检查，确认按键被按下
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="n">keyDetected&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">col&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">row&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">4&lt;/span>&lt;span class="p">));&lt;/span> &lt;span class="c1">// 记录按键位置
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nf">Call_Back&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">keyDetected&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">break&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="c1">// 跳出列循环，因为同一时间只能有一个按键被按下
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">while&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nf">GPIO_ReadInputDataBit&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">GPIOA&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">col&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">Bit_RESET&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="c1">// 等待弹起
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">GPIO_SetBits&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">GPIOA&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">row&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">4&lt;/span>&lt;span class="p">));&lt;/span> &lt;span class="c1">// 恢复该行至高电平
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">keyDetected&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">break&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="c1">// 如果检测到按键，跳出行循环
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在 main 中调用&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="line">&lt;span class="cl">&lt;span class="kt">void&lt;/span> &lt;span class="nf">Matrix_Key_Callback&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">uint8_t&lt;/span> &lt;span class="n">key&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">switch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">case&lt;/span> &lt;span class="nl">MATRIX_KEY_S1&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// TODO
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">break&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">Init_Matrix_Key&lt;/span>&lt;span class="p">();&lt;/span> &lt;span class="c1">// 初始化
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">while&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">Scan_Matrix_Key&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Matrix_Key_Callback&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>你可以在串口中输出按键的号码~
+&lt;img src="https://preview.cloud.189.cn/image/imageAction?param=E8D28D4DD8268574D1B55EEB925E126321B71374462A2471B6A5E5CE9F5FE78EC23D621BD9E573D40AA8B476CD5C165F61ED90ACC51C792099A082BA3BF677B37748CF1A6C5E7B2DCABD897D8999C6822F878C924EE235B32B22F4043F79785FEEB213769A4FFA6EA1FC82529384364E46C9F9D4"
+loading="lazy"
+>
+&lt;img src="https://preview.cloud.189.cn/image/imageAction?param=B10247C30F3C971823503110465F4537D8A07C9CE3C43FE2B051347C66F2D57D00307D4103E6D9F8774472465E64F29F2DA7C33880D311B33148E8A12CDAB7557D800A1BF9C5B5FDA9FD8DFD55A30FC6BABA801914D35FDCA54F8F0EC502A109BFB42942C381899E0E7720D001BDF289B24B718A"
+loading="lazy"
+>&lt;/p></description></item><item><title>除了 VuePress，还有哪些文档工具值得推荐？</title><link>https://blog.moieo.net/2024/02/04/171624/</link><pubDate>Sun, 04 Feb 2024 17:16:24 +0800</pubDate><guid>https://blog.moieo.net/2024/02/04/171624/</guid><description>&lt;h2 id="为什么要使用文档生成工具">为什么要使用文档生成工具？
+&lt;/h2>&lt;p>使用文档工具可以快速生成文档的静态网站，节省非常多的时间，提高效率，一致性以易于维护和分发&lt;/p>
+&lt;blockquote>
+&lt;ol>
+&lt;li>文档生成工具可以帮助作者将内容按照逻辑结构组织起来，比如章节、子章节等，确保信息有序且易于查找&lt;/li>
+&lt;li>统一主题样式，保持整个文档一致的品牌风格和视觉效果&lt;/li>
+&lt;li>自动生成目录，方便读者快速导航&lt;/li>
+&lt;li>生成的静态页面对搜索引擎友好，加载速度也较快，可以提高网站的访问速度和用户体验&lt;/li>
+&lt;/ol>&lt;/blockquote>
+&lt;p>首先说说 VuePress 吧&lt;/p>
+&lt;h2 id="vuepress">VuePress
+&lt;/h2>&lt;p>VuePress 是一个基于 Vue 的静态网站生成器。它使用 Markdown 来编写文档，并使用 Vue 来渲染文档内容&lt;/p>
+&lt;h3 id="优点">优点
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>高度可定制&lt;/strong>：基于 Vue.js，可以非常灵活地定制文档界面和功能&lt;/li>
+&lt;li>&lt;strong>性能优异&lt;/strong>：利用 Vue 的单页应用特性，提供良好的页面加载性能和用户体验&lt;/li>
+&lt;li>&lt;strong>SEO 友好&lt;/strong>：默认集成了 SEO 优化功能&lt;/li>
+&lt;li>&lt;strong>Markdown 支持&lt;/strong>：良好的 Markdown 支持，易于编写文档&lt;/li>
+&lt;/ul>
+&lt;h3 id="缺点">缺点
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>学习曲线&lt;/strong>：对于不熟悉 Vue.js 的用户来说，可能需要一定的学习成本。&lt;/li>
+&lt;li>**复杂配置：**对于高级功能，配置可能相对复杂。&lt;/li>
+&lt;/ul>
+&lt;h2 id="docusaurus">Docusaurus
+&lt;/h2>&lt;p>Docusaurus 是一个简洁且强大的静态站点生成器，适用于快速构建和维护项目文档、博客和技术宣传页面。由Meta（前身为Facebook）开源，它利用React技术栈，使得用户能够以Markdown格式轻松编写和组织内容。&lt;/p>
+&lt;h3 id="优点-1">优点
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>易于配置&lt;/strong>：配置简单，易于上手。&lt;/li>
+&lt;li>&lt;strong>Markdown 支持&lt;/strong>：支持 Markdown，编写文档方便。&lt;/li>
+&lt;li>&lt;strong>主题丰富&lt;/strong>：提供多个美观的主题供选择。&lt;/li>
+&lt;li>&lt;strong>社区支持&lt;/strong>：由 Facebook 支持，社区活跃。&lt;/li>
+&lt;/ul>
+&lt;h3 id="缺点-1">缺点
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>功能相对有限&lt;/strong>：相比于 VuePress，高级功能可能不足。&lt;/li>
+&lt;li>&lt;strong>性能&lt;/strong>：相比于 VuePress，页面加载速度可能较慢。&lt;/li>
+&lt;/ul>
+&lt;h2 id="mkdocs">MkDocs
+&lt;/h2>&lt;p>MkDocs 是一个轻量级的静态网站生成器，专为编写和发布项目文档而设计。它允许用户使用简单的 Markdown 语言来撰写文档，并通过 MkDocs 的构建命令将这些 Markdown 文件转换成结构化的、美观的 HTML 静态网页。&lt;/p>
+&lt;h3 id="优点-2">优点
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>简单易用&lt;/strong>：安装和配置简单，适合初学者。&lt;/li>
+&lt;li>** Markdown 友好**：对 Markdown 的支持很好，编写文档轻松。&lt;/li>
+&lt;li>&lt;strong>可定制性&lt;/strong>：可以通过自定义 CSS 和模板进行一定程度的定制。&lt;/li>
+&lt;li>&lt;strong>插件系统&lt;/strong>：有一套可用的插件，可以扩展功能。&lt;/li>
+&lt;/ul>
+&lt;h3 id="缺点-2">缺点
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>自定义能力有限&lt;/strong>：相对于 VuePress，复杂的自定义可能难以实现。&lt;/li>
+&lt;li>&lt;strong>插件生态较小&lt;/strong>：相比于 VuePress，插件数量和功能有限。&lt;/li>
+&lt;/ul>
+&lt;h2 id="mdbook">mdBook
+&lt;/h2>&lt;p>mdBook 是一个用 Rust 语言编写的开源命令行工具，用于从 Markdown 文件创建和管理在线书籍、文档集或教程。它提供了一个结构化的环境来组织和构建包含章节、副标题以及可选的自定义导航和样式表等内容的电子书或文档项目。&lt;/p>
+&lt;p>这个工具只适合做一本书或文档，不适合多个文档的集合。&lt;/p>
+&lt;p>看起来比较不错，如果你用它来编写 Rust 相关的文档，可以生成一个直接调用官方的接口，直接在网页中执行 Rust 代码片段。&lt;/p>
+&lt;h3 id="优点-3">优点
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>性能优异&lt;/strong>：使用 Rust 编写，加载速度快，性能稳定。&lt;/li>
+&lt;li>&lt;strong>Markdown&lt;/strong> 原生支持：编写文档简单直观，格式化自然。&lt;/li>
+&lt;li>&lt;strong>简洁专注&lt;/strong>：设计简单，专注于Markdown文档生成，没有多余的复杂功能&lt;/li>
+&lt;li>&lt;strong>多平台支持&lt;/strong>：支持多种操作系统，方便使用。&lt;/li>
+&lt;/ul>
+&lt;h3 id="缺点-3">缺点
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>功能相对有限&lt;/strong>：相比于其他工具，可能缺乏一些高级功能和交互性。&lt;/li>
+&lt;li>&lt;strong>插件生态较小&lt;/strong>：插件数量和功能有限，可能无法满足所有需求。&lt;/li>
+&lt;li>&lt;strong>社区支持&lt;/strong>：虽然社区活跃，但规模不如 VuePress 和 Docusaurus。&lt;/li>
+&lt;/ul></description></item><item><title>使用 Caddy 部署 Vue 等单页面Web应用</title><link>https://blog.moieo.net/2023/01/25/161921/</link><pubDate>Wed, 25 Jan 2023 16:19:21 +0800</pubDate><guid>https://blog.moieo.net/2023/01/25/161921/</guid><description>&lt;img src="https://preview.cloud.189.cn/image/imageAction?param=0D9365D5533D6BCDBA4686599C3CE86CECD4F6A6BD93D903ED43FB918E50BC51091505DCC6AF4371F042CF9C1F11452DA0C6D8D3292B7607282A60F41FA119002DDBE1FA137A6034367F152C4EDBB32E3891CB9A3DB741C48D802DD204BF93F245C7DF48E68A71A88E86FF4CC8AB567779AC0EB3" alt="Featured image of post 使用 Caddy 部署 Vue 等单页面Web应用" />&lt;h1 id="安装-caddy">安装 Caddy
+&lt;/h1>&lt;p>Caddy 是一个 Go 语言编写的开源 HTTP 服务器&lt;/p>
+&lt;blockquote>
+&lt;p>Caddy 有下面这些开箱即用的特性:&lt;/p>
+&lt;ul>
+&lt;li>全自动支持 HTTP/2 协议，无需任何配置。&lt;/li>
+&lt;li>Caddy 使用 Let’s Encrypt 让你的站点全自动变成 HTTPS，无需任何配置。&lt;/li>
+&lt;li>合理使用多核多核 得益于 go 的特性&lt;/li>
+&lt;li>完全支持 IPv6 环境&lt;/li>
+&lt;li>Caddy 对 WebSockets 有很好的支持&lt;/li>
+&lt;li>自动把 Markdown 转成 HTML&lt;/li>
+&lt;li>Caddy 对 log 格式的定义很容易&lt;/li>
+&lt;li>易于部署 得益于 go 的特性，caddy 只是一个小小的二进制文件，没有依赖，很好部署&lt;/li>
+&lt;li>得益于 Go 的跨平台特性，Caddy 很容易的支持了三大主流系统：Windows、 Linux、Mac
+来自 知乎 &lt;a class="link" href="https://zhuanlan.zhihu.com/p/144208057" target="_blank" rel="noopener"
+>@shooter&lt;/a>&lt;/li>
+&lt;/ul>&lt;/blockquote>
+&lt;p>&lt;a class="link" href="https://caddyserver.com/" target="_blank" rel="noopener"
+>Caddy 官网&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://caddyserver.com/download" target="_blank" rel="noopener"
+>下载 Caddy&lt;/a>&lt;/p>
+&lt;p>本文配置 均使用 &lt;code>Caddyfile&lt;/code> 文件&lt;/p>
+&lt;h1 id="基本配置">基本配置
+&lt;/h1>&lt;p>HTTP + HTTPS&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">moieo.cn {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> root * /srv/http # 网站根目录
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> file_serve # 启用文件系统
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>HTTP&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">http://moieo.cn {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> root * /srv/http # 网站根目录
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> file_serve # 启用文件系统
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>反之只用 HTTPS&lt;/p>
+&lt;h1 id="vue-等单页面应用部署">Vue 等单页面应用部署
+&lt;/h1>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">moieo.cn {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> root * /srv/http # 网站的根目录
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> encode gzip zstd # 开启 gzip
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> route {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 找不到文件时 使用 index.html
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 解决 history 路由模式 404 的问题
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> try_files {path} /index.html
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> file_server # 开启文件系统
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 处理日志
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> log {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> output file /data/moieo.cn.log # 保存文件
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> format console # 日志格式
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> level INFO # 日志级别
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="开启-caddy">开启 Caddy
+&lt;/h1>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">./caddy start --config ./Caddyfile
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="文档">文档
+&lt;/h1>&lt;p>&lt;a class="link" href="https://caddyserver.com/docs/" target="_blank" rel="noopener"
+>Caddy 官方文档&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://caddy2.dengxiaolong.com/docs/" target="_blank" rel="noopener"
+>Caddy 中文文档&lt;/a>&lt;/p>
+&lt;p>中文文档访问速度快&lt;/p></description></item><item><title>Vite+Vue使用外部CDN引用element-plus全家桶</title><link>https://blog.moieo.net/2022/08/05/230838/</link><pubDate>Fri, 05 Aug 2022 23:08:38 +0800</pubDate><guid>https://blog.moieo.net/2022/08/05/230838/</guid><description>&lt;img src="https://preview.cloud.189.cn/image/imageAction?param=A9FC5FECFA532F69F5D582DAA5A9DDEC8F99A65F1E1FF358E524C2C868E78354EEA5CE96240C004B29CE9A4275BBCF8B755BF685B3BE3959DF7FFBD66048F578970C8B6A9C2597E322B9A3CD2886369BE58BBAD96A0FFE22D3372C9DF325E983BB7B922930F462B0A939E0AC39F11B07E549C09A" alt="Featured image of post Vite+Vue使用外部CDN引用element-plus全家桶" />&lt;p>参考：&lt;a class="link" href="https://juejin.cn/post/6992027986383863838" target="_blank" rel="noopener"
+>vue3+vite2增加element-plus的CDN链接打包构建&lt;/a>&lt;/p>
+&lt;p>网上 Vite.js 的资料少，踩了不少坑
+在掘金中找到一篇资料，但还是避免不了遇到了一些奇奇怪怪的问题&lt;/p>
+&lt;p>我这边使用的 &lt;code>vite-plugin-cdn-import&lt;/code> 插件&lt;/p>
+&lt;p>&lt;img src="https://preview.cloud.189.cn/image/imageAction?param=A9FC5FECFA532F69F5D582DAA5A9DDEC8F99A65F1E1FF358E524C2C868E78354EEA5CE96240C004B29CE9A4275BBCF8B755BF685B3BE3959DF7FFBD66048F578970C8B6A9C2597E322B9A3CD2886369BE58BBAD96A0FFE22D3372C9DF325E983BB7B922930F462B0A939E0AC39F11B07E549C09A"
+loading="lazy"
+alt="解决"
+>&lt;/p>
+&lt;p>编辑 &lt;code>vite.config.ts&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-typescript" data-lang="typescript">&lt;span class="line">&lt;span class="cl">&lt;span class="kr">import&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">Plugin&lt;/span> &lt;span class="kr">as&lt;/span> &lt;span class="nx">importToCDN&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="kr">from&lt;/span> &lt;span class="s2">&amp;#34;vite-plugin-cdn-import&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-typescript" data-lang="typescript">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">importToCDN&lt;/span>&lt;span class="p">({&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">modules&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">name&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;vue&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kd">var&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;Vue&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">path&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;//unpkg.com/vue@next&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">name&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;vuex&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kd">var&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;Vuex&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">path&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;//unpkg.com/vuex@next&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">name&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;vue-class-component&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kd">var&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;VueClassComponent&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">path&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;//unpkg.com/vue-class-component@next&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">name&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;element-plus&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kd">var&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;ElementPlus&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">path&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;//unpkg.com/element-plus&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">css&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;//unpkg.com/element-plus/dist/index.css&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">],&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}),&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>用原文中的方法会出现错误
+原因参考：使用了pinia或其他依赖于vue的库&lt;/p>
+&lt;p>&lt;img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/67a34ca36df04992a0af368cc34c322d~tplv-k3u1fbpfcp-zoom-1.awebp"
+loading="lazy"
+alt="报错"
+>&lt;/p>
+&lt;p>上面方式可解决&lt;/p></description></item><item><title>SQLMap进行SQL注入测试</title><link>https://blog.moieo.net/2022/07/31/225935/</link><pubDate>Sun, 31 Jul 2022 22:59:35 +0800</pubDate><guid>https://blog.moieo.net/2022/07/31/225935/</guid><description>&lt;img src="https://s2.loli.net/2022/07/31/tJ3lKrcPa5ZqTRy.png" alt="Featured image of post SQLMap进行SQL注入测试" />&lt;blockquote>
+&lt;p>提示： 仅供学习使用，严禁用于违法用途&lt;/p>&lt;/blockquote>
+&lt;h2 id="介绍">介绍
+&lt;/h2>&lt;h3 id="简介">简介
+&lt;/h3>&lt;p>SQLMap 是一个开源的渗透测试工具，可以用来自动化检测，利用SQL注入漏洞，获取数据库的权限。
+它的检测引擎非常强大，针对不同类型的数据库有不同的方案和选项，获取数据库中存储的数据。&lt;/p>
+&lt;p>目前支持 MySQL、Oracle、PostgreSQL、Microsoft SQL Server、Microsoft Access 等数据库&lt;/p>
+&lt;h3 id="输出级别">输出级别
+&lt;/h3>&lt;blockquote>
+&lt;p>0：只显示python错误以及严重的信息
+1：同时显示基本信息和警告信息（默认）
+2：同时显示debug信息
+3：同时显示注入的payload
+4：同时显示HTTP请求
+5：同时显示HTTP响应头
+6：同时显示HTTP响应页面&lt;/p>&lt;/blockquote>
+&lt;h2 id="安装">安装
+&lt;/h2>&lt;blockquote>
+&lt;p>注：安装SQLMap需要Python环境
+{% link &lt;a class="link" href="https://sqlmap.org" target="_blank" rel="noopener"
+>https://sqlmap.org&lt;/a> SQLMap官网 %}&lt;/p>&lt;/blockquote>
+&lt;p>克隆仓库&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">git clone --depth &lt;span class="m">1&lt;/span> https://github.com/sqlmapproject/sqlmap.git sqlmap
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> sqlmap
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">python sqlmap.py
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>你也可以将它配置到环境变量中，具体方法请上搜索引擎找
+&lt;img src="https://s2.loli.net/2022/07/31/tJ3lKrcPa5ZqTRy.png"
+loading="lazy"
+alt="运行图"
+>
+我这边配置了环境变量，所以可直接执行&lt;/p>
+&lt;h2 id="使用">使用
+&lt;/h2>&lt;h3 id="1-检查是否存在注入">1. 检查是否存在注入
+&lt;/h3>&lt;p>例如注入目标为：http://127.0.0.1:8080/?id=1
+则命令如下&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">python sqlmap.py -u &lt;span class="s2">&amp;#34;http://127.0.0.1:8080/?id=1&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>执行过程如下
+&lt;img src="https://preview.cloud.189.cn/image/imageAction?param=0019C6D796D2153341E8C5F5B039E741160935D3B3BD3FCC8760BFFE67AA0F5893088DF709200FDF0276DEB89D39EB6572AAAA1C798F6B4B182B227D741BE33DC5A86AE0B70C423D21B9266E9BB8B40EB9BAB8C0FD3FA882BF07511A8E6DD2C1952338C5319307E16DACB21D14DB992A816E7FB4"
+loading="lazy"
+alt="执行过程"
+>
+执行完毕后，可看到数据库类型，如果服务器后端使用的是PHP语言，会显示PHP的版本
+&lt;img src="https://preview.cloud.189.cn/image/imageAction?param=E8EC8B594170BF8FE209A702F83FE73DF567C58B9556AC9060F915C738A141F269411BCEACE34E4444C882FB6674731590325252AD945018E78288F71AFB98AC5FD7BFEAFC0332B2CC8A054D6167B4160777AC85998D5E47E3B82F07F2521DC27AB571F4D5807E7E4310D7579309813D4C48009E"
+loading="lazy"
+alt="执行完毕"
+>
+如图所示，数据库类型为 &lt;code>MySQL&lt;/code>
+PHP版本为 &lt;code>8.1.8&lt;/code>&lt;/p>
+&lt;h3 id="2-查询当前用户下所有数据库">2. 查询当前用户下所有数据库
+&lt;/h3>&lt;p>用途：该命令在确定网站存在SQL注入漏洞时，用于查询当前用户下的数据库&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">python sqlmap.py -u &lt;span class="s2">&amp;#34;http://127.0.0.1:8080/?id=1&amp;#34;&lt;/span> --dbs
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://preview.cloud.189.cn/image/imageAction?param=4F06FE8D881B891319D5C5B3B93FC0259210F560FCC1DB67089B507C92FF48EEF7D7B66129F77E606EC5145BC9E931D3D7FA03A0555EBCCEB72B03AA6C50A61692300A0056E40F6C7CFAFE8CB3A180F3E7F64DD63F810BD978883B25FC702B2B5A4F7EF8D4DC051497B4BCFC3EB6D9A9B047F8F1"
+loading="lazy"
+alt="所有数据库"
+>
+运行结束后可看到一些 数据库 的名称，它们将以&lt;code>[*]&lt;/code>开头
+&lt;code>--dbs&lt;/code>参数缩写成&lt;code>-D xxx&lt;/code>，该参数为查询&lt;code>xxx&lt;/code>数据库下的内容&lt;/p>
+&lt;h3 id="3-获取数据库中的表名">3. 获取数据库中的表名
+&lt;/h3>&lt;p>用途：该命令在确定网站存在SQL注入漏洞时，可获取数据库下所有表的名称&lt;/p>
+&lt;p>&lt;code>-D&lt;/code> 参数用来指定数据库，例如 &lt;code>-D moieo&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">python sqlmap.py -u http://127.0.0.1:8080/?id&lt;span class="o">=&lt;/span>&lt;span class="m">1&lt;/span> -D moieo --tables
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://preview.cloud.189.cn/image/imageAction?param=1311B58642F6F59AA3858D6CA4508E30CCCC129D856553ACB52B23B84F54C85CFC45F20FDAB7D1AC2705684A6BF3AB3C338AD718CC488EEA8019E45F99B6CAC0F2B91423A8F5490495A5B051FA6AC0987690C6B30528A9D994BE2F20CFFD10FE52C37CE525A2A511A03BF7C4FC897775BAF4ADCD"
+loading="lazy"
+alt="所有数据表"
+>
+运行结束后可看到所有数据表的名称，继续注入可使用 &lt;code>-T&lt;/code> 参数，该参数为 &lt;code>--tables&lt;/code>的缩写，用于指定数据表继续注入获取数据&lt;/p>
+&lt;h3 id="4-获取数据表的字段名">4. 获取数据表的字段名
+&lt;/h3>&lt;p>用途：在查询完表名后，指定数据库和数据表进行注入测试，获取该表下所有字段&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">python sqlmap.py -u http://127.0.0.1:8080/?id&lt;span class="o">=&lt;/span>&lt;span class="m">1&lt;/span> -D moieo -T moieo_comments --columns
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://preview.cloud.189.cn/image/imageAction?param=FEB6CE1C01E548FD9329EED2F00B36118315C63A83C984AE0FC841967A79F14F17666E8607EE372CC7D0BC92504C6D6D1F06348FAB4D942C557C44307B014DAB98C055752D5A778DFE327C3E9C011A74ADBDC0DA9EA87324E2360DEECE9E3054D1839E004A33B53956F92DC74C9F632043D6354D"
+loading="lazy"
+alt="所有字段"
+>
+运行结束后得到所有字段&lt;/p>
+&lt;h3 id="5-获取数据表内存储的数据">5. 获取数据表内存储的数据
+&lt;/h3>&lt;p>用途：在获取并确定数据表内有字段时使用，可获得数据表内存储的数据&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">python sqlmap.py -u http://127.0.0.1:8080/?id&lt;span class="o">=&lt;/span>&lt;span class="m">1&lt;/span> -D moieo -T moieo_comments --dump
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://preview.cloud.189.cn/image/imageAction?param=5C8D3F2F0A2670464260C7706B949364D3DF5765D5774FAE7BE33CD0979CD7E51F9A418D6070518BD57E00ACB61F23E1219A90827476EBABE2664D25A04D77553B263DF53017C5219411CC51E9EDF451E8490AD61A4F3A3E5F62D8B5BB4F4C95D6A5AD597197F8E1F9FD36ED3DC40CE5B080CBCA"
+loading="lazy"
+alt="表内的所有数据"
+>
+可以看到，执行结束后可获得数据表内每个字段的数据&lt;/p>
+&lt;h2 id="其他选项">其他选项
+&lt;/h2>&lt;h3 id="1-获取数据库所有用户">1. 获取数据库所有用户
+&lt;/h3>&lt;p>在有权管理所有用户的情况下 &lt;code>--users&lt;/code> 选项可获得数据库所有用户名&lt;/p>
+&lt;h3 id="2-获取数据库用户的密码">2. 获取数据库用户的密码
+&lt;/h3>&lt;p>在有权管理所有用户的情况下 &lt;code>--passwords&lt;/code> 选项可获得所有用户的密码，该选项获得到的数据是经过哈希算法加密的
+可以尝试使用 &lt;a class="link" href="https://www.cmd5.com/" target="_blank" rel="noopener"
+>https://www.cmd5.com/&lt;/a> 硬解&lt;/p>
+&lt;h3 id="3-获取当前网站数据库的名称">3. 获取当前网站数据库的名称
+&lt;/h3>&lt;p>&lt;code>--current-db&lt;/code> 选项，可获得当前网站数据库的名称&lt;/p>
+&lt;h3 id="4-获取当前网站数据库使用的用户名称">4. 获取当前网站数据库使用的用户名称
+&lt;/h3>&lt;p>&lt;code>--current-user&lt;/code> 选项，用于获取当前用户名称&lt;/p>
+&lt;h3 id="杂项">杂项
+&lt;/h3>&lt;p>&lt;code>--is-dba&lt;/code> 用于判断用户是否管理员权限&lt;/p>
+&lt;p>&lt;code>--roles&lt;/code> 列出数据库管理员角色&lt;/p>
+&lt;p>&lt;code>--referer&lt;/code>，当&lt;code>--level&lt;/code>的参数为3或以上，用于指定来源网站，欺骗目标网站，参数为URL&lt;/p>
+&lt;p>&lt;code>--sql-shell&lt;/code> 运行自定义SQL语句&lt;/p>
+&lt;p>&lt;code>--os-cmd&lt;/code> 或 &lt;code>--os-shell&lt;/code> 执行任意操作系统命令&lt;/p>
+&lt;p>&lt;code>--file-write xxx.php --file-dest xxx.php&lt;/code> 上传文件到数据库服务器，前者为源文件路径，后者为目标数据库服务器的文件路径&lt;/p>
+&lt;p>&lt;code>--file-read&lt;/code> 从数据库服务器中读取文件，参数为数据库服务器中的文件路径&lt;/p></description></item><item><title>IP查询接口分享</title><link>https://blog.moieo.net/2022/07/23/115258/</link><pubDate>Sat, 23 Jul 2022 11:52:58 +0800</pubDate><guid>https://blog.moieo.net/2022/07/23/115258/</guid><description>&lt;h4 id="阿里云">阿里云
+&lt;/h4>&lt;p>阿里云&lt;code>ipip.net&lt;/code>提供的 IP 查询接口&lt;/p>
+&lt;p>接口地址：https://api.myip.la/cn?json
+请求示例&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">curl https://api.myip.la/cn?json
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>响应结果&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;ip&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;172.104.94.100&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;location&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;country_code&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;JP&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;country_name&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;日本&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;province&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;东京都&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;city&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;品川区&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;latitude&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;35.6130514&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;longitude&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;139.7344198&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;a class="link" href="https://www.myip.la/" target="_blank" rel="noopener"
+>详细文档&lt;/a>&lt;/p>
+&lt;h4 id="moieo-api-ip-查询接口">Moieo Api IP 查询接口
+&lt;/h4>&lt;p>接口地址：POST &lt;a class="link" href="https://api.moieo.cn/ip/114.114.114.114" target="_blank" rel="noopener"
+>https://api.moieo.cn/ip/114.114.114.114&lt;/a>
+请求头&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>名称&lt;/th>
+&lt;th>注释&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>timestamp&lt;/td>
+&lt;td>时间戳(ms)&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>请求示例
+例如 IP 为：114.114.114.114&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">curl -XPOST -H &lt;span class="s2">&amp;#34;timestamp: &lt;/span>&lt;span class="k">$(&lt;/span>date +%s%3N&lt;span class="k">)&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> https://api.moieo.cn/ip/114.114.114.114
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>响应结果&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;code&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">200&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;msg&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;success&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;data&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;ip&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;114.114.114.114&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;ip_number&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">1920103026&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;location&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;江苏省南京市&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;net_service&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;南京信风网络科技有限公司GreatbitDNS服务器&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>数据来源于&lt;code>纯真网络&lt;/code>开源数据库&lt;/p></description></item></channel></rss>
