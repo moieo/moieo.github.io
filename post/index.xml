@@ -233,7 +233,7 @@
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span class="line">&lt;span class="cl">[archlinuxcn]
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Server = http://mirrors.163.com/archlinux-cn/$arch
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Server = https://mirrors.163.com/archlinux-cn/$arch
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>完事后保存，然后添加archlinuxcn密钥：&lt;/p>
@@ -247,7 +247,7 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pacman -Sy archlinuxcn-keyring
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>（拍桌）**重要操作！**这一步相当于给软件源上一把锁，不做的话后面装软件会报错到怀疑人生～&lt;/p>
+&lt;/div>&lt;p>（拍桌）&lt;strong>重要操作！&lt;/strong> 这一步相当于给软件源上一把锁，不做的话后面装软件会报错到怀疑人生～&lt;/p>
 &lt;h3 id="2-使用国内镜像加速">2. 使用国内镜像加速
 &lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -489,7 +489,7 @@
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span class="line">&lt;span class="cl">[archlinuxcn]
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Server = http://mirrors.163.com/archlinux-cn/$arch
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Server = https://mirrors.163.com/archlinux-cn/$arch
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>完事后保存，然后添加archlinuxcn密钥：&lt;/p>
@@ -503,7 +503,7 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">paru -Sy archlinuxcn-keyring
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>（拍桌）**重要操作！**这一步相当于给软件源上一把锁，不做的话后面装软件会报错到怀疑人生～&lt;/p>
+&lt;/div>&lt;p>（拍桌）&lt;strong>重要操作！&lt;/strong> 这一步相当于给软件源上一把锁，不做的话后面装软件会报错到怀疑人生～&lt;/p>
 &lt;h3 id="3-使用国内镜像加速">3. 使用国内镜像加速
 &lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -575,7 +575,6 @@ A：&lt;code>paru&lt;/code>是一个新的AUR助手，旨在通过一个&lt;code
 A：先查这！&lt;/p>
 &lt;ol>
 &lt;li>打开终端输入 &lt;code>htop&lt;/code> → 找出占用资源的进程（可能是&lt;code>paru&lt;/code>编译AUR包）&lt;/li>
-&lt;li>笔记本用户：安装 &lt;code>tlp&lt;/code> 优化电源管理（&lt;code>paru -S tlp&lt;/code>）&lt;/li>
 &lt;li>桌面环境：GNOME默认后台服务较多，可禁用不必要的扩展&lt;/li>
 &lt;/ol>&lt;/blockquote>
 &lt;blockquote>
@@ -628,8 +627,10 @@ A：不仅能！还能摸鱼！&lt;/p>
 &lt;li>办公：LibreOffice&lt;/li>
 &lt;li>摸鱼：
 &lt;ul>
-&lt;li>&lt;code>https://ys.mihoyo.com/cloud&lt;/code> 原神，启动！&lt;/li>
-&lt;li>&lt;code>https://sr.mihoyo.com/cloud&lt;/code> 崩铁，启动！&lt;/li>
+&lt;li>&lt;a class="link" href="https://ys.mihoyo.com/cloud" target="_blank" rel="noopener"
+>原神，启动！&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://sr.mihoyo.com/cloud" target="_blank" rel="noopener"
+>崩铁，启动！&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;/ul>&lt;/blockquote>
@@ -653,15 +654,18 @@ A：那必须的！但学会后：&lt;/p>
 &lt;li>看其他Linux文档像读小学课本&lt;/li>
 &lt;li>从此告别“电脑小白”称号🏆&lt;/li>
 &lt;/ul>&lt;/blockquote>
+&lt;blockquote>
 &lt;p>&lt;strong>Q：其他问题？&lt;/strong>&lt;br>
 A：&lt;a class="link" href="https://wiki.archlinuxcn.org" target="_blank" rel="noopener"
->Arch Linux 中文维基&lt;/a> 里面请&lt;br>
-&lt;strong>Q：中文Wiki没写？&lt;/strong>&lt;br>
+>Arch Linux 中文维基&lt;/a> 里面请&lt;/p>&lt;/blockquote>
+&lt;blockquote>
+&lt;p>&lt;strong>Q：中文Wiki没写？&lt;/strong>&lt;br>
 A：出门左拐 &lt;a class="link" href="https://wiki.archlinux.org" target="_blank" rel="noopener"
->Arch Linux Wiki&lt;/a>&lt;br>
-&lt;strong>Q：英文Wiki也没写？&lt;/strong>&lt;br>
-A：（拍桌）大侠且慢！此处藏着30万Arch玩家，再难的坑也能给你盘出花来～&lt;a class="link" href="https://bbs.archlinuxcn.org" target="_blank" rel="noopener"
->Arch Linux 中文论坛&lt;/a>&lt;/p></description></item><item><title>ArchLinux Plasma 6 开启Samba服务（文件共享）</title><link>https://blog.moieo.net/2025/04/24/220548/</link><pubDate>Thu, 24 Apr 2025 22:05:48 +0800</pubDate><guid>https://blog.moieo.net/2025/04/24/220548/</guid><description>&lt;p>在 Plasma 6 中的 Dolphin 使用文件共享&lt;/p>
+>Arch Linux Wiki&lt;/a>&lt;/p>&lt;/blockquote>
+&lt;blockquote>
+&lt;p>&lt;strong>Q：英文Wiki也没写？&lt;/strong>&lt;br>
+A：（拍桌）大侠且慢！此处藏着30万Arch玩家，再难的坑也能给你盘出花来：&lt;a class="link" href="https://bbs.archlinuxcn.org" target="_blank" rel="noopener"
+>Arch Linux 中文论坛&lt;/a>&lt;/p>&lt;/blockquote></description></item><item><title>ArchLinux Plasma 6 开启Samba服务（文件共享）</title><link>https://blog.moieo.net/2025/04/24/220548/</link><pubDate>Thu, 24 Apr 2025 22:05:48 +0800</pubDate><guid>https://blog.moieo.net/2025/04/24/220548/</guid><description>&lt;p>在 Plasma 6 中的 Dolphin 使用文件共享&lt;/p>
 &lt;h2 id="安装相关的插件">安装相关的插件
 &lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
