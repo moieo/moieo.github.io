@@ -558,29 +558,36 @@
 &lt;p>&lt;strong>小提示：&lt;/strong> 第一次进入GNOME桌面时，别忘了点击&amp;quot;进行导览&amp;quot;看看新手教程哦～
 配置输入法：打开GNOME设置 → 键盘 → 添加输入源 → 中文 → 汉语（智能拼音） → 将“汉语（智能拼音）”放在第一位&lt;/p>&lt;/blockquote>
 &lt;h2 id="-五qa">❓ 五、Q&amp;amp;A
-&lt;/h2>&lt;p>&lt;strong>Q：不添加archlinuxcn密钥会怎么样？&lt;/strong>&lt;/p>
-&lt;p>A：会收到“签名无效”警告，无法安装中文输入法、微信等archlinuxcn源软件，然后只能重装系统💥&lt;/p>
-&lt;p>&lt;strong>Q：&lt;code>sudo&lt;/code>和&lt;code>doas&lt;/code>我该用哪个？&lt;/strong>&lt;/p>
-&lt;p>A：优先使用&lt;code>sudo&lt;/code>。如果你在tty界面（tty无法显示中文，且&lt;code>doas&lt;/code>默认英文）或你的&lt;code>sudo&lt;/code>坏了（如“即使密码输入正确，也提示验证失败”），则使用&lt;code>doas&lt;/code>。&lt;/p>
-&lt;p>&lt;strong>Q：为什么某些命令前面还需要加个&lt;code>LANG=C&lt;/code>？&lt;/strong>
-A：如前所述，tty无法显示中文。加入该参数后，执行该命令会以英文输出。&lt;/p>
-&lt;p>&lt;strong>Q：为什么推荐使用&lt;code>paru&lt;/code>进行所有软件包操作，而不是使用&lt;code>pacman&lt;/code>和&lt;code>yay&lt;/code>？&lt;/strong>&lt;/p>
-&lt;p>A：&lt;code>paru&lt;/code>是一个新的AUR助手，旨在通过一个&lt;code>paru&lt;/code>完成所有包管理操作。&lt;code>paru&lt;/code>支持无缝对接&lt;code>pacman&lt;/code>，这一点&lt;code>yay&lt;/code>办不到。通过&lt;code>paru&lt;/code>，你就能像使用&lt;code>pacman&lt;/code>那样，一键搜索官方源和AUR软件！（前面甚至都不用➕sudo/doas！）
-&lt;strong>Q：系统卡顿/风扇狂转怎么办？&lt;/strong>
+&lt;/h2>&lt;blockquote>
+&lt;p>&lt;strong>Q：不添加archlinuxcn密钥会怎么样？&lt;/strong> &lt;br>
+A：会收到“签名无效”警告，无法安装中文输入法、微信等archlinuxcn源软件，然后只能重装系统💥&lt;/p>&lt;/blockquote>
+&lt;blockquote>
+&lt;p>&lt;strong>Q：&lt;code>sudo&lt;/code>和&lt;code>doas&lt;/code>我该用哪个？&lt;/strong> &lt;br>
+A：优先使用&lt;code>sudo&lt;/code>。如果你在tty界面（tty无法显示中文，且&lt;code>doas&lt;/code>默认英文）或你的&lt;code>sudo&lt;/code>坏了（如“即使密码输入正确，也提示验证失败”），则使用&lt;code>doas&lt;/code>。&lt;/p>&lt;/blockquote>
+&lt;blockquote>
+&lt;p>&lt;strong>Q：为什么某些命令前面还需要加个&lt;code>LANG=C&lt;/code>？&lt;/strong>&lt;br>
+A：如前所述，tty无法显示中文。加入该参数后，执行该命令会以英文输出。&lt;/p>&lt;/blockquote>
+&lt;blockquote>
+&lt;p>&lt;strong>Q：为什么推荐使用&lt;code>paru&lt;/code>进行所有软件包操作，而不是使用&lt;code>pacman&lt;/code>和&lt;code>yay&lt;/code>？&lt;/strong>&lt;br>
+A：&lt;code>paru&lt;/code>是一个新的AUR助手，旨在通过一个&lt;code>paru&lt;/code>完成所有包管理操作。&lt;code>paru&lt;/code>支持无缝对接&lt;code>pacman&lt;/code>，这一点&lt;code>yay&lt;/code>办不到。通过&lt;code>paru&lt;/code>，你就能像使用&lt;code>pacman&lt;/code>那样，一键搜索官方源和AUR软件！（前面甚至都不用➕sudo/doas！）&lt;/p>&lt;/blockquote>
+&lt;blockquote>
+&lt;p>&lt;strong>Q：系统卡顿/风扇狂转怎么办？&lt;/strong>&lt;br>
 A：先查这！&lt;/p>
 &lt;ol>
 &lt;li>打开终端输入 &lt;code>htop&lt;/code> → 找出占用资源的进程（可能是&lt;code>paru&lt;/code>编译AUR包）&lt;/li>
 &lt;li>笔记本用户：安装 &lt;code>tlp&lt;/code> 优化电源管理（&lt;code>paru -S tlp&lt;/code>）&lt;/li>
-&lt;li>桌面环境：GNOME默认后台服务较多，可禁用不必要的扩展
-**Q：SSD寿命会被Btrfs淦爆吗？**会收到“签名无效”警告，无法安装中文输入法
-A：想多了！&lt;/li>
-&lt;/ol>
+&lt;li>桌面环境：GNOME默认后台服务较多，可禁用不必要的扩展&lt;/li>
+&lt;/ol>&lt;/blockquote>
+&lt;blockquote>
+&lt;p>&lt;strong>Q：SSD寿命会被Btrfs淦爆吗？&lt;/strong> 会收到“签名无效”警告，无法安装中文输入法&lt;br>
+A：想多了！&lt;/p>
 &lt;ul>
-&lt;li>Btrfs自带TRIM支持（默认启用）=&lt;/li>
-&lt;li>日常使用下，512GB SSD撑10年没问题（除非你拿它当硬盘录像机）
-&lt;strong>Q：Steam游戏卡顿/闪退？&lt;/strong>
-A：兼容模式欢迎你！&lt;/li>
-&lt;/ul>
+&lt;li>Btrfs自带TRIM支持（默认启用）&lt;/li>
+&lt;li>日常使用下，512GB SSD撑10年没问题（除非你拿它当硬盘录像机）&lt;/li>
+&lt;/ul>&lt;/blockquote>
+&lt;blockquote>
+&lt;p>&lt;strong>Q：Steam游戏卡顿/闪退？&lt;/strong>
+A：兼容模式欢迎你！&lt;/p>&lt;/blockquote>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -593,13 +600,16 @@ A：兼容模式欢迎你！&lt;/li>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 右键游戏 → 属性 → Steam Play → 勾选“启用非Steam游戏兼容层”&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>&lt;strong>Q：如何优雅地截图？&lt;/strong>
-A：按下&lt;code>Print Screen&lt;/code>键，直接进入GNOME Screenshot！
-&lt;strong>Q：能Arch上安装Windows软件吗？&lt;/strong>
+&lt;/div>&lt;blockquote>
+&lt;p>&lt;strong>Q：如何优雅地截图？&lt;/strong>&lt;br>
+A：按下&lt;code>Print Screen&lt;/code>键，直接进入GNOME Screenshot！&lt;/p>&lt;/blockquote>
+&lt;blockquote>
+&lt;p>&lt;strong>Q：能Arch上安装Windows软件吗？&lt;/strong>&lt;br>
 A：当然能！
 简单程序：用&lt;code>wine&lt;/code>！（&lt;code>paru -S wine-staging&lt;/code>）
-复杂软件：装虚拟机！（Virtualbox/VMware）
-&lt;strong>Q：误删&lt;code>/usr&lt;/code>了怎么办？&lt;/strong>
+复杂软件：装虚拟机！（Virtualbox/VMware）&lt;/p>&lt;/blockquote>
+&lt;blockquote>
+&lt;p>&lt;strong>Q：误删&lt;code>/usr&lt;/code>了怎么办？&lt;/strong>&lt;br>
 A：凉拌炒鸡蛋，好吃又好看！&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -609,41 +619,48 @@ A：凉拌炒鸡蛋，好吃又好看！&lt;/p>
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">reboot &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> sudo pacman -S arch-install-scripts &lt;span class="c1"># 重装吧，少年 &lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>开玩笑的。。。如果你之前有Timeshift备份，还可以抢救一下（Timeshift没备份过你就重装吧）
-&lt;strong>Q：Arch能用来办公吗？&lt;/strong>
+&lt;/div>&lt;p>开玩笑的。。。如果你之前有Timeshift备份，还可以抢救一下（Timeshift没备份过你就重装吧）&lt;/p>&lt;/blockquote>
+&lt;blockquote>
+&lt;p>&lt;strong>Q：Arch能用来办公吗？&lt;/strong>&lt;br>
 A：不仅能！还能摸鱼！&lt;/p>
 &lt;ul>
 &lt;li>办公：LibreOffice&lt;/li>
 &lt;li>摸鱼：
 &lt;ul>
 &lt;li>&lt;code>https://ys.mihoyo.com/cloud&lt;/code> 原神，启动！&lt;/li>
-&lt;li>&lt;code>https://sr.mihoyo.com/cloud&lt;/code> 崩铁，启动！
-&lt;strong>Q：为什么我们选择Arch而不是Ubuntu？&lt;/strong>
-A：因为我们追求：&lt;/li>
+&lt;li>&lt;code>https://sr.mihoyo.com/cloud&lt;/code> 崩铁，启动！&lt;/li>
 &lt;/ul>
 &lt;/li>
+&lt;/ul>&lt;/blockquote>
+&lt;blockquote>
+&lt;p>&lt;strong>Q：为什么我们选择Arch而不是Ubuntu？&lt;/strong>&lt;br>
+A：因为我们追求：&lt;/p>
+&lt;ul>
 &lt;li>滚动更新带来的新鲜感&lt;/li>
 &lt;li>自己配置系统的掌控感&lt;/li>
 &lt;li>向新手炫耀时的成就感😎
 （Ubuntu：那我走？）
 以及&amp;hellip;&lt;/li>
 &lt;li>不被Snap限制的自由感！
-（Ubuntu：Snap多好用啊）
-&lt;strong>Q：Arch难吗？&lt;/strong>
-A：那必须的！但学会后：&lt;/li>
+（Ubuntu：Snap多好用啊）&lt;/li>
+&lt;/ul>&lt;/blockquote>
+&lt;blockquote>
+&lt;p>&lt;strong>Q：Arch难吗？&lt;/strong>
+A：那必须的！但学会后：&lt;/p>
+&lt;ul>
 &lt;li>装Windows系统像过家家&lt;/li>
 &lt;li>看其他Linux文档像读小学课本&lt;/li>
-&lt;li>从此告别“电脑小白”称号🏆
-&lt;strong>Q：其他问题？&lt;/strong>
+&lt;li>从此告别“电脑小白”称号🏆&lt;/li>
+&lt;/ul>&lt;/blockquote>
+&lt;p>&lt;strong>Q：其他问题？&lt;/strong>&lt;br>
 A：&lt;a class="link" href="https://wiki.archlinuxcn.org" target="_blank" rel="noopener"
->Arch Linux 中文维基&lt;/a> 里面请
-&lt;strong>Q：中文Wiki没写？&lt;/strong>
+>Arch Linux 中文维基&lt;/a> 里面请&lt;br>
+&lt;strong>Q：中文Wiki没写？&lt;/strong>&lt;br>
 A：出门左拐 &lt;a class="link" href="https://wiki.archlinux.org" target="_blank" rel="noopener"
->Arch Linux Wiki&lt;/a>
-&lt;strong>Q：英文Wiki也没写？&lt;/strong>
+>Arch Linux Wiki&lt;/a>&lt;br>
+&lt;strong>Q：英文Wiki也没写？&lt;/strong>&lt;br>
 A：（拍桌）大侠且慢！此处藏着30万Arch玩家，再难的坑也能给你盘出花来～&lt;a class="link" href="https://bbs.archlinuxcn.org" target="_blank" rel="noopener"
->Arch Linux 中文论坛&lt;/a>&lt;/li>
-&lt;/ul></description></item><item><title>ArchLinux Plasma 6 开启Samba服务（文件共享）</title><link>https://blog.moieo.net/2025/04/24/220548/</link><pubDate>Thu, 24 Apr 2025 22:05:48 +0800</pubDate><guid>https://blog.moieo.net/2025/04/24/220548/</guid><description>&lt;p>在 Plasma 6 中的 Dolphin 使用文件共享&lt;/p>
+>Arch Linux 中文论坛&lt;/a>&lt;/p></description></item><item><title>ArchLinux Plasma 6 开启Samba服务（文件共享）</title><link>https://blog.moieo.net/2025/04/24/220548/</link><pubDate>Thu, 24 Apr 2025 22:05:48 +0800</pubDate><guid>https://blog.moieo.net/2025/04/24/220548/</guid><description>&lt;p>在 Plasma 6 中的 Dolphin 使用文件共享&lt;/p>
 &lt;h2 id="安装相关的插件">安装相关的插件
 &lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
