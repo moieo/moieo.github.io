@@ -586,8 +586,8 @@ A：想多了！&lt;/p>
 &lt;li>日常使用下，512GB SSD撑10年没问题（除非你拿它当硬盘录像机）&lt;/li>
 &lt;/ul>&lt;/blockquote>
 &lt;blockquote>
-&lt;p>&lt;strong>Q：Steam游戏卡顿/闪退？&lt;/strong>
-A：兼容模式欢迎你！&lt;/p>&lt;/blockquote>
+&lt;p>&lt;strong>Q：Steam游戏卡顿/闪退？&lt;/strong>&lt;br>
+A：兼容模式欢迎你！&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -600,7 +600,8 @@ A：兼容模式欢迎你！&lt;/p>&lt;/blockquote>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 右键游戏 → 属性 → Steam Play → 勾选“启用非Steam游戏兼容层”&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;blockquote>
+&lt;/div>&lt;/blockquote>
+&lt;blockquote>
 &lt;p>&lt;strong>Q：如何优雅地截图？&lt;/strong>&lt;br>
 A：按下&lt;code>Print Screen&lt;/code>键，直接进入GNOME Screenshot！&lt;/p>&lt;/blockquote>
 &lt;blockquote>
