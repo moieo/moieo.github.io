@@ -6,21 +6,15 @@
 <span>关于</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
 <span>搜索</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
 <svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
-<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ul><li><a href=#1-准备工作>1. 准备工作</a><ul><li><a href=#11-系统要求>1.1 系统要求</a></li><li><a href=#12-所需材料>1.2 所需材料</a></li><li><a href=#13-注意事项>1.3 注意事项</a></li></ul></li><li><a href=#2-创建live环境>2. 创建Live环境</a><ul><li><a href=#21-制作启动盘>2.1 制作启动盘</a></li><li><a href=#22-启动live系统>2.2 启动Live系统</a></li></ul></li><li><a href=#3-磁盘分区与格式化>3. 磁盘分区与格式化</a><ul><li><a href=#31-分区方案>3.1 分区方案</a></li><li><a href=#32-格式化分区>3.2 格式化分区</a></li></ul></li><li><a href=#4-btrfs子卷配置>4. Btrfs子卷配置</a><ul><li><a href=#41-创建子卷>4.1 创建子卷</a></li><li><a href=#42-优化挂载参数>4.2 优化挂载参数</a></li></ul></li><li><a href=#5-系统安装>5. 系统安装</a><ul><li><a href=#51-基础安装>5.1 基础安装</a></li><li><a href=#52-生成fstab>5.2 生成fstab</a></li></ul></li><li><a href=#6-系统配置>6. 系统配置</a><ul><li><a href=#61-基础配置>6.1 基础配置</a></li><li><a href=#62-本地化设置>6.2 本地化设置</a></li></ul></li><li><a href=#7-引导配置>7. 引导配置</a><ul><li><a href=#71-安装grub>7.1 安装GRUB</a></li></ul></li><li><a href=#8-桌面环境安装>8. 桌面环境安装</a><ul><li><a href=#81-安装gnome>8.1 安装GNOME</a></li></ul></li><li><a href=#9-完成安装>9. 完成安装</a></li></ul></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/linux/>Linux</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/2025/05/25/141123/>Arch Linux UEFI 安装指南：Btrfs 子卷 + GNOME 桌面环境</a></h2><h3 class=article-subtitle>从零开始配置现代化 Arch Linux 系统（含 Timeshift 快照支持）</h3></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ul><li><a href=#1-前言>1. 前言</a></li><li><a href=#2-准备工作>2. 准备工作</a><ul><li><a href=#21-所需材料>2.1 所需材料</a></li><li><a href=#22-注意事项>2.2 注意事项</a></li></ul></li><li><a href=#3-磁盘配置>3. 磁盘配置</a><ul><li><a href=#31-分区操作>3.1 分区操作</a></li><li><a href=#32-格式化分区>3.2 格式化分区</a></li><li><a href=#33-btrfs子卷配置>3.3 Btrfs子卷配置</a></li><li><a href=#34-挂载配置>3.4 挂载配置</a></li></ul></li><li><a href=#4-安装基本系统>4. 安装基本系统</a><ul><li><a href=#41-系统配置>4.1 系统配置</a></li><li><a href=#42-安装软件包>4.2 安装软件包</a></li></ul></li><li><a href=#5-生成fstab>5. 生成fstab</a></li><li><a href=#6-系统配置>6. 系统配置</a><ul><li><a href=#61-chroot环境>6.1 Chroot环境</a></li><li><a href=#62-基础配置>6.2 基础配置</a></li><li><a href=#63-用户管理>6.3 用户管理</a></li><li><a href=#64-引导配置>6.4 引导配置</a></li><li><a href=#65-退出重启>6.5 退出重启</a></li></ul></li><li><a href=#7-安装桌面环境>7. 安装桌面环境</a><ul><li><a href=#71-登录后配置>7.1 登录后配置</a></li><li><a href=#72-安装软件>7.2 安装软件</a></li><li><a href=#73-字体和显示管理>7.3 字体和显示管理</a></li></ul></li><li><a href=#8-完成安装>8. 完成安装</a></li></ul></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/linux/>Linux</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/2025/05/25/141123/>Arch Linux UEFI 安装指南：Btrfs 子卷 + GNOME 桌面环境</a></h2><h3 class=article-subtitle>从零开始配置现代化 Arch Linux 系统（含 Timeshift 快照支持）</h3></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
 <time class=article-time--published>2025年05月25日</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
-<time class=article-time--reading>阅读时长: 2 分钟</time></div></footer></div></header><section class=article-content><p><strong>声明 原作者信息</strong></p><ul><li>哔哩哔哩主页：https://space.bilibili.com/2017026819</li><li>QQ号：2037566388</li></ul><h2 id=1-准备工作>1. 准备工作</h2><h3 id=11-系统要求>1.1 系统要求</h3><ul><li>仅支持UEFI启动设备（包括虚拟机）</li><li>不支持Legacy BIOS启动</li></ul><h3 id=12-所需材料>1.2 所需材料</h3><ul><li>Arch Linux ISO镜像</li><li>实体机安装需要U盘（建议容量≥4GB）</li></ul><h3 id=13-注意事项>1.3 注意事项</h3><p>❗ <strong>重要警告</strong>：</p><ul><li>操作前请备份所有重要数据</li><li>建议新手先在虚拟机中练习</li><li>本教程默认使用清华镜像源加速下载</li></ul><h2 id=2-创建live环境>2. 创建Live环境</h2><h3 id=21-制作启动盘>2.1 制作启动盘</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 使用dd命令写入镜像（Linux/Mac）</span>
-</span></span><span class=line><span class=cl>dd <span class=k>if</span><span class=o>=</span>archlinux.iso <span class=nv>of</span><span class=o>=</span>/dev/sdX <span class=nv>bs</span><span class=o>=</span>4M <span class=nv>status</span><span class=o>=</span>progress
-</span></span></code></pre></td></tr></table></div></div><h3 id=22-启动live系统>2.2 启动Live系统</h3><ul><li>从U盘启动进入Arch Linux Live环境</li><li>检查网络连接：</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>ping archlinux.org
-</span></span></code></pre></td></tr></table></div></div><h2 id=3-磁盘分区与格式化>3. 磁盘分区与格式化</h2><h3 id=31-分区方案>3.1 分区方案</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+<time class=article-time--reading>阅读时长: 2 分钟</time></div></footer></div></header><section class=article-content><p><strong>声明 原作者信息</strong></p><ul><li>哔哩哔哩主页：https://space.bilibili.com/2017026819</li><li>QQ号：2037566388</li></ul><h1 id=arch-linux-uefi-安装指南-btrfs--gnome>Arch Linux UEFI 安装指南 (Btrfs + GNOME)</h1><h2 id=1-前言>1. 前言</h2><ul><li><strong>适用设备</strong>：仅支持UEFI设备（包括虚拟机模拟UEFI或真机UEFI）</li><li><strong>Legacy设备</strong>：本教程不适用</li></ul><h2 id=2-准备工作>2. 准备工作</h2><h3 id=21-所需材料>2.1 所需材料</h3><ul><li>ArchLinux ISO镜像</li><li>U盘（实体机安装需要）</li></ul><h3 id=22-注意事项>2.2 注意事项</h3><ul><li>实体机安装前请备份重要数据！</li><li>操作有风险，建议先在虚拟机测试</li><li>进入ArchLinux Live环境</li></ul><h2 id=3-磁盘配置>3. 磁盘配置</h2><h3 id=31-分区操作>3.1 分区操作</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>cfdisk /dev/sda
-</span></span></code></pre></td></tr></table></div></div><p>推荐分区布局：</p><div class=table-wrapper><table><thead><tr><th>挂载点</th><th>大小</th><th>类型</th><th>文件系统</th></tr></thead><tbody><tr><td>/boot/efi</td><td>500M</td><td>EFI System</td><td>FAT32</td></tr><tr><td>/</td><td>剩余空间</td><td>Linux root</td><td>Btrfs</td></tr></tbody></table></div><h3 id=32-格式化分区>3.2 格式化分区</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></span></code></pre></td></tr></table></div></div><ol><li><strong>初始化磁盘</strong>：<ul><li>选择 <code>[gpt]</code></li></ul></li><li><strong>创建分区</strong>：<ul><li>EFI分区（500M）：<ul><li><code>[New]</code> → 输入 <code>500m</code> → <code>[Type]</code> → 选择 <code>EFI System</code></li></ul></li><li>根分区（剩余空间）：<ul><li><code>[New]</code> → 直接回车 → <code>[Type]</code> → 选择 <code>Linux root (x86-64)</code></li></ul></li></ul></li><li><strong>保存退出</strong>：<ul><li><code>[Write]</code> → 输入 <code>yes</code> → <code>[Quit]</code></li></ul></li></ol><h3 id=32-格式化分区>3.2 格式化分区</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>mkfs.fat -F32 -n <span class=s2>&#34;ARCH-EFI&#34;</span> /dev/sda1
-</span></span><span class=line><span class=cl>mkfs.btrfs -L <span class=s2>&#34;arch-root&#34;</span> /dev/sda2
-</span></span></code></pre></td></tr></table></div></div><h2 id=4-btrfs子卷配置>4. Btrfs子卷配置</h2><h3 id=41-创建子卷>4.1 创建子卷</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>mkfs.fat -F32 -n <span class=s2>&#34;ARCH-EFI&#34;</span> /dev/sda1  <span class=c1># EFI分区</span>
+</span></span><span class=line><span class=cl>mkfs.btrfs -L <span class=s2>&#34;arch-root&#34;</span> /dev/sda2    <span class=c1># 根分区</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=33-btrfs子卷配置>3.3 Btrfs子卷配置</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -28,39 +22,129 @@
 </span></span><span class=line><span class=cl>btrfs subvolume create /mnt/@
 </span></span><span class=line><span class=cl>btrfs subvolume create /mnt/@timeshift
 </span></span><span class=line><span class=cl>umount /mnt
-</span></span></code></pre></td></tr></table></div></div><h3 id=42-优化挂载参数>4.2 优化挂载参数</h3><p>根据硬件选择（完整参数见原教程）：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># SSD通用方案</span>
-</span></span><span class=line><span class=cl>mount -o <span class=nv>subvol</span><span class=o>=</span>@,compress<span class=o>=</span>zstd:3,noatime,ssd /dev/sda2 /mnt
-</span></span></code></pre></td></tr></table></div></div><h2 id=5-系统安装>5. 系统安装</h2><h3 id=51-基础安装>5.1 基础安装</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>pacstrap /mnt base linux linux-firmware
-</span></span></code></pre></td></tr></table></div></div><h3 id=52-生成fstab>5.2 生成fstab</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab
-</span></span></code></pre></td></tr></table></div></div><h2 id=6-系统配置>6. 系统配置</h2><h3 id=61-基础配置>6.1 基础配置</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></span></code></pre></td></tr></table></div></div><h3 id=34-挂载配置>3.4 挂载配置</h3><h4 id=341-根分区挂载选项根据硬件选择>3.4.1 根分区挂载选项（根据硬件选择）</h4><div class=table-wrapper><table><thead><tr><th>硬件类型</th><th>挂载命令</th></tr></thead><tbody><tr><td>SSD (CPU&lt;2016)</td><td><code>mount -o subvol=@,compress=zstd:2,noatime,ssd /dev/sda2 /mnt</code></td></tr><tr><td>SSD (CPU>2017)</td><td><code>mount -o subvol=@,compress=zstd:3,noatime,ssd /dev/sda2 /mnt</code></td></tr><tr><td>虚拟机(SSD)</td><td><code>mount -o subvol=@,compress=zstd:1,noatime,ssd /dev/sda2 /mnt</code></td></tr><tr><td>HDD</td><td><code>mount -o subvol=@,compress=lzo,noatime /dev/sda2 /mnt</code></td></tr><tr><td>通用方案</td><td><code>mount -o subvol=@,compress=auto,noatime /dev/sda2 /mnt</code></td></tr></tbody></table></div><h4 id=342-timeshift挂载>3.4.2 Timeshift挂载</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>mkdir -p /mnt/timeshift
+</span></span><span class=line><span class=cl><span class=c1># 根据硬件选择相应挂载选项（类似根分区）</span>
+</span></span><span class=line><span class=cl>mount -o <span class=nv>subvol</span><span class=o>=</span>@timeshift,... /dev/sda2 /mnt/timeshift
+</span></span></code></pre></td></tr></table></div></div><h4 id=343-其他挂载点>3.4.3 其他挂载点</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>mkdir /mnt/boot
+</span></span><span class=line><span class=cl>mkdir /mnt/boot/efi
+</span></span><span class=line><span class=cl>mount /dev/sda1 /mnt/boot/efi
+</span></span></code></pre></td></tr></table></div></div><h2 id=4-安装基本系统>4. 安装基本系统</h2><h3 id=41-系统配置>4.1 系统配置</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>nano /etc/pacman.conf  <span class=c1># 取消注释Color并添加ILoveCandy</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s1>&#39;Server = https://mirrors.tuna.tsinghua.edu.cn/$repo/os/$arch&#39;</span> &gt; /etc/pacman.d/mirrorlist
+</span></span><span class=line><span class=cl>pacman -Syy
+</span></span></code></pre></td></tr></table></div></div><h3 id=42-安装软件包>4.2 安装软件包</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>pacstrap /mnt base base-devel linux-zen linux-zen-headers linux-firmware <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>htop cpupower nano dhcpcd net-tools networkmanager iw wpa_supplicant <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>bluez bluez-utils blueman grub efibootmgr sudo doas snapper timeshift fastfetch
+</span></span></code></pre></td></tr></table></div></div><h2 id=5-生成fstab>5. 生成fstab</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab
+</span></span></code></pre></td></tr></table></div></div><h2 id=6-系统配置>6. 系统配置</h2><h3 id=61-chroot环境>6.1 Chroot环境</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>arch-chroot /mnt
-</span></span><span class=line><span class=cl>ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-</span></span><span class=line><span class=cl>hwclock --systohc
-</span></span></code></pre></td></tr></table></div></div><h3 id=62-本地化设置>6.2 本地化设置</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></span></code></pre></td></tr></table></div></div><h3 id=62-基础配置>6.2 基础配置</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 本地化</span>
+</span></span><span class=line><span class=cl>nano /etc/locale.gen  <span class=c1># 取消zh_CN.UTF-8注释</span>
+</span></span><span class=line><span class=cl>locale-gen
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=nv>LANG</span><span class=o>=</span>zh_CN.UTF-8 &gt; /etc/locale.conf
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 时区</span>
+</span></span><span class=line><span class=cl>ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+</span></span><span class=line><span class=cl>hwclock --systohc --utc
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 主机名</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> iUseArchBTW &gt; /etc/hostname
+</span></span></code></pre></td></tr></table></div></div><h3 id=63-用户管理>6.3 用户管理</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 启用服务</span>
+</span></span><span class=line><span class=cl>systemctl <span class=nb>enable</span> dhcpcd NetworkManager bluetooth
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 密码设置</span>
+</span></span><span class=line><span class=cl>passwd root
+</span></span><span class=line><span class=cl>useradd -m -g users -G wheel -s /bin/bash ayaka
+</span></span><span class=line><span class=cl>passwd ayaka
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 权限配置</span>
+</span></span><span class=line><span class=cl><span class=nv>EDITOR</span><span class=o>=</span>nano visudo  <span class=c1># 取消wheel和sudo注释</span>
+</span></span><span class=line><span class=cl>nano /etc/doas.conf  <span class=c1># 添加权限配置```</span>
+</span></span><span class=line><span class=cl>chmod -c <span class=m>600</span> /etc/doas.conf
+</span></span></code></pre></td></tr></table></div></div><h3 id=64-引导配置>6.4 引导配置</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;LANG=zh_CN.UTF-8&#34;</span> &gt; /etc/locale.conf
-</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;iUseArchBTW&#34;</span> &gt; /etc/hostname
-</span></span></code></pre></td></tr></table></div></div><h2 id=7-引导配置>7. 引导配置</h2><h3 id=71-安装grub>7.1 安装GRUB</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>grub-install --target<span class=o>=</span>x86_64-efi --efi-directory<span class=o>=</span>/boot/efi
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>grub-install --target<span class=o>=</span>x86_64-efi --efi-directory<span class=o>=</span>/boot/efi --bootloader-id<span class=o>=</span><span class=s1>&#39;Arch Linux&#39;</span>
 </span></span><span class=line><span class=cl>grub-mkconfig -o /boot/grub/grub.cfg
-</span></span></code></pre></td></tr></table></div></div><h2 id=8-桌面环境安装>8. 桌面环境安装</h2><h3 id=81-安装gnome>8.1 安装GNOME</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>pacman -S xorg gnome gdm
-</span></span><span class=line><span class=cl>systemctl <span class=nb>enable</span> gdm
-</span></span></code></pre></td></tr></table></div></div><h2 id=9-完成安装>9. 完成安装</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></span><span class=line><span class=cl>mkinitcpio -p linux-zen
+</span></span></code></pre></td></tr></table></div></div><h3 id=65-退出重启>6.5 退出重启</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>exit</span>
 </span></span><span class=line><span class=cl>umount -R /mnt
 </span></span><span class=line><span class=cl>reboot
-</span></span></code></pre></td></tr></table></div></div><blockquote><p>首次启动后建议：</p><ol><li>创建Timeshift快照</li><li>安装必要驱动</li><li>配置用户环境</li></ol></blockquote></section><footer class=article-footer><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+</span></span></code></pre></td></tr></table></div></div><h2 id=7-安装桌面环境>7. 安装桌面环境</h2><h3 id=71-登录后配置>7.1 登录后配置</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 镜像源</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s1>&#39;Server = https://mirrors.tuna.tsinghua.edu.cn/$repo/os/$arch&#39;</span> <span class=p>|</span> doas tee /etc/pacman.d/mirrorlist
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># ArchLinuxCN源</span>
+</span></span><span class=line><span class=cl>doas nano /etc/pacman.conf  <span class=c1># 添加archlinuxcn源</span>
+</span></span><span class=line><span class=cl>doas pacman -Syy
+</span></span><span class=line><span class=cl>doas pacman-key --lsign-key <span class=s2>&#34;farseerfc@archlinux.org&#34;</span>
+</span></span><span class=line><span class=cl>doas pacman -Sy archlinuxcn-keyring
+</span></span></code></pre></td></tr></table></div></div><h3 id=72-安装软件>7.2 安装软件</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># AUR助手</span>
+</span></span><span class=line><span class=cl>doas pacman -S paru
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># GNOME桌面</span>
+</span></span><span class=line><span class=cl><span class=nv>LANG</span><span class=o>=</span>C paru -Sy --needed xorg gnome gnome-tweaks gnome-nettool gnome-usage <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>adwaita-icon-theme xdg-user-dirs-gtk fwupd gdm gnome-console waterfox-bin vlc <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span><span class=o>&amp;&amp;</span> sudo systemctl <span class=nb>enable</span> gdm adw-gtk-theme wqy-microhei gdm-settings qt5ct qt6ct
+</span></span></code></pre></td></tr></table></div></div><h3 id=73-字体和显示管理>7.3 字体和显示管理</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>doas fc-cache -fv
+</span></span><span class=line><span class=cl>doas systemctl <span class=nb>enable</span> gdm
+</span></span><span class=line><span class=cl>doas reboot
+</span></span></code></pre></td></tr></table></div></div><h2 id=8-完成安装>8. 完成安装</h2><ul><li>登录GNOME桌面</li><li>点击"进行导览"了解GNOME使用</li></ul><blockquote><p>提示：安装过程中如遇问题，请参考ArchWiki或社区支持</p></blockquote></section><footer class=article-footer><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
 <span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/2025/04/24/220548/><div class=article-details><h2 class=article-title>ArchLinux Plasma 6 开启Samba服务（文件共享）</h2></div></a></article><article><a href=/2025/04/23/152137/><div class=article-details><h2 class=article-title>ArchLinux安装过程</h2></div></a></article><article><a href=/2025/02/02/185312/><div class=article-details><h2 class=article-title>解决OpenOCD/串口在Linux中的权限问题</h2></div></a></article><article class=has-image><a href=/2025/01/30/200000/><div class=article-image><img src="https://preview.cloud.189.cn/image/imageAction?param=632B0EE0C21C059739F579E45350AC380A94654BFBF49ACB410C2F50D042B78F079A76B4BC77ABC63BCAE4EED17A8F410083F223220B6FC069B7EFFB570DB0B69E5C1039FAB5CB14092A1890F73E99E0B53B27D39C8DFD7B363B4E0450C6BCE15340AB3C280726DCC53941D36C48497C07914543" loading=lazy data-key data-hash="https://preview.cloud.189.cn/image/imageAction?param=632B0EE0C21C059739F579E45350AC380A94654BFBF49ACB410C2F50D042B78F079A76B4BC77ABC63BCAE4EED17A8F410083F223220B6FC069B7EFFB570DB0B69E5C1039FAB5CB14092A1890F73E99E0B53B27D39C8DFD7B363B4E0450C6BCE15340AB3C280726DCC53941D36C48497C07914543"></div><div class=article-details><h2 class=article-title>Linux的GNOME中配置Minecraft游戏环境</h2></div></a></article></div></div></aside><script src=https://registry.npmmirror.com/twikoo/1.6.39/files/dist/twikoo.all.min.js></script><div id=tcomment></div><style>.twikoo{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}:root[data-scheme=dark]{--twikoo-body-text-color-main:rgba(255, 255, 255, 0.9);--twikoo-body-text-color:rgba(255, 255, 255, 0.7)}.twikoo .el-input-group__prepend,.twikoo .tk-action-icon,.twikoo .tk-submit-action-icon,.twikoo .tk-time,.twikoo .tk-comments-no,.twikoo .tk-comments-count{color:var(--twikoo-body-text-color)}.twikoo .el-input__inner,.twikoo .el-textarea__inner,.twikoo .tk-preview-container,.twikoo .tk-content,.twikoo .tk-nick,.twikoo .tk-send{color:var(--twikoo-body-text-color-main)}.twikoo .el-button{color:var(--twikoo-body-text-color) !important}.twikoo .el-input__count{color:var(--twikoo-body-text-color) !important}.OwO .OwO-body{background-color:var(--body-background) !important;color:var(--body-text-color) !important}</style><script>twikoo.init({envId:"https://twikoo.moieo.cn",el:"#tcomment",lang:"zh-cn"})</script><script crossorigin=anonymous src="//tool.tongjiniao.com/pendant/quote?c=8ef9c2f8b6018cf821c52c0a36abe128"></script><footer class=site-footer><section class=copyright>&copy;
 2025 晴雨笔记</section><section class=powerby><a href="https://icp.gov.moe/?keyword=20242224" alt>萌ICP备20242224号</a> (虚拟)<div id=established-time></div>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.30.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
