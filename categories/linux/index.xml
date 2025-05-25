@@ -3,26 +3,30 @@
 &lt;li>哔哩哔哩主页：https://space.bilibili.com/2017026819&lt;/li>
 &lt;li>QQ号：2037566388&lt;/li>
 &lt;/ul>
-&lt;h1 id="arch-linux-uefi-安装指南-btrfs--gnome">Arch Linux UEFI 安装指南 (Btrfs + GNOME)
-&lt;/h1>&lt;h2 id="1-前言">1. 前言
-&lt;/h2>&lt;ul>
-&lt;li>&lt;strong>适用设备&lt;/strong>：仅支持UEFI设备（包括虚拟机模拟UEFI或真机UEFI）&lt;/li>
-&lt;li>&lt;strong>Legacy设备&lt;/strong>：本教程不适用&lt;/li>
-&lt;/ul>
-&lt;h2 id="2-准备工作">2. 准备工作
-&lt;/h2>&lt;h3 id="21-所需材料">2.1 所需材料
+&lt;h1 id="-arch-linux-安装指南-uefi专用版---完整版">🐧 Arch Linux 安装指南 (UEFI专用版) - 完整版
+&lt;/h1>&lt;blockquote>
+&lt;p>&lt;strong>温馨提示&lt;/strong>：本教程仅适用于UEFI设备哦~ (包括虚拟机模拟UEFI或真机UEFI)，传统BIOS(Legacy)设备的小伙伴请寻找其他教程呢 (｡•́︿•̀｡)&lt;/p>&lt;/blockquote>
+&lt;h2 id="-准备开始">🎒 准备开始
+&lt;/h2>&lt;h3 id="需要准备的东西">需要准备的东西
 &lt;/h3>&lt;ul>
-&lt;li>ArchLinux ISO镜像&lt;/li>
-&lt;li>U盘（实体机安装需要）&lt;/li>
+&lt;li>最新版的archlinux iso镜像文件&lt;/li>
+&lt;li>一个U盘(如果你要在实体机安装的话)&lt;/li>
 &lt;/ul>
-&lt;h3 id="22-注意事项">2.2 注意事项
+&lt;h3 id="重要注意事项">重要注意事项
+&lt;/h3>&lt;p>✨ &lt;strong>安全小贴士&lt;/strong> ✨&lt;/p>
+&lt;ul>
+&lt;li>一定要备份好所有重要数据哦！&lt;/li>
+&lt;li>操作有风险，请谨慎行事~&lt;/li>
+&lt;li>如果是第一次尝试，强烈建议先在虚拟机里练习一下呢 (｡･ω･｡)&lt;/li>
+&lt;/ul>
+&lt;h2 id="-启动live环境">🖥️ 启动Live环境
+&lt;/h2>&lt;h3 id="启动方式选择">启动方式选择
 &lt;/h3>&lt;ul>
-&lt;li>实体机安装前请备份重要数据！&lt;/li>
-&lt;li>操作有风险，建议先在虚拟机测试&lt;/li>
-&lt;li>进入ArchLinux Live环境&lt;/li>
+&lt;li>使用虚拟机：直接加载下载好的ISO镜像启动&lt;/li>
+&lt;li>使用实体机：需要用工具把ISO写入U盘后从U盘启动&lt;/li>
 &lt;/ul>
-&lt;h2 id="3-磁盘配置">3. 磁盘配置
-&lt;/h2>&lt;h3 id="31-分区操作">3.1 分区操作
+&lt;h2 id="-磁盘分区与配置">💾 磁盘分区与配置
+&lt;/h2>&lt;h3 id="使用cfdisk分区工具">使用cfdisk分区工具
 &lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -31,131 +35,161 @@
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">cfdisk /dev/sda
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;ol>
-&lt;li>&lt;strong>初始化磁盘&lt;/strong>：
+&lt;/div>&lt;h4 id="分区步骤详解">分区步骤详解
+&lt;/h4>&lt;ul>
+&lt;li>&lt;strong>初始化磁盘格式&lt;/strong>：选择 &lt;code>[gpt]&lt;/code> 选项&lt;/li>
+&lt;li>&lt;strong>创建EFI系统分区&lt;/strong>：
 &lt;ul>
-&lt;li>选择 &lt;code>[gpt]&lt;/code>&lt;/li>
+&lt;li>大小设置为500M就够用啦&lt;/li>
+&lt;li>类型要选 &lt;code>EFI System&lt;/code> 哦&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;li>&lt;strong>创建分区&lt;/strong>：
+&lt;li>&lt;strong>创建根分区&lt;/strong>：
 &lt;ul>
-&lt;li>EFI分区（500M）：
-&lt;ul>
-&lt;li>&lt;code>[New]&lt;/code> → 输入 &lt;code>500m&lt;/code> → &lt;code>[Type]&lt;/code> → 选择 &lt;code>EFI System&lt;/code>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>根分区（剩余空间）：
-&lt;ul>
-&lt;li>&lt;code>[New]&lt;/code> → 直接回车 → &lt;code>[Type]&lt;/code> → 选择 &lt;code>Linux root (x86-64)&lt;/code>&lt;/li>
+&lt;li>使用剩下的所有空间&lt;/li>
+&lt;li>类型选择 &lt;code>Linux root (x86-64)&lt;/code>&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>保存退出&lt;/strong>：
-&lt;ul>
-&lt;li>&lt;code>[Write]&lt;/code> → 输入 &lt;code>yes&lt;/code> → &lt;code>[Quit]&lt;/code>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ol>
-&lt;h3 id="32-格式化分区">3.2 格式化分区
-&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;h4 id="分区表示例">分区表示例
+&lt;/h4>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">mkfs.fat -F32 -n &lt;span class="s2">&amp;#34;ARCH-EFI&amp;#34;&lt;/span> /dev/sda1 &lt;span class="c1"># EFI分区&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkfs.btrfs -L &lt;span class="s2">&amp;#34;arch-root&amp;#34;&lt;/span> /dev/sda2 &lt;span class="c1"># 根分区&lt;/span>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Disk: /dev/sda
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Size: 64GiB
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Label: gpt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Device Start End Size Type
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/dev/sda1 2048 1026047 500M EFI System
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/dev/sda2 1026048 134215679 63.5G Linux root (x86-64)
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h3 id="33-btrfs子卷配置">3.3 Btrfs子卷配置
+&lt;/div>&lt;h3 id="格式化分区操作">格式化分区操作
 &lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;span class="lnt">2
 &lt;/span>&lt;span class="lnt">3
 &lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">mount /dev/sda2 /mnt
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">btrfs subvolume create /mnt/@
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">btrfs subvolume create /mnt/@timeshift
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">umount /mnt
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 格式化EFI分区为FAT32格式&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkfs.fat -F32 -n &lt;span class="s2">&amp;#34;ARCH-EFI&amp;#34;&lt;/span> /dev/sda1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 格式化根分区为Btrfs格式&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkfs.btrfs -L &lt;span class="s2">&amp;#34;arch-root&amp;#34;&lt;/span> /dev/sda2
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h3 id="34-挂载配置">3.4 挂载配置
-&lt;/h3>&lt;h4 id="341-根分区挂载选项根据硬件选择">3.4.1 根分区挂载选项（根据硬件选择）
-&lt;/h4>&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>硬件类型&lt;/th>
-&lt;th>挂载命令&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>SSD (CPU&amp;lt;2016)&lt;/td>
-&lt;td>&lt;code>mount -o subvol=@,compress=zstd:2,noatime,ssd /dev/sda2 /mnt&lt;/code>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>SSD (CPU&amp;gt;2017)&lt;/td>
-&lt;td>&lt;code>mount -o subvol=@,compress=zstd:3,noatime,ssd /dev/sda2 /mnt&lt;/code>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>虚拟机(SSD)&lt;/td>
-&lt;td>&lt;code>mount -o subvol=@,compress=zstd:1,noatime,ssd /dev/sda2 /mnt&lt;/code>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>HDD&lt;/td>
-&lt;td>&lt;code>mount -o subvol=@,compress=lzo,noatime /dev/sda2 /mnt&lt;/code>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>通用方案&lt;/td>
-&lt;td>&lt;code>mount -o subvol=@,compress=auto,noatime /dev/sda2 /mnt&lt;/code>&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;h4 id="342-timeshift挂载">3.4.2 Timeshift挂载
-&lt;/h4>&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">mkdir -p /mnt/timeshift
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 根据硬件选择相应挂载选项（类似根分区）&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mount -o &lt;span class="nv">subvol&lt;/span>&lt;span class="o">=&lt;/span>@timeshift,... /dev/sda2 /mnt/timeshift
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h4 id="343-其他挂载点">3.4.3 其他挂载点
-&lt;/h4>&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">mkdir /mnt/boot
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir /mnt/boot/efi
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mount /dev/sda1 /mnt/boot/efi
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h2 id="4-安装基本系统">4. 安装基本系统
-&lt;/h2>&lt;h3 id="41-系统配置">4.1 系统配置
+&lt;/div>&lt;h3 id="btrfs子卷设置">Btrfs子卷设置
 &lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;span class="lnt">2
 &lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">nano /etc/pacman.conf &lt;span class="c1"># 取消注释Color并添加ILoveCandy&lt;/span>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 先挂载根分区&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mount /dev/sda2 /mnt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 创建必要的子卷&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">btrfs subvolume create /mnt/@ &lt;span class="c1"># 主系统子卷&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">btrfs subvolume create /mnt/@timeshift &lt;span class="c1"># 备份子卷&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 临时卸载&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">umount /mnt
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="智能挂载选项">智能挂载选项
+&lt;/h3>&lt;p>根据你的硬件配置选择合适的挂载参数：&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>设备类型&lt;/th>
+&lt;th>推荐挂载命令&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;strong>老款SSD (2016年前CPU)&lt;/strong>&lt;/td>
+&lt;td>&lt;code>mount -o subvol=@,compress=zstd:2,noatime,ssd /dev/sda2 /mnt&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>新款SSD (2017年后CPU)&lt;/strong>&lt;/td>
+&lt;td>&lt;code>mount -o subvol=@,compress=zstd:3,noatime,ssd /dev/sda2 /mnt&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>虚拟机(使用SSD存储)&lt;/strong>&lt;/td>
+&lt;td>&lt;code>mount -o subvol=@,compress=zstd:1,noatime,ssd /dev/sda2 /mnt&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>机械硬盘(HDD)&lt;/strong>&lt;/td>
+&lt;td>&lt;code>mount -o subvol=@,compress=lzo,noatime /dev/sda2 /mnt&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>不确定配置&lt;/strong>&lt;/td>
+&lt;td>&lt;code>mount -o subvol=@,compress=auto,noatime /dev/sda2 /mnt&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="创建挂载点结构">创建挂载点结构
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 创建必要的目录结构&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir -p /mnt/&lt;span class="o">{&lt;/span>boot/efi,timeshift&lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 挂载EFI分区&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mount /dev/sda1 /mnt/boot/efi
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="-安装基础系统">📦 安装基础系统
+&lt;/h2>&lt;h3 id="让pacman更可爱">让pacman更可爱
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">nano /etc/pacman.conf
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>找到并取消注释 &lt;code>Color&lt;/code>，然后在下面添加 &lt;code>ILoveCandy&lt;/code>，保存退出~&lt;/p>
+&lt;h3 id="使用国内镜像加速">使用国内镜像加速
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 设置清华镜像源&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s1">&amp;#39;Server = https://mirrors.tuna.tsinghua.edu.cn/$repo/os/$arch&amp;#39;&lt;/span> &amp;gt; /etc/pacman.d/mirrorlist
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 刷新软件包数据库&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pacman -Syy
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h3 id="42-安装软件包">4.2 安装软件包
+&lt;/div>&lt;h3 id="安装必备软件包">安装必备软件包
 &lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -168,8 +202,9 @@
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span>bluez bluez-utils blueman grub efibootmgr sudo doas snapper timeshift fastfetch
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="5-生成fstab">5. 生成fstab
-&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;/div>&lt;h2 id="-系统基础配置">⚙️ 系统基础配置
+&lt;/h2>&lt;h3 id="自动生成fstab">自动生成fstab
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
@@ -177,8 +212,7 @@
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">genfstab -U /mnt &amp;gt;&amp;gt; /mnt/etc/fstab
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="6-系统配置">6. 系统配置
-&lt;/h2>&lt;h3 id="61-chroot环境">6.1 Chroot环境
+&lt;/div>&lt;h3 id="进入新系统环境">进入新系统环境
 &lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -187,36 +221,7 @@
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">arch-chroot /mnt
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h3 id="62-基础配置">6.2 基础配置
-&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 本地化&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nano /etc/locale.gen &lt;span class="c1"># 取消zh_CN.UTF-8注释&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">locale-gen
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="nv">LANG&lt;/span>&lt;span class="o">=&lt;/span>zh_CN.UTF-8 &amp;gt; /etc/locale.conf
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 时区&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">hwclock --systohc --utc
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 主机名&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> iUseArchBTW &amp;gt; /etc/hostname
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h3 id="63-用户管理">6.3 用户管理
+&lt;/div>&lt;h3 id="本地化设置">本地化设置
 &lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -233,48 +238,42 @@
 &lt;/span>&lt;span class="lnt">12
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 启用服务&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl &lt;span class="nb">enable&lt;/span> dhcpcd NetworkManager bluetooth
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 设置中文locale&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nano /etc/locale.gen &lt;span class="c1"># 取消注释 zh_CN.UTF-8&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">locale-gen
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 密码设置&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">passwd root
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">useradd -m -g users -G wheel -s /bin/bash ayaka
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">passwd ayaka
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 设置默认语言&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="nv">LANG&lt;/span>&lt;span class="o">=&lt;/span>zh_CN.UTF-8 &amp;gt; /etc/locale.conf
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 权限配置&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">EDITOR&lt;/span>&lt;span class="o">=&lt;/span>nano visudo &lt;span class="c1"># 取消wheel和sudo注释&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nano /etc/doas.conf &lt;span class="c1"># 添加权限配置```&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chmod -c &lt;span class="m">600&lt;/span> /etc/doas.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 设置时区&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 同步硬件时钟&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">hwclock --systohc --utc
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h3 id="64-引导配置">6.4 引导配置
+&lt;/div>&lt;h3 id="网络相关配置">网络相关配置
 &lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;span class="lnt">2
 &lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">grub-install --target&lt;span class="o">=&lt;/span>x86_64-efi --efi-directory&lt;span class="o">=&lt;/span>/boot/efi --bootloader-id&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;Arch Linux&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">grub-mkconfig -o /boot/grub/grub.cfg
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkinitcpio -p linux-zen
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 设置主机名(可以改成你喜欢的名字)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> iUseArchBTW &amp;gt; /etc/hostname
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 启用网络服务&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl &lt;span class="nb">enable&lt;/span> dhcpcd
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl &lt;span class="nb">enable&lt;/span> NetworkManager
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl &lt;span class="nb">enable&lt;/span> bluetooth &lt;span class="c1"># 蓝牙服务&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h3 id="65-退出重启">6.5 退出重启
-&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">exit&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">umount -R /mnt
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">reboot
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h2 id="7-安装桌面环境">7. 安装桌面环境
-&lt;/h2>&lt;h3 id="71-登录后配置">7.1 登录后配置
+&lt;/div>&lt;h3 id="用户账户管理">用户账户管理
 &lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -287,17 +286,34 @@
 &lt;/span>&lt;span class="lnt">8
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 镜像源&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s1">&amp;#39;Server = https://mirrors.tuna.tsinghua.edu.cn/$repo/os/$arch&amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> doas tee /etc/pacman.d/mirrorlist
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 设置root密码&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">passwd root
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># ArchLinuxCN源&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">doas nano /etc/pacman.conf &lt;span class="c1"># 添加archlinuxcn源&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">doas pacman -Syy
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">doas pacman-key --lsign-key &lt;span class="s2">&amp;#34;farseerfc@archlinux.org&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">doas pacman -Sy archlinuxcn-keyring
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 创建普通用户(示例用户名为ayaka)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">useradd -m -g users -G wheel -s /bin/bash ayaka
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 设置用户密码&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">passwd ayaka
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h3 id="72-安装软件">7.2 安装软件
+&lt;/div>&lt;h3 id="配置sudo和doas">配置sudo和doas
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 配置sudo权限&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">EDITOR&lt;/span>&lt;span class="o">=&lt;/span>nano visudo &lt;span class="c1"># 取消wheel和sudo组的注释&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 配置doas权限&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nano /etc/doas.conf &lt;span class="c1"># 添加相应用户权限&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="安装引导程序">安装引导程序
 &lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -307,37 +323,172 @@
 &lt;/span>&lt;span class="lnt">5
 &lt;/span>&lt;span class="lnt">6
 &lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># AUR助手&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">doas pacman -S paru
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 安装GRUB引导&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">grub-install --target&lt;span class="o">=&lt;/span>x86_64-efi --efi-directory&lt;span class="o">=&lt;/span>/boot/efi --bootloader-id&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;Arch Linux&amp;#39;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># GNOME桌面&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">LANG&lt;/span>&lt;span class="o">=&lt;/span>C paru -Sy --needed xorg gnome gnome-tweaks gnome-nettool gnome-usage &lt;span class="se">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span>adwaita-icon-theme xdg-user-dirs-gtk fwupd gdm gnome-console waterfox-bin vlc &lt;span class="se">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span>&lt;span class="o">&amp;amp;&amp;amp;&lt;/span> sudo systemctl &lt;span class="nb">enable&lt;/span> gdm adw-gtk-theme wqy-microhei gdm-settings qt5ct qt6ct
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 生成GRUB配置&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">grub-mkconfig -o /boot/grub/grub.cfg
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 生成initramfs&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkinitcpio -p linux-zen
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h3 id="73-字体和显示管理">7.3 字体和显示管理
+&lt;/div>&lt;h3 id="完成安装准备重启">完成安装准备重启
 &lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 退出chroot环境&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">exit&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 卸载所有分区&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">umount -R /mnt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 重启进入新系统&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">reboot
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="-安装图形界面">🖥️ 安装图形界面
+&lt;/h2>&lt;h3 id="登录新系统">登录新系统
+&lt;/h3>&lt;p>使用之前设置的用户名和密码登录tty终端&lt;/p>
+&lt;h3 id="配置软件仓库">配置软件仓库
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 添加archlinuxcn源&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">doas nano /etc/pacman.conf &lt;span class="c1"># 在文件末尾添加archlinuxcn源配置&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 刷新软件包数据库&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">doas pacman -Syy
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 导入archlinuxcn密钥&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">doas pacman-key --lsign-key &lt;span class="s2">&amp;#34;farseerfc@archlinux.org&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">doas pacman -Sy archlinuxcn-keyring
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="安装aur助手">安装AUR助手
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">doas pacman -S paru
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="安装gnome桌面环境">安装GNOME桌面环境
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nv">LANG&lt;/span>&lt;span class="o">=&lt;/span>C paru -Sy --needed xorg gnome gnome-tweaks gnome-nettool &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span>gnome-usage adwaita-icon-theme xdg-user-dirs-gtk fwupd gdm &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span>gnome-console waterfox-bin vlc &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> sudo systemctl &lt;span class="nb">enable&lt;/span> gdm &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span>adw-gtk-theme wqy-microhei gdm-settings qt5ct qt6ct
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="字体缓存重建">字体缓存重建
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 重建字体缓存&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">doas fc-cache -fv
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="启用显示管理器">启用显示管理器
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">doas systemctl &lt;span class="nb">enable&lt;/span> gdm
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">doas reboot
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="-大功告成">🎉 大功告成！
+&lt;/h2>&lt;p>恭喜你！现在可以享受你的Arch Linux系统啦！(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;strong>小提示&lt;/strong>：第一次进入GNOME桌面时，别忘了点击&amp;quot;进行导览&amp;quot;看看新手教程哦~&lt;/p>&lt;/blockquote>
+&lt;h3 id="安装后优化建议">安装后优化建议
+&lt;/h3>&lt;ol>
+&lt;li>&lt;strong>安装中文输入法&lt;/strong>：&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">doas pacman -S fcitx5 fcitx5-chinese-addons fcitx5-gtk fcitx5-qt fcitx5-configtool
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>&lt;strong>设置默认输入法&lt;/strong>：&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;span class="lnt">2
 &lt;/span>&lt;span class="lnt">3
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">doas fc-cache -fv
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">doas systemctl &lt;span class="nb">enable&lt;/span> gdm
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">doas reboot
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s1">&amp;#39;GTK_IM_MODULE=fcitx
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">QT_IM_MODULE=fcitx
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">XMODIFIERS=@im=fcitx&amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> doas tee -a /etc/environment
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="8-完成安装">8. 完成安装
-&lt;/h2>&lt;ul>
-&lt;li>登录GNOME桌面&lt;/li>
-&lt;li>点击&amp;quot;进行导览&amp;quot;了解GNOME使用&lt;/li>
-&lt;/ul>
-&lt;blockquote>
-&lt;p>提示：安装过程中如遇问题，请参考ArchWiki或社区支持&lt;/p>&lt;/blockquote></description></item><item><title>ArchLinux Plasma 6 开启Samba服务（文件共享）</title><link>https://blog.moieo.net/2025/04/24/220548/</link><pubDate>Thu, 24 Apr 2025 22:05:48 +0800</pubDate><guid>https://blog.moieo.net/2025/04/24/220548/</guid><description>&lt;p>在 Plasma 6 中的 Dolphin 使用文件共享&lt;/p>
+&lt;/div>&lt;ol start="3">
+&lt;li>&lt;strong>安装常用软件&lt;/strong>：&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">doas pacman -S firefox thunderbird libreoffice-fresh gimp vlc
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="4">
+&lt;li>&lt;strong>美化终端&lt;/strong>：&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">doas pacman -S zsh oh-my-zsh-git powerline-fonts
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chsh -s /bin/zsh ayaka
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>ArchLinux Plasma 6 开启Samba服务（文件共享）</title><link>https://blog.moieo.net/2025/04/24/220548/</link><pubDate>Thu, 24 Apr 2025 22:05:48 +0800</pubDate><guid>https://blog.moieo.net/2025/04/24/220548/</guid><description>&lt;p>在 Plasma 6 中的 Dolphin 使用文件共享&lt;/p>
 &lt;h2 id="安装相关的插件">安装相关的插件
 &lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
