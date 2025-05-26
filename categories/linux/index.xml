@@ -486,10 +486,12 @@
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span class="line">&lt;span class="cl">[archlinuxcn]
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Server = https://mirrors.163.com/archlinux-cn/$arch
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Server = https://mirrors.cernet.edu.cn/archlinuxcn/$arch
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>完事后保存，然后添加archlinuxcn密钥：&lt;/p>
@@ -517,7 +519,7 @@
 &lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 设置镜像源&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s1">&amp;#39;Server = https://mirrors.jxust.edu.cn/archlinux/$repo/os/$arch&amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> doas tee /etc/pacman.d/mirrorlist
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s1">&amp;#39;Server = https://mirrors.163.com/archlinux/$repo/os/$arch&amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> doas tee -a /etc/pacman.d/mirrorlist
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s1">&amp;#39;Server = https://mirrors.cernet.edu.cn/archlinux/$repo/os/$arch&amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> doas tee -a /etc/pacman.d/mirrorlist
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 刷新软件包数据库&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">paru -Syy

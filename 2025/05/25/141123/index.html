@@ -226,8 +226,10 @@
 在下面添加 <code>ILoveCandy</code>
 在文件末尾添加以下内容：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
+</span><span class=lnt>3
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-plaintext data-lang=plaintext><span class=line><span class=cl>[archlinuxcn]
-</span></span><span class=line><span class=cl>Server = https://mirrors.163.com/archlinux-cn/$arch
+</span></span><span class=line><span class=cl>Server = https://mirrors.cernet.edu.cn/archlinuxcn/$arch
+</span></span><span class=line><span class=cl>Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
 </span></span></code></pre></td></tr></table></div></div><p>完事后保存，然后添加archlinuxcn密钥：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>pacman-key --lsign-key <span class=s2>&#34;farseerfc@archlinux.org&#34;</span>
@@ -240,7 +242,7 @@
 </span><span class=lnt>6
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 设置镜像源</span>
 </span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s1>&#39;Server = https://mirrors.jxust.edu.cn/archlinux/$repo/os/$arch&#39;</span> <span class=p>|</span> doas tee /etc/pacman.d/mirrorlist
-</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s1>&#39;Server = https://mirrors.163.com/archlinux/$repo/os/$arch&#39;</span> <span class=p>|</span> doas tee -a /etc/pacman.d/mirrorlist
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s1>&#39;Server = https://mirrors.cernet.edu.cn/archlinux/$repo/os/$arch&#39;</span> <span class=p>|</span> doas tee -a /etc/pacman.d/mirrorlist
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=c1># 刷新软件包数据库</span>
 </span></span><span class=line><span class=cl>paru -Syy
