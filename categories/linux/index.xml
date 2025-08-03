@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on 晴雨笔记</title><link>https://blog.moieo.net/categories/linux/</link><description>Recent content in Linux on 晴雨笔记</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 26 May 2025 22:37:35 +0800</lastBuildDate><atom:link href="https://blog.moieo.net/categories/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>Arch Linux UEFI 安装指南：Btrfs 子卷 + GNOME 桌面环境</title><link>https://blog.moieo.net/2025/05/26/223735/</link><pubDate>Mon, 26 May 2025 22:37:35 +0800</pubDate><guid>https://blog.moieo.net/2025/05/26/223735/</guid><description>&lt;p>&lt;strong>声明：原作者信息&lt;/strong>&lt;/p>
 &lt;ul>
 &lt;li>哔哩哔哩主页：https://space.bilibili.com/2017026819&lt;/li>
+&lt;li>Github主页：https://github.com/FireflyAyaka&lt;/li>
 &lt;li>QQ号：2037566388&lt;/li>
 &lt;/ul>
 &lt;blockquote>
@@ -84,7 +85,7 @@
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 格式化EFI分区为FAT32格式&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkfs.fat -F32 -n &lt;span class="s2">&amp;#34;ARCH-EFI&amp;#34;&lt;/span> /dev/sda1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkfs.fat -F32 -n &lt;span class="s2">&amp;#34;arch-efi&amp;#34;&lt;/span> /dev/sda1
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 格式化根分区为Btrfs格式&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkfs.btrfs -L &lt;span class="s2">&amp;#34;arch-root&amp;#34;&lt;/span> /dev/sda2
@@ -93,16 +94,15 @@
 &lt;/div>&lt;h3 id="3-btrfs子卷设置">3. Btrfs子卷设置
 &lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 先挂载根分区&lt;/span>
@@ -111,7 +111,6 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 创建必要的子卷&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">btrfs subvolume create /mnt/@ &lt;span class="c1"># 根目录子卷&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">btrfs subvolume create /mnt/@home &lt;span class="c1"># 用户目录子卷&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">btrfs subvolume create /mnt/@timeshift &lt;span class="c1"># 备份子卷&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 临时卸载&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">umount /mnt
@@ -128,7 +127,7 @@
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 创建必要的目录结构&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir -p /mnt/&lt;span class="o">{&lt;/span>boot/efi,home,timeshift-btrfs&lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir -p /mnt/&lt;span class="o">{&lt;/span>boot/efi,home&lt;span class="o">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 挂载EFI分区&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mount /dev/sda1 /mnt/boot/efi
@@ -143,12 +142,10 @@
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">mount -o &lt;span class="nv">subvol&lt;/span>&lt;span class="o">=&lt;/span>@,compress&lt;span class="o">=&lt;/span>zstd:3,noatime,ssd /dev/sda2 /mnt &lt;span class="c1"># 挂载主卷&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mount -o &lt;span class="nv">subvol&lt;/span>&lt;span class="o">=&lt;/span>@home,compress&lt;span class="o">=&lt;/span>zstd:4,noatime,ssd /dev/sda2 /mnt/home &lt;span class="c1"># 挂载用户卷&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mount -o &lt;span class="nv">subvol&lt;/span>&lt;span class="o">=&lt;/span>@timeshift,compress-force&lt;span class="o">=&lt;/span>zstd:5,noatime,ssd /dev/sda2 /mnt/timeshift-btrfs &lt;span class="c1"># 挂载备份卷&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
@@ -158,12 +155,10 @@
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">mount -o &lt;span class="nv">subvol&lt;/span>&lt;span class="o">=&lt;/span>@,compress&lt;span class="o">=&lt;/span>zstd:2,noatime,ssd /dev/sda2 /mnt &lt;span class="c1"># 挂载主卷&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mount -o &lt;span class="nv">subvol&lt;/span>&lt;span class="o">=&lt;/span>@home,compress&lt;span class="o">=&lt;/span>zstd:3,noatime,ssd /dev/sda2 /mnt/home &lt;span class="c1"># 挂载用户卷&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mount -o &lt;span class="nv">subvol&lt;/span>&lt;span class="o">=&lt;/span>@timeshift,compress-force&lt;span class="o">=&lt;/span>zstd:4,noatime,ssd /dev/sda2 /mnt/timeshift-btrfs &lt;span class="c1"># 挂载备份卷&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
@@ -173,12 +168,10 @@
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">mount -o &lt;span class="nv">subvol&lt;/span>&lt;span class="o">=&lt;/span>@,compress&lt;span class="o">=&lt;/span>zstd:1,noatime,ssd /dev/sda2 /mnt &lt;span class="c1"># 挂载主卷&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mount -o &lt;span class="nv">subvol&lt;/span>&lt;span class="o">=&lt;/span>@home,compress&lt;span class="o">=&lt;/span>zstd:2,noatime,ssd /dev/sda2 /mnt/home &lt;span class="c1"># 挂载用户卷&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mount -o &lt;span class="nv">subvol&lt;/span>&lt;span class="o">=&lt;/span>@timeshift,compress-force&lt;span class="o">=&lt;/span>zstd:3,noatime,ssd /dev/sda2 /mnt/timeshift-btrfs &lt;span class="c1"># 挂载备份卷&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
@@ -188,12 +181,10 @@
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">mount -o &lt;span class="nv">subvol&lt;/span>&lt;span class="o">=&lt;/span>@,compress&lt;span class="o">=&lt;/span>lzo,noatime /dev/sda2 /mnt &lt;span class="c1"># 挂载主卷&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mount -o &lt;span class="nv">subvol&lt;/span>&lt;span class="o">=&lt;/span>@home,compress&lt;span class="o">=&lt;/span>lzo,noatime /dev/sda2 /mnt/home &lt;span class="c1"># 挂载用户卷&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mount -o &lt;span class="nv">subvol&lt;/span>&lt;span class="o">=&lt;/span>@timeshift,compress-force&lt;span class="o">=&lt;/span>lzo,noatime /dev/sda2 /mnt/timeshift-btrfs &lt;span class="c1"># 挂载备份卷&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
@@ -203,12 +194,10 @@
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">mount -o &lt;span class="nv">subvol&lt;/span>&lt;span class="o">=&lt;/span>@,compress&lt;span class="o">=&lt;/span>auto,noatime,ssd /dev/sda2 /mnt &lt;span class="c1"># 挂载主卷&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mount -o &lt;span class="nv">subvol&lt;/span>&lt;span class="o">=&lt;/span>@home,compress&lt;span class="o">=&lt;/span>auto,noatime,ssd /dev/sda2 /mnt/home &lt;span class="c1"># 挂载用户卷&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mount -o &lt;span class="nv">subvol&lt;/span>&lt;span class="o">=&lt;/span>@timeshift,compress&lt;span class="o">=&lt;/span>auto,noatime,ssd /dev/sda2 /mnt/timeshift-btrfs &lt;span class="c1"># 挂载备份卷&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
@@ -218,12 +207,10 @@
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">mount -o &lt;span class="nv">subvol&lt;/span>&lt;span class="o">=&lt;/span>@,compress&lt;span class="o">=&lt;/span>auto,noatime /dev/sda2 /mnt &lt;span class="c1"># 挂载主卷&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mount -o &lt;span class="nv">subvol&lt;/span>&lt;span class="o">=&lt;/span>@home,compress&lt;span class="o">=&lt;/span>auto,noatime /dev/sda2 /mnt/home &lt;span class="c1"># 挂载用户卷&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mount -o &lt;span class="nv">subvol&lt;/span>&lt;span class="o">=&lt;/span>@timeshift,compress&lt;span class="o">=&lt;/span>auto,noatime /dev/sda2 /mnt/timeshift-btrfs &lt;span class="c1"># 挂载备份卷&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h2 id="-二安装基础系统">📦 二、安装基础系统
@@ -287,7 +274,7 @@
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pacstrap /mnt base base-devel linux-zen linux-zen-headers linux-firmware htop cpupower nano dhcpcd net-tools networkmanager iw wpa_supplicant bluez bluez-utils grub efibootmgr sudo doas snapper timeshift fastfetch paru &lt;span class="c1"># 这里paru来自archlinuxcn源&lt;/span>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pacstrap /mnt base base-devel linux-zen linux-zen-headers linux-firmware htop cpupower nano dhcpcd net-tools networkmanager iw wpa_supplicant bluez bluez-utils grub efibootmgr sudo doas snapper fastfetch paru &lt;span class="c1"># 这里paru来自archlinuxcn源&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h2 id="-三系统基础配置">⚙️ 三、系统基础配置
@@ -352,8 +339,8 @@
 &lt;/span>&lt;span class="lnt">7
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 设置主机名(示例主机名wssllhdg，因为原作者是神里绫华的狗！可以改成你喜欢的名字)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> wssllhdg &amp;gt; /etc/hostname
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 设置主机名(示例主机名ayaka，因为原作者是个绫华厨！可以改成你喜欢的名字)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> ayaka &amp;gt; /etc/hostname
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 启用网络服务&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl &lt;span class="nb">enable&lt;/span> dhcpcd &lt;span class="c1"># DHCP&lt;/span>
@@ -377,11 +364,11 @@
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 设置root密码&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">passwd root
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 创建普通用户(示例用户名为ayaka，因为原作者是个绫华厨！可以改成你喜欢的名字)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">useradd -m -g users -G wheel -s /bin/bash ayaka
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 创建普通用户(示例用户名为firefly，因为原作者也是个流萤厨！可以改成你喜欢的名字)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">useradd -m -g users -G wheel -s /bin/bash firefly
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 设置用户密码(记得将“ayaka”改为你的用户名)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">passwd ayaka
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">passwd firefly
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h3 id="6-配置sudo和doas">6. 配置sudo和doas
@@ -396,7 +383,7 @@
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nv">EDITOR&lt;/span>&lt;span class="o">=&lt;/span>nano visudo
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>在文件末尾添加以下内容（记得将“ayaka”改为你的用户名）：&lt;/p>
+&lt;/div>&lt;p>在文件末尾添加以下内容（记得将“firefly”改为你的用户名）：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -407,12 +394,12 @@
 &lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span class="line">&lt;span class="cl">%wheel ALL=(ALL:ALL) ALL
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">%sudo ALL=(ALL:ALL) ALL
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ayaka ALL=(ALL:ALL) ALL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">firefly ALL=(ALL:ALL) ALL
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Defaults pwfeedback
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ol start="2">
-&lt;li>&lt;strong>配置doas：&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>配置doas（双重保险！不加这个到时候sudo炸了你就老实了）：&lt;/strong>&lt;/li>
 &lt;/ol>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -422,17 +409,19 @@
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">nano /etc/doas.conf
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>添加以下内容（记得将“ayaka”改为你的用户名）：&lt;/p>
+&lt;/div>&lt;p>添加以下内容（记得将“firefly”改为你的用户名）：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;span class="lnt">2
 &lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span class="line">&lt;span class="cl">permit persist :wheel as root
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">permit persist :sudo as root
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">permit persist ayaka as root
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span class="line">&lt;span class="cl">permit persist keepenv setenv { -ENV LANG=zh_CN.UTF-8 } root as root
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">permit persist keepenv setenv { -ENV LANG=zh_CN.UTF-8 } :wheel as root
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">permit persist keepenv setenv { -ENV LANG=zh_CN.UTF-8 } :sudo as root
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">permit persist keepenv setenv { -ENV LANG=zh_CN.UTF-8 } firefly as root
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h3 id="7-安装引导程序">7. 安装引导程序
@@ -485,14 +474,22 @@
 &lt;/div>
 &lt;/div>&lt;h2 id="-四安装图形界面">🖥️ 四、安装图形界面
 &lt;/h2>&lt;h3 id="1-登录新系统">1. 登录新系统
-&lt;/h3>&lt;p>使用之前设置的用户名和密码登录tty终端&lt;/p>
-&lt;h3 id="2-配置pacman">2. 配置pacman
+&lt;/h3>&lt;p>使用之前设置的用户名和密码登录tty终端，随后输入以下命令并回车：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nv">LANG&lt;/span>&lt;span class="o">=&lt;/span>C
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="2-配置pacman">2. 配置pacman
 &lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">doas nano /etc/pacman.conf
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo nano /etc/pacman.conf
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>找到并取消注释 &lt;code>Color&lt;/code>&lt;br>
@@ -516,7 +513,7 @@
 &lt;/span>&lt;span class="lnt">2
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">doas pacman-key --lsign-key &lt;span class="s1">&amp;#39;farseerfc@archlinux.org&amp;#39;&lt;/span>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo pacman-key --lsign-key &lt;span class="s1">&amp;#39;farseerfc@archlinux.org&amp;#39;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">LANG&lt;/span>&lt;span class="o">=&lt;/span>C paru -Sy archlinuxcn-keyring
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
@@ -533,11 +530,11 @@
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 设置镜像源&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s1">&amp;#39;Server = https://mirrors.jxust.edu.cn/archlinux/$repo/os/$arch&amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> doas tee /etc/pacman.d/mirrorlist
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s1">&amp;#39;Server = https://mirrors.163.com/archlinux/$repo/os/$arch&amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> doas tee -a /etc/pacman.d/mirrorlist
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s1">&amp;#39;Server = https://mirrors.jxust.edu.cn/archlinux/$repo/os/$arch&amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> sudo tee /etc/pacman.d/mirrorlist
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s1">&amp;#39;Server = https://mirrors.163.com/archlinux/$repo/os/$arch&amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> sudo tee -a /etc/pacman.d/mirrorlist
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 刷新软件包数据库&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">LANG&lt;/span>&lt;span class="o">=&lt;/span>C paru -Syy
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">paru -Syy
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h3 id="4-安装gnome桌面环境中文输入法和常用软件">4. 安装GNOME桌面环境、中文输入法和常用软件
@@ -548,7 +545,7 @@
 &lt;/span>&lt;span class="lnt">3
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nv">LANG&lt;/span>&lt;span class="o">=&lt;/span>C paru -Sy --needed xorg gnome gnome-tweaks gnome-console gnome-nettool gnome-usage adwaita-icon-theme xdg-user-dirs-gtk fwupd gdm ibus ibus-libpinyin qt5ct qt6ct libreoffice-fresh waterfox-bin vlc wqy-microhei &lt;span class="c1"># 其中waterfox是AUR软件，这里我们用bin是为了加快安装速度&lt;/span>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">paru -Sy --needed xorg gnome gnome-tweaks ptyxis gnome-nettool gnome-usage adwaita-icon-theme xdg-user-dirs-gtk fwupd gdm ibus ibus-libpinyin qt5ct qt6ct wps-office wps-office-fonts ttf-wps-win10 waterfox-bin vlc wqy-microhei adw-gtk-theme &lt;span class="c1"># 其中waterfox、wps-office、wps-office-fonts和ttf-wps-win10是AUR软件，这里我们用bin是为了加快安装速度；注意wps-office、wps-office-fonts和ttf-wps-win10没有bin&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">paru -R epiphany &lt;span class="c1"># 顺便淦掉GNOME自带的难用的浏览器&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s1">&amp;#39;export QT_QPA_PLATFORMTHEME=qt5ct&amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> tee -a ~/.xprofile &lt;span class="p">|&lt;/span> tee -a ~/.profile &lt;span class="p">|&lt;/span> tee -a ~/.bashrc &lt;span class="c1"># 设置Qt优化工具&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
@@ -559,7 +556,7 @@
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">doas fc-cache -fv
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo fc-cache -fv
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h3 id="6-启用显示管理器并重启">6. 启用显示管理器并重启
@@ -569,8 +566,8 @@
 &lt;/span>&lt;span class="lnt">2
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">doas systemctl &lt;span class="nb">enable&lt;/span> gdm
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">doas reboot
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo systemctl &lt;span class="nb">enable&lt;/span> gdm
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo reboot
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h2 id="-四大功告成">🎉 四、大功告成！
@@ -578,48 +575,28 @@
 &lt;blockquote>
 &lt;p>&lt;strong>小提示：&lt;/strong> 第一次进入GNOME桌面时，别忘了点击&amp;quot;进行导览&amp;quot;看看新手教程哦～&lt;br>
 &lt;strong>配置输入法：&lt;/strong> 打开GNOME设置 → 键盘 → 添加输入源 → 中文 → 汉语（智能拼音） → 将“汉语（智能拼音）”放在第一位&lt;/p>&lt;/blockquote>
-&lt;h2 id="-五timeshift使用教程">🔙 五、Timeshift使用教程
-&lt;/h2>&lt;h3 id="1-timeshift是什么">1. Timeshift是什么？
-&lt;/h3>&lt;p>Timeshift是一款用于Linux系统的系统备份和恢复工具 ，它能创建系统快照，就像给系统拍了一张张“照片”。在系统出现问题时（比如软件冲突导致无法启动、错误配置影响使用等情况），能将系统恢复到之前正常的状态。因其出色的备份与恢复能力，在Arch Linux堪称“必装软件”！因其能够充分利用Btrfs的快照和子卷特性，与Btrfs简直像是一对CP！&lt;br>
-虽然它也有Rsync方式，但是它很慢！不信请看VCR：\&lt;/p>
+&lt;h2 id="-五snapper使用教程">🔙 五、Snapper使用教程
+&lt;/h2>&lt;h3 id="1-snapper是什么">1. Snapper是什么？
+&lt;/h3>&lt;p>Snapper是一款用于Linux系统的系统备份和恢复工具 ，它能创建系统快照，就像给系统拍了一张张“照片”。在系统出现问题时（比如软件冲突导致无法启动、错误配置影响使用等情况），能将系统恢复到之前正常的状态。因其出色的备份与恢复能力，在Arch Linux堪称“必装软件”！&lt;br>
+反而隔壁Timeshift，Rsync很慢，Btrfs有bug！不信请看VCR：\&lt;/p>
 &lt;blockquote>
-&lt;p>&lt;strong>真实案例：&lt;/strong> 原作者曾在Ta的Fedora实体机使用&lt;code>sudo dnf upgrade --refresh&lt;/code>进行系统更新，结果Ta的AMD显卡驱动炸了！Ta尝试使用Timeshift，因Ta在安装Fedora时使用了ext4文件系统，只能使用Rsync。结果Ta的系统有一堆零碎文件，导致不管是备份还是恢复都很慢！&lt;br>
-&lt;strong>来自Moieo的调侃：&lt;/strong> “你当时就应该选Btrfs并创建timeshift子卷！现在怎么办？&lt;strong>凉拌！&lt;/strong> ”（拿起Fedora 42 Live USB疯狂暗示原作者）&lt;/p>&lt;/blockquote>
-&lt;h3 id="2-如何使用timeshift">2. 如何使用Timeshift？
-&lt;/h3>&lt;ol>
-&lt;li>
-&lt;p>启动（并初始化）Timeshift
-- 双击&lt;strong>Meta/Super键&lt;/strong>（Windows微标键/Command键），打开LaunchPad。
-- 找到&lt;strong>Timeshift&lt;/strong>，点击它。
-- 输入你的用户密码，然后进入主界面/初始化界面。
-- 当提示“选择快照类型”时，使用&lt;code>BTRFS&lt;/code>，点击“下一个”。
-- 当提示“选择快照位置”时，直接使用&lt;code>sda2&lt;/code>，然后下一个！
-- 计划备份你自己看怎么安排就行。然后下一步。
-- 备份&lt;code>home&lt;/code>子卷？直接下一步就行，不用点！
-- 直接完成！&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>进行备份
-- 进入程序主界面后，直接点击“创建”即可。
-&lt;strong>强烈建议安装完成后先进行一次初始备份！&lt;/strong>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>恢复备份
-- 点击你要恢复的备份，然后点击“恢复”。
-- 直接点击“下一个”。
-- 关闭窗口，然后重启。&lt;/p>
-&lt;/li>
-&lt;/ol>
+&lt;p>&lt;strong>真实案例1：&lt;/strong> 原作者曾在Ta的March7th Ace 41.2实体机备份系统后使用&lt;code>sudo dnf upgrade --refresh&lt;/code>进行系统更新，结果Ta的AMD显卡驱动炸了！因为Ta在安装March7th Ace 41.2时使用了ext4文件系统，只能使用Timeshift Rsync。Ta尝试恢复备份，结果因为Ta的系统有一堆零碎文件，导致不管是备份还是恢复都很慢！&lt;br>
+&lt;strong>Moieo的调侃：&lt;/strong> “你当时就应该用Snapper！现在怎么办？&lt;strong>凉拌！&lt;/strong> ”（拿起Fedora 42 Live USB疯狂暗示原作者）&lt;br>
+&lt;strong>真实案例2：&lt;/strong> 原作者不信邪，使用Btrfs子卷模式重装March7th Vista 42.1后尝试立即使用Timeshift Btrfs备份，备份很快，但到了关键时候就掉链子了！Ta继续尝试更新系统，重启后还是一样：AMD显卡驱动炸了！于是，Ta尝试恢复之前的备份，结果！重启后，系统屡次Kernel Panic！于是，Ta就只好重装March7th Vista 42.3，并和Ta的数据说拜拜咯！&lt;br>
+&lt;strong>群友3595258138的回复：&lt;/strong> timeshift不适用于Btrfs，强行使用可能会导致还原出错系统崩溃，Btrfs可考虑使用opensuse的snapper&lt;/p>&lt;/blockquote>
+&lt;h3 id="2-如何使用snapper">2. 如何使用Snapper？
+&lt;/h3>&lt;p>详见 &lt;a class="link" href="https://wiki.archlinuxcn.org/wiki/Snapper" target="_blank" rel="noopener"
+>Snapper - Arch Linux 中文维基&lt;/a>。&lt;/p>
 &lt;h2 id="-六qa">❓ 六、Q&amp;amp;A
 &lt;/h2>&lt;blockquote>
 &lt;p>&lt;strong>Q：不添加archlinuxcn密钥会怎么样？&lt;/strong> &lt;br>
 A：会收到“签名无效”警告，无法安装paru、中文输入法、微信等archlinuxcn源软件，然后只能重装系统💥&lt;/p>&lt;/blockquote>
 &lt;blockquote>
 &lt;p>&lt;strong>Q：&lt;code>sudo&lt;/code>和&lt;code>doas&lt;/code>我该用哪个？&lt;/strong> &lt;br>
-A：优先使用&lt;code>sudo&lt;/code>。如果你在tty界面（tty无法显示中文，且&lt;code>doas&lt;/code>默认英文）或你的&lt;code>sudo&lt;/code>坏了（如“即使密码输入正确，也提示验证失败”），则使用&lt;code>doas&lt;/code>。&lt;/p>&lt;/blockquote>
+A：优先使用&lt;code>sudo&lt;/code>。如果你的&lt;code>sudo&lt;/code>坏了（如“即使密码输入正确，也提示验证失败”），则使用&lt;code>doas&lt;/code>。&lt;/p>&lt;/blockquote>
 &lt;blockquote>
-&lt;p>&lt;strong>Q：为什么某些命令前面还需要加个&lt;code>LANG=C&lt;/code>？&lt;/strong> &lt;br>
-A：如前所述，tty无法显示中文。加入该参数后，执行该命令会以英文输出。&lt;/p>&lt;/blockquote>
+&lt;p>&lt;strong>Q：为什么在tty下输入其他命令前还需要执行&lt;code>LANG=C&lt;/code>？&lt;/strong> &lt;br>
+A：这可不是什么“仪式感”！因为tty无法显示中文！执行后，该终端执行的命令会以英文输出。（当然这不会影响桌面环境下的终端，因此你每次进tty都得执行一遍这个）&lt;/p>&lt;/blockquote>
 &lt;blockquote>
 &lt;p>&lt;strong>Q：为什么推荐使用&lt;code>paru&lt;/code>进行所有软件包操作，而不是使用&lt;code>pacman&lt;/code>和&lt;code>yay&lt;/code>？&lt;/strong> &lt;br>
 A：&lt;code>paru&lt;/code>是一个新晋AUR助手。它有一个很NB的点，那就是：&lt;code>paru&lt;/code>支持无缝对接&lt;code>pacman&lt;/code>，这一点&lt;code>yay&lt;/code>干不到！通过&lt;code>paru&lt;/code>，你就能像使用&lt;code>pacman&lt;/code>那样，一键搜索官方源和AUR软件！（前面甚至都不用加&lt;code>sudo&lt;/code>/&lt;code>doas&lt;/code>，少打5个字符！）&lt;br>
@@ -651,22 +628,13 @@ A：&lt;code>paru&lt;/code>是一个新晋AUR助手。它有一个很NB的点，
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s1">&amp;#39;alias pacman=paru&amp;#39;&lt;/span> &amp;gt;&amp;gt; ~/.zshrc
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>&lt;strong>温馨提示：别踏马手欠把&lt;code>paru&lt;/code>扬了，到时候你只能暂时&lt;code>unalias&lt;/code>把&lt;code>paru&lt;/code>用&lt;code>pacman&lt;/code>弄回来！&lt;/strong>&lt;/p>&lt;/blockquote>
+&lt;/div>&lt;p>&lt;strong>温馨提示：别他妈手欠把&lt;code>paru&lt;/code>扬了，到时候你只能暂时&lt;code>unalias&lt;/code>把&lt;code>paru&lt;/code>用&lt;code>pacman&lt;/code>弄回来！&lt;/strong>&lt;/p>&lt;/blockquote>
 &lt;blockquote>
 &lt;p>&lt;strong>Q：为啥我创建快照时提示「空间不足」？&lt;/strong> &lt;br>
-A：检查一下&lt;code>/mnt/timeshift-btrfs&lt;/code>目录！&lt;/p>
+A：检查一下&lt;code>/.snapshots&lt;/code>目录！&lt;/p>
 &lt;ul>
-&lt;li>Btrfs 快照会共享文件数据，但子卷本身需要预留空间（建议给&lt;code>@timeshift&lt;/code>子卷分配至少 10GB）&lt;/li>
+&lt;li>Btrfs 快照会共享文件数据，但子卷本身需要预留空间&lt;/li>
 &lt;li>如果你往系统里塞了 100 个 G 的原神缓存，快照空间当然会爆啊！（ &lt;code>du -sh /var/cache/paru&lt;/code>自己查！）&lt;/li>
-&lt;/ul>&lt;/blockquote>
-&lt;blockquote>
-&lt;p>&lt;strong>Q：恢复快照后，我的桌面壁纸/文档不见了？&lt;/strong> &lt;br>
-A：先别急！&lt;/p>
-&lt;ul>
-&lt;li>Timeshift 默认只备份 系统分区（/），不包括 数据分区（如 /home）&lt;/li>
-&lt;li>解决方案：&lt;br>
-1. 手动把&lt;code>/home&lt;/code>加入备份范围（GUI 里编辑快照设置）&lt;br>
-2. 下次重装前，记得用&lt;code>rsync -avh /home /backup&lt;/code>单独备份数据！&lt;/li>
 &lt;/ul>&lt;/blockquote>
 &lt;blockquote>
 &lt;p>&lt;strong>Q：Btrfs 快照真的比 Rsync 快 100 倍？&lt;/strong> &lt;br>
@@ -681,28 +649,28 @@ A：实测数据说话：&lt;/p>
 A：节哀顺变…&lt;/p>
 &lt;ul>
 &lt;li>Btrfs快照删除后默认直接释放空间，不像Rsync有“保留版本”机制&lt;/li>
-&lt;li>下次记得定期检查快照列表（&lt;code> btrfs subvolume list /timeshift-btrfs&lt;/code>），&lt;strong>别妮玛手滑点“删除”！&lt;/strong>&lt;/li>
+&lt;li>下次记得定期检查快照列表（&lt;code> btrfs subvolume list /.snapshots&lt;/code>），&lt;strong>别他妈手滑点“删除”！&lt;/strong>&lt;/li>
 &lt;/ul>&lt;/blockquote>
 &lt;blockquote>
-&lt;p>&lt;strong>Q：能不能用 Timeshift 备份 Windows 分区？&lt;/strong> &lt;br>
-A：你在想pitch！&lt;/p>
+&lt;p>&lt;strong>Q：能不能用 Snapper 备份 Windows 分区？&lt;/strong> &lt;br>
+A：你在想屁吃！&lt;/p>
 &lt;ul>
-&lt;li>Timeshift 只认 Linux 文件系统（Btrfs/Ext4）&lt;/li>
+&lt;li>Timeshift 只认 Btrfs&lt;/li>
 &lt;li>Windows 的 NTFS 分区？建议用&lt;code>winsync&lt;/code>或者直接买移动硬盘拷贝！&lt;/li>
 &lt;/ul>&lt;/blockquote>
 &lt;blockquote>
-&lt;p>&lt;strong>Q：教程里说「Timeshift 是 Arch 必装」，真的不是广告吗？&lt;/strong> &lt;br>
+&lt;p>&lt;strong>Q：教程里说「Snapper 是 Arch 必装」，真的不是广告吗？&lt;/strong> &lt;br>
 A：当然不是！&lt;/p>
 &lt;ul>
-&lt;li>除非 Timeshift 给我打钱（但他们开源项目穷得连服务器都靠爱发电）&lt;/li>
-&lt;li>装不装随你，但等你误扬&lt;code>/usr&lt;/code>又没快照时，别来论坛哭唧唧！&lt;/li>
+&lt;li>除非 openSUSE 给我打钱（但他们开源项目穷得连服务器都靠爱发电）&lt;/li>
+&lt;li>装不装随你，但等你误扬&lt;code>/usr&lt;/code>又没快照时，别他妈来论坛哭唧唧！&lt;/li>
 &lt;/ul>&lt;/blockquote>
 &lt;blockquote>
 &lt;p>&lt;strong>Q：能不能在快照期间强制关机？&lt;/strong> &lt;br>
-A：禁止套娃！&lt;/p>
+A：你想炸系统啊？！&lt;/p>
 &lt;ul>
 &lt;li>Btrfs 快照创建时正在记录元数据，强制关机可能导致文件系统损坏&lt;/li>
-&lt;li>正确做法：等快照完成（ &lt;code>timeshift --wait&lt;/code>查看进度），或者先喝杯咖啡再关机～&lt;/li>
+&lt;li>正确做法：等快照完成，或者先喝杯咖啡再关机～&lt;/li>
 &lt;/ul>&lt;/blockquote>
 &lt;blockquote>
 &lt;p>&lt;strong>Q：系统卡顿/风扇狂转怎么办？&lt;/strong> &lt;br>
@@ -768,7 +736,7 @@ A：凉拌炒鸡蛋，好吃又好看！&lt;/p>
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">reboot &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> sudo pacman -S arch-install-scripts &lt;span class="c1"># 重装吧，少年&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>开玩笑的。。。如果你之前有Timeshift备份，还可以抢救一下（Timeshift没备份过你就重装吧）&lt;/p>&lt;/blockquote>
+&lt;/div>&lt;p>开玩笑的。。。如果你之前有Snapper备份，还可以抢救一下（Snapper没备份过你就重装吧老弟）&lt;/p>&lt;/blockquote>
 &lt;blockquote>
 &lt;p>&lt;strong>Q：Arch能用来办公吗？&lt;/strong> &lt;br>
 A：不仅能！还能摸鱼！&lt;/p>
@@ -817,9 +785,10 @@ A：（拍桌）大侠且慢！此处藏着30万Arch玩家，再难的坑也能�
 >Arch Linux 中文论坛&lt;/a>&lt;/p>&lt;/blockquote>
 &lt;blockquote>
 &lt;p>&lt;strong>Q：为什么这个教程天天在更新？&lt;/strong> &lt;br>
-A：原作者要么就是为了语言表述更准确，要么就是因为你们的建议要更新教程，&lt;del>以及呼应Arch Linux滚动更新&lt;/del>
-&lt;strong>Q：当前教程版本号？&lt;/strong>
-A：北京时间 2025年6月1日 00:00:00&lt;/p>&lt;/blockquote></description></item><item><title>ArchLinux Plasma 6 开启Samba服务（文件共享）</title><link>https://blog.moieo.net/2025/04/24/220548/</link><pubDate>Thu, 24 Apr 2025 22:05:48 +0800</pubDate><guid>https://blog.moieo.net/2025/04/24/220548/</guid><description>&lt;p>在 Plasma 6 中的 Dolphin 使用文件共享&lt;/p>
+A：原作者要么就是为了语言表述更准确，要么就是因为你们的建议要更新教程，&lt;del>以及呼应Arch Linux滚动更新&lt;/del>&lt;/p>&lt;/blockquote>
+&lt;blockquote>
+&lt;p>&lt;strong>Q：当前教程版本号？&lt;/strong>
+A：北京时间 2025年8月3日 18:28:03&lt;/p>&lt;/blockquote></description></item><item><title>ArchLinux Plasma 6 开启Samba服务（文件共享）</title><link>https://blog.moieo.net/2025/04/24/220548/</link><pubDate>Thu, 24 Apr 2025 22:05:48 +0800</pubDate><guid>https://blog.moieo.net/2025/04/24/220548/</guid><description>&lt;p>在 Plasma 6 中的 Dolphin 使用文件共享&lt;/p>
 &lt;h2 id="安装相关的插件">安装相关的插件
 &lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
