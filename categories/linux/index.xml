@@ -367,7 +367,7 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 创建普通用户(示例用户名为firefly，因为原作者也是个流萤厨！可以改成你喜欢的名字)&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">useradd -m -g users -G wheel -s /bin/bash firefly
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 设置用户密码(记得将“ayaka”改为你的用户名)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 设置用户密码(记得将“firefly”改为你的用户名)&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">passwd firefly
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
@@ -514,7 +514,7 @@
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">sudo pacman-key --lsign-key &lt;span class="s1">&amp;#39;farseerfc@archlinux.org&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">LANG&lt;/span>&lt;span class="o">=&lt;/span>C paru -Sy archlinuxcn-keyring
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">paru -Sy archlinuxcn-keyring
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>（拍桌）&lt;strong>重要操作！&lt;/strong> 这一步相当于给软件源上一把锁，不做的话后面装软件会报错到怀疑人生～&lt;/p>
@@ -788,7 +788,7 @@ A：（拍桌）大侠且慢！此处藏着30万Arch玩家，再难的坑也能�
 A：原作者要么就是为了语言表述更准确，要么就是因为你们的建议要更新教程，&lt;del>以及呼应Arch Linux滚动更新&lt;/del>&lt;/p>&lt;/blockquote>
 &lt;blockquote>
 &lt;p>&lt;strong>Q：当前教程版本号？&lt;/strong>
-A：北京时间 2025年8月3日 18:28:03&lt;/p>&lt;/blockquote></description></item><item><title>ArchLinux Plasma 6 开启Samba服务（文件共享）</title><link>https://blog.moieo.net/2025/04/24/220548/</link><pubDate>Thu, 24 Apr 2025 22:05:48 +0800</pubDate><guid>https://blog.moieo.net/2025/04/24/220548/</guid><description>&lt;p>在 Plasma 6 中的 Dolphin 使用文件共享&lt;/p>
+A：北京时间 2025年8月3日 20:00:00&lt;/p>&lt;/blockquote></description></item><item><title>ArchLinux Plasma 6 开启Samba服务（文件共享）</title><link>https://blog.moieo.net/2025/04/24/220548/</link><pubDate>Thu, 24 Apr 2025 22:05:48 +0800</pubDate><guid>https://blog.moieo.net/2025/04/24/220548/</guid><description>&lt;p>在 Plasma 6 中的 Dolphin 使用文件共享&lt;/p>
 &lt;h2 id="安装相关的插件">安装相关的插件
 &lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
